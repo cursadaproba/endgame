@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Capítulo 7: Nociones de Combinatoria y Conteo</title>
+  <!-- Inclusión de MathJax -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async 
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <!-- Google Fonts: Montserrat para títulos y Roboto para cuerpo -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Roboto', sans-serif;
+      line-height: 1.5;
+      background: #121212;
+      color: #e0e0e0;
+      padding: 20px;
+      text-align: justify;
+    }
+    a {
+      color: #00e5ff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: #00b8d4;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Montserrat', sans-serif;
+      color: #00e5ff;
+      margin-bottom: 15px;
+      text-align: left;
+    }
+    p {
+      margin-bottom: 15px;
+    }
+    ul, ol {
+      margin-left: 25px;
+      margin-bottom: 20px;
+    }
+    hr {
+      border: none;
+      border-top: 2px solid #00e5ff;
+      margin: 30px 0;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 20px 0;
+      background-color: #1e1e1e;
+    }
+    table, th, td {
+      border: 1px solid #00e5ff;
+    }
+    th, td {
+      padding: 12px;
+      text-align: center;
+    }
+    .diagram, .code-block {
+      background-color: #263238;
+      border: 1px solid #00e5ff;
+      padding: 12px;
+      font-family: 'Roboto Mono', monospace;
+      margin: 15px auto;
+      text-align: center;
+      display: block;
+      max-width: 320px;
+    }
+    .activity, .example {
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+    }
+    .activity {
+      background-color: #00e5ff20;
+      border-left: 5px solid #00e5ff;
+    }
+    .example {
+      background-color: #00e5ff10;
+      border-left: 5px solid #00e5ff;
+    }
+    /* Estilo para la tabla comparativa */
+    .comparativa {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    .comparativa th, .comparativa td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+    .comparativa th {
+      background-color: #e0e0e0;
+    }
+    /* Encabezado */
+    header {
+      background: url('https://source.unsplash.com/featured/?gamer,video-games') no-repeat center center/cover;
+      padding: 50px 20px;
+      text-align: center;
+      color: #ffffff;
+      margin-bottom: 30px;
+      border-radius: 5px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+    header h1 {
+      font-size: 2.8em;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    }
+    header p {
+      font-size: 1.3em;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+    }
+    /* Barra de navegación */
+    nav {
+      background-color: #1f1f1f;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    nav a {
+      margin: 0 15px;
+      font-weight: 500;
+      color: #00e5ff;
+    }
+    nav a:hover {
+      color: #00b8d4;
+    }
+    /* Espaciado para secciones */
+    section {
+      margin-bottom: 40px;
+    }
+    /* Footer */
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #00e5ff;
+    }
+  </style>
+</head>
+<body>
+  <!-- Encabezado -->
+  <header>
+    <h1>Capítulo 7: Nociones de Combinatoria y Conteo</h1>
+    <p>¡Descubrí las claves para contar, ordenar y seleccionar elementos en el desarrollo de videojuegos!</p>
+  </header>
+  
+  <!-- Barra de navegación -->
+  <nav>
+    <a href="#principios">7.1. Principios Básicos</a>
+    <a href="#permutaciones">7.2. Permutaciones y Combinaciones</a>
+    <a href="#arreglos">7.3. Arreglos</a>
+    <a href="#factorial">7.4. Factorial</a>
+    <a href="#problemas">7.5. Problemas de Conteo</a>
+    <a href="#ejercicios">7.6. Ejercicios Aplicados</a>
+    <a href="#conclusiones">7.7. Conclusiones</a>
+  </nav>
+  
+  <!-- Índice del Capítulo -->
+  <section>
+    <h2>Índice del Capítulo</h2>
+    <ol>
+      <li><a href="#principios">7.1. Principio de la Multiplicación y Adición</a></li>
+      <li><a href="#permutaciones">7.2. Permutaciones y Combinaciones</a></li>
+      <li><a href="#arreglos">7.3. Arreglos: Con y Sin Repetición</a></li>
+      <li><a href="#factorial">7.4. Factorial</a></li>
+      <li><a href="#problemas">7.5. Problemas de Conteo en Juegos</a></li>
+      <li><a href="#ejercicios">7.6. Ejercicios Aplicados a Videojuegos</a></li>
+      <li><a href="#conclusiones">7.7. Conclusiones</a></li>
+    </ol>
+  </section>
+  
+  <hr>
+  
+  <!-- 7.1 Principio de la Multiplicación y Adición -->
+  <section id="principios">
+    <h2>7.1. Principio de la Multiplicación y Adición</h2>
+    <h3>7.1.1. Principio de la Multiplicación</h3>
+    <p>
+      Este principio establece que si un evento \( A \) puede ocurrir de \( m \) formas y, para cada forma de \( A \), un evento \( B \) puede ocurrir de \( n \) formas, entonces el número total de formas de que ocurran ambos eventos es:
+      \[
+      m \times n.
+      \]
+      Se extiende a cualquier número de eventos sucesivos: si hay \( k \) eventos con \( n_1, n_2, \dots, n_k \) formas, el total es:
+      \[
+      n_1 \times n_2 \times \cdots \times n_k.
+      \]
+    </p>
+    <p>
+      <em>Ejemplo:</em> Con 3 camisas y 2 pantalones, existen \( 3 \times 2 = 6 \) combinaciones.
+    </p>
+    <p>
+      <strong>Aplicación en Videojuegos:</strong> En la personalización de personajes, si hay 5 razas, 4 clases y 3 tipos de armadura, el total de combinaciones es \( 5 \times 4 \times 3 = 60 \).
+    </p>
+    <!-- Diagrama de árbol para el principio de multiplicación -->
+    <div class="diagram" style="margin: auto; width: 320px;">
+      <svg width="300" height="200">
+        <!-- Nodo inicial -->
+        <circle cx="150" cy="20" r="5" fill="#00e5ff"/>
+        <text x="155" y="25" fill="#00e5ff" font-size="12">Inicio</text>
+        <!-- Primer nivel: Camisas (3 opciones) -->
+        <line x1="150" y1="25" x2="80" y2="70" stroke="#ffea00" stroke-width="2"/>
+        <line x1="150" y1="25" x2="150" y2="70" stroke="#ffea00" stroke-width="2"/>
+        <line x1="150" y1="25" x2="220" y2="70" stroke="#ffea00" stroke-width="2"/>
+        <circle cx="80" cy="70" r="5" fill="#00e5ff"/>
+        <circle cx="150" cy="70" r="5" fill="#00e5ff"/>
+        <circle cx="220" cy="70" r="5" fill="#00e5ff"/>
+        <text x="60" y="85" fill="#00e5ff" font-size="12">3 Camisas</text>
+        <!-- Segundo nivel: Pantalones (2 opciones) -->
+        <line x1="80" y1="70" x2="50" y2="120" stroke="#ffea00" stroke-width="2"/>
+        <line x1="80" y1="70" x2="110" y2="120" stroke="#ffea00" stroke-width="2"/>
+        <line x1="150" y1="70" x2="130" y2="120" stroke="#ffea00" stroke-width="2"/>
+        <line x1="150" y1="70" x2="170" y2="120" stroke="#ffea00" stroke-width="2"/>
+        <line x1="220" y1="70" x2="200" y2="120" stroke="#ffea00" stroke-width="2"/>
+        <line x1="220" y1="70" x2="240" y2="120" stroke="#ffea00" stroke-width="2"/>
+        <circle cx="50" cy="120" r="5" fill="#00e5ff"/>
+        <circle cx="110" cy="120" r="5" fill="#00e5ff"/>
+        <circle cx="130" cy="120" r="5" fill="#00e5ff"/>
+        <circle cx="170" cy="120" r="5" fill="#00e5ff"/>
+        <circle cx="200" cy="120" r="5" fill="#00e5ff"/>
+        <circle cx="240" cy="120" r="5" fill="#00e5ff"/>
+        <text x="90" y="140" fill="#00e5ff" font-size="12">2 Pantalones</text>
+      </svg>
+      <p style="text-align: center;">Diagrama: Principio de Multiplicación</p>
+    </div>
+    
+    <h3>7.1.2. Principio de la Adición</h3>
+    <p>
+      Si dos eventos mutuamente excluyentes \( A \) y \( B \) pueden ocurrir de \( m \) y \( n \) formas, respectivamente, el total es:
+      \[
+      m+n.
+      \]
+    </p>
+    <p>
+      <em>Ejemplo:</em> Si hay 3 aerolíneas y 2 compañías de tren, existen \( 3+2=5 \) opciones para viajar.
+    </p>
+    <!-- Diagrama sencillo para el principio de adición -->
+    <div class="diagram" style="margin: auto; width: 320px;">
+      <svg width="300" height="120">
+        <!-- Dos nodos de opciones -->
+        <rect x="40" y="30" width="80" height="40" fill="#263238" stroke="#00e5ff" stroke-width="2"/>
+        <text x="50" y="55" fill="#00e5ff" font-size="12">3 Aerolíneas</text>
+        <rect x="180" y="30" width="80" height="40" fill="#263238" stroke="#00e5ff" stroke-width="2"/>
+        <text x="190" y="55" fill="#00e5ff" font-size="12">2 Trenes</text>
+        <line x1="130" y1="50" x2="180" y2="50" stroke="#ffea00" stroke-width="2" marker-end="url(#arrow)"/>
+        <defs>
+          <marker id="arrow" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L9,3 z" fill="#ffea00" />
+          </marker>
+        </defs>
+        <text x="120" y="80" fill="#ffea00" font-size="12">Adición: 3+2</text>
+      </svg>
+      <p style="text-align: center;">Diagrama: Principio de Adición</p>
+    </div>
+  </section>
+  
+  <hr>
+  
+  <!-- 7.2 Permutaciones y Combinaciones -->
+  <section id="permutaciones">
+    <h2>7.2. Permutaciones y Combinaciones</h2>
+    <h3>7.2.1. Permutaciones</h3>
+    <p>
+      Una <strong>permutación</strong> es un arreglo ordenado de objetos (el orden importa).  
+      <br>
+      <strong>Sin repetición:</strong>  
+      \[
+      P(n,r)=\frac{n!}{(n-r)!}.
+      \]
+      <br>
+      Si \( r=n \), entonces \( P(n,n)=n! \).
+    </p>
+    <p>
+      <strong>Con repetición:</strong>  
+      \[
+      n^r.
+      \]
+    </p>
+    <h3>7.2.2. Combinaciones</h3>
+    <p>
+      Una <strong>combinación</strong> es una selección de objetos donde el orden no importa.
+      <br>
+      <strong>Sin repetición:</strong>  
+      \[
+      C(n,r)=\frac{n!}{r!(n-r)!}.
+      \]
+      <br>
+      <strong>Con repetición:</strong>  
+      \[
+      C(n+r-1,r)=\frac{(n+r-1)!}{r!(n-1)!}.
+      \]
+    </p>
+    <h3>7.2.3. Diagramas y Ejemplos</h3>
+    <!-- Diagrama comparativo: Permutación vs Combinación -->
+    <div class="diagram" style="margin: auto; width: 320px;">
+      <svg width="300" height="180">
+        <!-- Permutación: Orden importa -->
+        <rect x="20" y="20" width="120" height="40" fill="#263238" stroke="#00e5ff" stroke-width="2"/>
+        <text x="30" y="45" fill="#00e5ff" font-size="12">A, B, C</text>
+        <line x1="20" y1="70" x2="80" y2="100" stroke="#ffea00" stroke-width="2" />
+        <text x="30" y="110" fill="#ffea00" font-size="12">3! = 6</text>
+        <!-- Combinación: Orden no importa -->
+        <rect x="160" y="20" width="120" height="40" fill="#263238" stroke="#00e5ff" stroke-width="2"/>
+        <text x="170" y="45" fill="#00e5ff" font-size="12">A, B, C</text>
+        <line x1="160" y1="70" x2="220" y2="100" stroke="#ffea00" stroke-width="2" />
+        <text x="170" y="110" fill="#ffea00" font-size="12">C(3,3)=1</text>
+      </svg>
+      <p style="text-align: center;">Diagrama: Permutaciones (orden importa) vs Combinaciones (orden no importa)</p>
+    </div>
+  </section>
+  
+  <hr>
+  
+  <!-- 7.3 Arreglos: Con y Sin Repetición -->
+  <section id="arreglos">
+    <h2>7.3. Arreglos: Con y Sin Repetición</h2>
+    <p>
+      Los <em>arreglos</em> son disposiciones ordenadas de elementos. Cuando no se permite repetir, se tienen las mismas fórmulas que las permutaciones:
+      \[
+      P(n,r)=\frac{n!}{(n-r)!}.
+      \]
+      Si se permite repetir, el total es:
+      \[
+      n^r.
+      \]
+    </p>
+  </section>
+  
+  <hr>
+  
+  <!-- 7.4 Factorial -->
+  <section id="factorial">
+    <h2>7.4. Factorial: Concepto y Aplicaciones</h2>
+    <h3>7.4.1. Concepto de Factorial</h3>
+    <p>
+      El <strong>factorial</strong> de un número \( n \) se define como:
+      \[
+      n! = n\cdot(n-1)\cdots2\cdot1, \quad 0! = 1.
+      \]
+      Este crecimiento exponencial es fundamental en combinatoria.
+    </p>
+    <h3>7.4.2. Relación con Permutaciones y Combinaciones</h3>
+    <p>
+      Las fórmulas de permutaciones y combinaciones utilizan el factorial. Por ejemplo:
+      \[
+      P(n,r)=\frac{n!}{(n-r)!}\quad\text{y}\quad C(n,r)=\frac{n!}{r!(n-r)!}.
+      \]
+    </p>
+    <!-- Gráfica ilustrativa: Crecimiento factorial -->
+    <div class="diagram" style="margin: auto; width: 320px;">
+      <svg width="300" height="200">
+        <!-- Ejes -->
+        <line x1="30" y1="170" x2="270" y2="170" stroke="#00e5ff" stroke-width="2"/>
+        <line x1="30" y1="170" x2="30" y2="20" stroke="#00e5ff" stroke-width="2"/>
+        <!-- Gráfica aproximada del crecimiento factorial (valores simulados) -->
+        <polyline fill="none" stroke="#ffea00" stroke-width="2"
+          points="
+            30,170 
+            60,140 
+            90,100 
+            120,60 
+            150,30" />
+      </svg>
+      <p style="text-align: center;">Crecimiento factorial: \( n! \) aumenta muy rápido</p>
+    </div>
+  </section>
+  
+  <hr>
+  
+  <!-- 7.5 Problemas de Conteo en Juegos -->
+  <section id="problemas">
+    <h2>7.5. Problemas de Conteo en Juegos</h2>
+    <h3>7.5.1. Tipos de Problemas</h3>
+    <p>
+      Los problemas de conteo pueden involucrar:
+    </p>
+    <ul>
+      <li>Combinaciones de objetos, personajes o habilidades.</li>
+      <li>Número de resultados de eventos aleatorios.</li>
+      <li>Número de caminos o rutas en un mapa.</li>
+      <li>Estados posibles en puzzles o configuraciones de juego.</li>
+    </ul>
+    <h3>7.5.2. Estrategias de Resolución</h3>
+    <p>
+      Para resolverlos, es fundamental:
+    </p>
+    <ul>
+      <li>Distinguir si el orden importa (permutaciones/arreglos) o no (combinaciones).</li>
+      <li>Aplicar los principios de multiplicación o adición según corresponda.</li>
+      <li>Dividir el problema en partes, utilizar diagramas de árbol o tablas y reconocer patrones.</li>
+    </ul>
+    <h3>7.5.3. Ejemplos en Videojuegos</h3>
+    <p>
+      Algunos ejemplos son:
+      <br>
+      - Combinaciones de armadura: \( C(8,3)=56 \).
+      <br>
+      - Mazos de cartas: \( C(200,40) \).
+      <br>
+      - Resultados de 3 dados: \( 6^3=216 \).
+      <br>
+      - Caminos en una cuadrícula: \( C(6,3)=20 \).
+    </p>
+  </section>
+  
+  <hr>
+  
+  <!-- 7.6 Ejercicios Aplicados a Videojuegos -->
+  <section id="ejercicios">
+    <h2>7.6. Ejercicios Aplicados a Videojuegos</h2>
+    <p>
+      A continuación se presentan ejercicios prácticos que aplican conceptos de combinatoria y conteo en escenarios reales de videojuegos. Cada ejercicio se detalla paso a paso.
+    </p>
+    
+    <div class="example">
+      <h3>Ejercicio 7.1: Combinaciones de Equipo en un Juego de Rol</h3>
+      <p><strong>Enunciado:</strong></p>
+      <p>
+        En un juego de rol hay 5 clases y cada personaje equipa 3 objetos: un arma (6 tipos), una armadura (4 tipos) y un accesorio (8 tipos). Calculá:
+      </p>
+      <ol>
+        <li>El número de combinaciones de equipo para cada clase.</li>
+        <li>El total de combinaciones incluyendo la elección de clase.</li>
+      </ol>
+      <p><strong>Solución:</strong></p>
+      <ol>
+        <li>Equipo: \( 6 \times 4 \times 8 = 192 \).</li>
+        <li>Total: \( 5 \times 192 = 960 \).</li>
+      </ol>
+    </div>
+    
+    <div class="example">
+      <h3>Ejercicio 7.2: Generación Procedural de Niveles</h3>
+      <p><strong>Enunciado:</strong></p>
+      <p>
+        Un nivel se compone de 12 secciones y hay 5 tipos diferentes (orden importa). Además, cada sección puede tener 3 orientaciones. Calculá:
+      </p>
+      <ol>
+        <li>Número total sin orientación: \( 5^{12} \).</li>
+        <li>Con orientación: \( (5 \times 3)^{12}=15^{12} \).</li>
+      </ol>
+    </div>
+    
+    <div class="example">
+      <h3>Ejercicio 7.3: Probabilidad en un Juego de Cartas</h3>
+      <p><strong>Enunciado:</strong></p>
+      <p>
+        En un juego de cartas se roban 5 cartas de un mazo de 52. Calculá:
+      </p>
+      <ol>
+        <li>Número total de manos: \( C(52,5) \).</li>
+        <li>Número de manos con exactamente 2 ases: \( C(4,2)\times C(48,3) \).</li>
+        <li>Probabilidad de obtener exactamente 2 ases:
+          \[
+          \frac{C(4,2)\times C(48,3)}{C(52,5)}.
+          \]
+        </li>
+      </ol>
+    </div>
+    
+    <div class="example">
+      <h3>Ejercicio 7.4: Configuraciones en un Rompecabezas</h3>
+      <p><strong>Enunciado:</strong></p>
+      <p>
+        Un rompecabezas tiene 4 palancas, cada una con 2 posiciones (“arriba” o “abajo”). Calculá:
+      </p>
+      <ol>
+        <li>Número total de configuraciones: \( 2^4=16 \).</li>
+        <li>Probabilidad de acertar al azar: \( \frac{1}{16} \).</li>
+      </ol>
+    </div>
+    
+    <div class="example">
+      <h3>Ejercicio 7.5: Combinaciones de Habilidades en un MOBA</h3>
+      <p><strong>Enunciado:</strong></p>
+      <p>
+        En un MOBA hay 40 personajes y cada uno tiene 4 habilidades únicas. Si un equipo se forma con 5 personajes (sin repetición), calculá:
+      </p>
+      <ol>
+        <li>Número de equipos posibles: \( C(40,5) \).</li>
+        <li>Máximo de habilidades distintas: \( 5 \times 4=20 \) (suponiendo que no se repiten habilidades entre personajes).
+        </li>
+      </ol>
+    </div>
+  </section>
+  
+  <hr>
+  
+  <!-- 7.7 Conclusiones -->
+  <section id="conclusiones">
+    <h2>7.7. Conclusiones</h2>
+    <p>
+      En este capítulo exploraste los fundamentos de la combinatoria y el conteo, esenciales para diseñar sistemas complejos en videojuegos. Resumamos lo aprendido:
+    </p>
+    <ul>
+      <li><strong>Principios de Conteo:</strong> 
+        - <em>Multiplicación:</em> Cuenta secuencias de eventos sucesivos.
+        - <em>Adición:</em> Cuenta opciones en eventos mutuamente excluyentes.
+      </li>
+      <li><strong>Permutaciones:</strong> Se usan cuando el orden importa, ya sea sin o con repetición.</li>
+      <li><strong>Combinaciones:</strong> Se emplean cuando el orden no importa, sin o con repetición.</li>
+      <li><strong>Arreglos:</strong> Son disposiciones ordenadas, equivalentes a permutaciones en el caso sin repetición.</li>
+      <li><strong>Factorial:</strong> Refleja el crecimiento rápido de posibilidades al aumentar \( n \).</li>
+      <li><strong>Aplicaciones en Videojuegos:</strong> Desde la personalización de personajes y generación procedural de niveles, hasta el diseño de puzzles y sistemas de probabilidad en cartas o loot.</li>
+    </ul>
+    <p>
+      Dominar estas técnicas te permitirá cuantificar la diversidad y complejidad en el diseño de videojuegos, creando sistemas ricos y personalizados.
+    </p>
+    <p>
+      ¡Éxito en tu recorrido y que disfrutes aplicando estos conceptos en tus proyectos!
+    </p>
+  </section>
+  
+  <hr>
+  
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 UTN BA - Carrera de Desarrollo y Producción de Videojuegos</p>
+  </footer>
+  
+</body>
+</html>

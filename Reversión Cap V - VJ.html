@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <!-- Meta para responsividad -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Módulo 5: Derivadas y su Aplicación en Videojuegos</title>
+  
+  <!-- Inclusión de MathJax para fórmulas matemáticas -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  
+  <!-- Google Fonts: "Montserrat" para títulos y "Roboto" para el cuerpo -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Estilos CSS para un ambiente moderno y gamer -->
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Roboto', sans-serif;
+      line-height: 1.5;
+      background: #121212;
+      color: #e0e0e0;
+      padding: 20px;
+    }
+    
+    a {
+      color: #00e5ff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    a:hover {
+      color: #00b8d4;
+    }
+    
+    h1, h2, h3, h4 {
+      font-family: 'Montserrat', sans-serif;
+      color: #00e5ff;
+      margin-bottom: 15px;
+    }
+    
+    p {
+      margin-bottom: 15px;
+    }
+    
+    ul, ol {
+      margin-left: 25px;
+      margin-bottom: 20px;
+    }
+    
+    hr {
+      border: none;
+      border-top: 2px solid #00e5ff;
+      margin: 30px 0;
+    }
+    
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 20px 0;
+      background-color: #1e1e1e;
+    }
+    
+    table, th, td {
+      border: 1px solid #00e5ff;
+    }
+    
+    th, td {
+      padding: 12px;
+      text-align: left;
+    }
+    
+    .diagram, .code-block {
+      background-color: #263238;
+      border: 1px solid #00e5ff;
+      padding: 12px;
+      font-family: 'Roboto Mono', monospace;
+      margin: 15px auto;
+      text-align: center;
+      display: block;
+      max-width: 320px;
+    }
+    
+    .activity, .example {
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+    }
+    
+    .activity {
+      background-color: #00e5ff20;
+      border-left: 5px solid #00e5ff;
+    }
+    
+    .example {
+      background-color: #00e5ff10;
+      border-left: 5px solid #00e5ff;
+    }
+    
+    /* Encabezado con imagen de fondo moderna */
+    header {
+      background: url('https://source.unsplash.com/featured/?gamer,technology') no-repeat center center/cover;
+      padding: 50px 20px;
+      text-align: center;
+      color: #ffffff;
+      margin-bottom: 30px;
+      border-radius: 5px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+    
+    header h1 {
+      font-size: 2.8em;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    }
+    
+    header p {
+      font-size: 1.3em;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+    }
+    
+    /* Barra de navegación moderna */
+    nav {
+      background-color: #1f1f1f;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    nav a {
+      margin: 0 15px;
+      font-weight: 500;
+      color: #00e5ff;
+    }
+    
+    nav a:hover {
+      color: #00b8d4;
+    }
+    
+    /* Espaciado general para secciones */
+    section {
+      margin-bottom: 40px;
+    }
+    
+    /* Footer */
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #00e5ff;
+    }
+  </style>
+</head>
+<body>
+  <!-- Encabezado -->
+  <header>
+    <h1>Módulo 5: Derivadas y su Aplicación en Videojuegos</h1>
+    <p>¡Descubrí cómo las derivadas transforman la física y el movimiento en tus juegos!</p>
+  </header>
+  
+  <!-- Barra de navegación -->
+  <nav>
+    <a href="#definicion">5.1. Derivada</a>
+    <a href="#reglas">5.2. Reglas de Derivación</a>
+    <a href="#interpretacion">5.3. Interpretación Geométrica y Física</a>
+    <a href="#movimiento">5.4. Movimiento y Aceleración</a>
+    <a href="#ejercicios">5.5. Ejercicios Aplicados</a>
+    <a href="#integracion">5.6. Integración con Optimización</a>
+    <a href="#suavizado">5.7. Suavizado de Transiciones</a>
+    <a href="#lecturas">5.8. Lecturas Complementarias</a>
+    <a href="#conclusiones">5.9. Conclusiones</a>
+  </nav>
+  
+  <!-- Índice del Módulo -->
+  <section>
+    <h2>Índice del Módulo</h2>
+    <ol>
+      <li><a href="#definicion">5.1. Definición de Derivada</a></li>
+      <li><a href="#reglas">5.2. Derivadas de Funciones Polinómicas, Exponenciales y Trigonométricas</a></li>
+      <li><a href="#interpretacion">5.3. Interpretación Geométrica y Significado Físico</a></li>
+      <li><a href="#movimiento">5.4. Aplicación en Velocidad y Aceleración</a></li>
+      <li><a href="#ejercicios">5.5. Ejercicios Aplicados a Videojuegos</a></li>
+      <li><a href="#integracion">5.6. Integrando Derivadas con Optimización</a></li>
+      <li><a href="#suavizado">5.7. Suavizado de Transiciones</a></li>
+      <li><a href="#lecturas">5.8. Lecturas Complementarias</a></li>
+      <li><a href="#conclusiones">5.9. Conclusiones del Módulo 5</a></li>
+    </ol>
+  </section>
+  
+  <hr>
+  
+  <!-- 5.1 Definición de Derivada -->
+  <section id="definicion">
+    <h2>5.1. Definición de Derivada como Tasa de Cambio</h2>
+    <h3>5.1.1. Concepto</h3>
+    <p>
+      La derivada de una función \( f(x) \) en un punto \( x=a \) indica la tasa de cambio instantánea, es decir, cuánto varía \( f(x) \) por unidad de cambio en \( x \) cuando \( x \) se acerca a \( a \). Geométricamente, es la pendiente de la recta tangente a la curva en ese punto.
+    </p>
+    <h3>5.1.2. Definición Formal</h3>
+    <p>
+      Se define como:
+      \[
+      f'(a)=\lim_{h\to 0}\frac{f(a+h)-f(a)}{h},
+      \]
+      siempre que este límite exista.
+    </p>
+    <h3>5.1.3. Interpretaciones</h3>
+    <ul>
+      <li><strong>Geométrica:</strong> La pendiente de la tangente en \( (a, f(a)) \).</li>
+      <li><strong>Física:</strong> Si \( s(t) \) es la posición, entonces \( s'(t) \) es la velocidad y \( s''(t) \) la aceleración.</li>
+    </ul>
+    <h3>5.1.4. Diagramas y Gráficas: Tangente y Secante</h3>
+    <p>
+      Para comprender la derivada, es útil diferenciar entre una <strong>secante</strong> y una <strong>tangente</strong>.  
+      <br>
+      - La <em>secante</em> es la línea que une dos puntos en la curva y representa la tasa de cambio promedio entre ellos.  
+      - La <em>tangente</em> es el límite de la secante cuando los dos puntos se acercan entre sí, representando la tasa de cambio instantánea.
+    </p>
+    <!-- Diagrama con secante y tangente en f(x)=x² -->
+    <div class="diagram" style="margin: auto; width: 320px;">
+      <svg width="300" height="200">
+        <!-- Ejes: se asume dominio de 0 a 4 y rango de 0 a 16 -->
+        <line x1="30" y1="170" x2="270" y2="170" stroke="#00e5ff" stroke-width="2"/>
+        <line x1="30" y1="170" x2="30" y2="20" stroke="#00e5ff" stroke-width="2"/>
+        <!-- Curva f(x)=x^2: puntos para x=0,1,2,3,4 -->
+        <polyline fill="none" stroke="#ffea00" stroke-width="2"
+          points="
+            30,170 
+            90,160.63 
+            150,132.5 
+            210,85.63 
+            270,20" />
+        <!-- Secante: entre x=2 (150,132.5) y x=2.5 (180,111.41) -->
+        <line x1="150" y1="132.5" x2="180" y2="111.41" stroke="#ffc107" stroke-width="2"/>
+        <text x="155" y="125" fill="#ffc107" font-size="12">Secante</text>
+        <!-- Tangente: en x=2; pendiente f'(2)=2*2=4. Usamos dos puntos calculados: -->
+        <!-- Para x=1.5: f_t = 4*(1.5-2)+4 = 2; mapeo: x=120, y=170 - (2/16*150)=151.25 -->
+        <!-- Para x=2.5: f_t = 4*(2.5-2)+4 = 6; mapeo: x=180, y=170 - (6/16*150)=113.75 -->
+        <line x1="120" y1="151.25" x2="180" y2="113.75" stroke="#00e5ff" stroke-width="2" stroke-dasharray="4"/>
+        <text x="125" y="145" fill="#00e5ff" font-size="12">Tangente</text>
+        <!-- Punto de tangencia en x=2: (150,132.5) -->
+        <circle cx="150" cy="132.5" r="4" fill="#00e5ff"/>
+        <text x="155" y="130" fill="#00e5ff" font-size="12">P</text>
+      </svg>
+      <p style="text-align: center;">
+        En la gráfica se observa la secante (en naranja) y la tangente (línea discontinua azul) a \( f(x)=x^2 \) en \( x=2 \).<br>
+        La tangente es el límite de la secante cuando el segundo punto se acerca a \( x=2 \).<br>
+        Geométricamente, se obtiene la pendiente de la tangente calculando \( f'(2)=4 \).
+      </p>
+    </div>
+  </section>
+  
+  <hr>
+  
+  <!-- 5.2 Derivadas de Funciones Polinómicas, Exponenciales y Trigonométricas -->
+  <section id="reglas">
+    <h2>5.2. Derivadas de Funciones Polinómicas, Exponenciales y Trigonométricas</h2>
+    <h3>5.2.1. Reglas Básicas de Derivación</h3>
+    <p>
+      Algunas reglas fundamentales son:
+    </p>
+    <ul>
+      <li><strong>Constante:</strong> \((c)'=0.\)</li>
+      <li><strong>Potencia:</strong> \((x^n)'=n\,x^{n-1}.\)</li>
+      <li><strong>Múltiplo constante:</strong> \((c\cdot g(x))'=c\cdot g'(x).\)</li>
+      <li><strong>Suma y Resta:</strong> \((g(x)\pm h(x))'=g'(x)\pm h'(x).\)</li>
+      <li><strong>Producto:</strong> \((g(x) \cdot h(x))'=g'(x)h(x)+g(x)h'(x).\)</li>
+      <li><strong>Cociente:</strong> 
+        \[
+        \left(\frac{g(x)}{h(x)}\right)'=\frac{g'(x)h(x)-g(x)h'(x)}{[h(x)]^2},\quad h(x)\neq 0.
+        \]
+      </li>
+      <li><strong>Cadena:</strong> \((g(h(x)))'=g'(h(x))\cdot h'(x).\)</li>
+    </ul>
+    
+    <h3>5.2.2. Ejemplos Específicos</h3>
+    <ul>
+      <li>
+        <em>Polinómica:</em> Para \( f(x)=3x^4-2x^2+5x-1 \), se tiene:
+        \[
+        f'(x)=12x^3-4x+5.
+        \]
+      </li>
+      <li>
+        <em>Exponencial:</em>  
+        \[
+        \frac{d}{dx}(e^x)=e^x,\quad \frac{d}{dx}(a^x)=a^x\ln(a).
+        \]
+      </li>
+      <li>
+        <em>Trigonométrica:</em>  
+        \[
+        (\sin x)'=\cos x,\quad (\cos x)'=-\sin x,\quad (\tan x)'=\sec^2 x.
+        \]
+        Además, para funciones compuestas:
+        \[
+        \frac{d}{dx}[\sin(g(x))]=\cos(g(x))\cdot g'(x).
+        \]
+      </li>
+    </ul>
+    
+    <h3>5.2.3. Gráficas de Ejemplos</h3>
+    <!-- Gráfica de función polinómica (aproximación) -->
+    <div class="diagram" style="margin: auto; width: 320px;">
+      <svg width="300" height="200">
+        <line x1="30" y1="170" x2="270" y2="170" stroke="#00e5ff" stroke-width="2"/>
+        <line x1="30" y1="170" x2="30" y2="20" stroke="#00e5ff" stroke-width="2"/>
+        <polyline fill="none" stroke="#ffea00" stroke-width="2"
+          points="
+            30,170 
+            90,160.63 
+            150,132.5 
+            210,85.63 
+            270,20" />
+      </svg>
+      <p style="text-align: center;">Ejemplo polinómico</p>
+    </div>
+    <!-- Gráfica de función exponencial: f(x)=2e^x -->
+    <div class="diagram" style="margin: auto; width: 320px;">
+      <svg width="300" height="200">
+        <line x1="30" y1="170" x2="270" y2="170" stroke="#00e5ff" stroke-width="2"/>
+        <line x1="30" y1="170" x2="30" y2="20" stroke="#00e5ff" stroke-width="2"/>
+        <polyline fill="none" stroke="#ffea00" stroke-width="2"
+          points="
+            30,170 
+            60,150 
+            90,130 
+            120,110 
+            150,95 
+            180,85 
+            210,80 
+            240,75 
+            270,70" />
+      </svg>
+      <p style="text-align: center;">Ejemplo exponencial: \( f(x)=2e^x \)</p>
+    </div>
+    <!-- Gráfica de función trigonométrica: f(x)=sin(x) -->
+    <div class="diagram" style="margin: auto; width: 320px;">
+      <svg width="300" height="200">
+        <line x1="30" y1="170" x2="270" y2="170" stroke="#00e5ff" stroke-width="2"/>
+        <line x1="30" y1="170" x2="30" y2="20" stroke="#00e5ff" stroke-width="2"/>
+        <polyline fill="none" stroke="#ffea00" stroke-width="2"
+          points="
+            30,120 
+            60,170 
+            90,120 
+            120,70 
+            150,120 
+            180,170 
+            210,120 
+            240,70 
+            270,120" />
+      </svg>
+      <p style="text-align: center;">Ejemplo trigonométrico: \( f(x)=\sin(x) \)</p>
+    </div>
+  </section>
+  
+  <hr>
+  
+  <!-- 5.3 Interpretación Geométrica y Significado Físico -->
+  <section id="interpretacion">
+    <h2>5.3. Interpretación Geométrica y Significado Físico</h2>
+    <h3>5.3.1. Interpretación Geométrica</h3>
+    <p>
+      La derivada \( f'(a) \) es la pendiente de la recta tangente a la curva \( y=f(x) \) en \( x=a \):
+    </p>
+    <ul>
+      <li>Si \( f'(a)>0 \), la función está creciendo en ese punto.</li>
+      <li>Si \( f'(a)<0 \), está decreciendo.</li>
+      <li>Si \( f'(a)=0 \), se trata de un punto estacionario (máximo, mínimo o punto de inflexión).</li>
+    </ul>
+    
+    <h3>5.3.2. Significado Físico</h3>
+    <p>
+      En física, si \( s(t) \) es la posición:
+      <br>
+      - \( s'(t) \) es la velocidad instantánea.
+      <br>
+      - \( s''(t) \) es la aceleración.
+    </p>
+    
+    <h3>5.3.3. Ejemplo Visual</h3>
+    <!-- Reutilizamos el diagrama de tangente y secante de 5.1 -->
+    <div class="diagram" style="margin: auto; width: 320px;">
+      <svg width="300" height="200">
+        <line x1="30" y1="170" x2="270" y2="170" stroke="#00e5ff" stroke-width="2"/>
+        <line x1="30" y1="170" x2="30" y2="20" stroke="#00e5ff" stroke-width="2"/>
+        <polyline fill="none" stroke="#ffea00" stroke-width="2"
+          points="30,170 90,160.63 150,132.5 210,85.63 270,20"/>
+        <line x1="150" y1="132.5" x2="180" y2="111.41" stroke="#ffc107" stroke-width="2"/>
+        <text x="155" y="125" fill="#ffc107" font-size="12">Secante</text>
+        <line x1="120" y1="151.25" x2="180" y2="113.75" stroke="#00e5ff" stroke-width="2" stroke-dasharray="4"/>
+        <text x="125" y="145" fill="#00e5ff" font-size="12">Tangente</text>
+        <circle cx="150" cy="132.5" r="4" fill="#00e5ff"/>
+        <text x="155" y="130" fill="#00e5ff" font-size="12">P</text>
+      </svg>
+      <p style="text-align: center;">
+        Diagrama: Secante y Tangente a \( f(x)=x^2 \) en \( x=2 \).<br>
+        La secante une dos puntos y la tangente es el límite de la secante al acercarse los puntos.
+      </p>
+    </div>
+    
+    <h3>5.3.4. Cómo Hallar la Tangente Geométricamente</h3>
+    <p>
+      Para hallar la recta tangente a la curva \( f(x) \) en un punto \( x=a \):
+    </p>
+    <ol>
+      <li>Elija dos puntos cercanos a \( a \) en la curva y calcule la pendiente de la secante:  
+      \[
+      m_{\text{sec}}=\frac{f(a+h)-f(a)}{h}.
+      \]
+      </li>
+      <li>Reducir \( h \) (haciendo que el segundo punto se acerque a \( a \)) hace que \( m_{\text{sec}} \) se aproxime a \( f'(a) \), la pendiente de la tangente.</li>
+      <li>La ecuación de la tangente es:  
+      \[
+      y-f(a)=f'(a)(x-a).
+      \]
+      </li>
+    </ol>
+    <p>
+      En nuestro ejemplo de \( f(x)=x^2 \) en \( x=2 \), se tiene \( f(2)=4 \) y \( f'(2)=4 \), por lo que la tangente es:
+      \[
+      y-4=4(x-2).
+      \]
+    </p>
+  </section>
+  
+  <hr>
+  
+  <!-- 5.4 Aplicación en Velocidad y Aceleración -->
+  <section id="movimiento">
+    <h2>5.4. Aplicación en Velocidad y Aceleración en Mecánicas de Movimiento</h2>
+    <h3>5.4.1. Conceptos Clave</h3>
+    <p>
+      La velocidad instantánea es la derivada de la posición:
+      \[
+      v(t)=\frac{ds}{dt},
+      \]
+      y la aceleración es la derivada de la velocidad:
+      \[
+      a(t)=\frac{d^2s}{dt^2}.
+      \]
+    </p>
+    <h3>5.4.2. Movimiento Uniformemente Acelerado</h3>
+    <p>
+      Las ecuaciones básicas son:
+      \[
+      v(t)=v_0+at,\quad s(t)=s_0+v_0t+\frac{1}{2}at^2.
+      \]
+    </p>
+    <h3>5.4.3. Ejemplo Visual en Videojuegos</h3>
+    <div class="diagram" style="margin: auto; width: 320px;">
+      <svg width="300" height="200">
+        <!-- Ejes -->
+        <line x1="30" y1="170" x2="270" y2="170" stroke="#00e5ff" stroke-width="2"/>
+        <line x1="30" y1="170" x2="30" y2="20" stroke="#00e5ff" stroke-width="2"/>
+        <!-- Gráfica de s(t)=s0+v0t+1/2at^2, ejemplo con s0=0, v0=0, a=10 -->
+        <polyline fill="none" stroke="#ffea00" stroke-width="2"
+          points="
+            30,170 
+            60,140 
+            90,110 
+            120,90 
+            150,75 
+            180,65 
+            210,60 
+            240,60 
+            270,65" />
+        <text x="160" y="70" fill="#ffea00" font-size="12">s(t)</text>
+      </svg>
+      <p style="text-align: center;">Ejemplo de MUA: Gráfica de posición</p>
+    </div>
+  </section>
+  
+  <hr>
+  
+  <!-- 5.5 Ejercicios Aplicados a Videojuegos -->
+  <section id="ejercicios">
+    <h2>5.5. Ejercicios Aplicados a Videojuegos</h2>
+    <p>
+      Acá tenés ejercicios prácticos que integran el concepto de derivada en la simulación y control de mecánicas de movimiento. Cada ejercicio incluye una guía paso a paso.
+    </p>
+    
+    <div class="example">
+      <h3>Ejercicio 5.1: Implementación de Física Realista</h3>
+      <p><strong>Enunciado:</strong></p>
+      <p>
+        Creá una clase <em>Objeto</em> con atributos para posición (vector), velocidad (vector) y aceleración (vector). Implementá un método <em>actualizar(dt)</em> que actualice:
+        \[
+        \text{velocidad} \leftarrow \text{velocidad} + \text{aceleración}\cdot dt,\quad
+        \text{posición} \leftarrow \text{posición} + \text{velocidad}\cdot dt.
+        \]
+      </p>
+      <p><strong>Objetivo:</strong> Comprender el uso de derivadas para simular movimiento y observar la influencia del paso de integración \( \Delta t \).</p>
+      <p><strong>Resolución:</strong></p>
+      <ol>
+        <li>Definir la clase con sus atributos iniciales.</li>
+        <li>Implementar el método <em>actualizar(dt)</em> usando las ecuaciones del movimiento.</li>
+        <li>Crear un bucle en <em>simular(objeto, tiempo_total, dt)</em> que actualice el objeto en cada iteración.</li>
+      </ol>
+    </div>
+    
+    <div class="example">
+      <h3>Ejercicio 5.2: Ajuste de Mecánicas de Movimiento en Carreras</h3>
+      <p><strong>Enunciado:</strong></p>
+      <p>
+        Definí las funciones <em>acelerar(vel, a, dt)</em> y <em>frenar(vel, rozamiento, dt)</em> para actualizar la velocidad de un vehículo. Simulá el proceso de aceleración y frenado variando los parámetros.
+      </p>
+      <p><strong>Resolución:</strong></p>
+      <ol>
+        <li>Definir <em>acelerar(vel, a, dt)</em>:
+          \[
+          vel \leftarrow vel + a\cdot dt.
+          \]
+        </li>
+        <li>Definir <em>frenar(vel, rozamiento, dt)</em>:
+          \[
+          vel \leftarrow vel - rozamiento\cdot dt.
+          \]
+        </li>
+        <li>Implementar un bucle que simule la aceleración mientras se presiona la tecla, y el frenado al soltarla.</li>
+      </ol>
+    </div>
+    
+    <div class="example">
+      <h3>Ejercicio 5.3: Trayectoria de un Misil Teledirigido</h3>
+      <p><strong>Enunciado:</strong></p>
+      <p>
+        Dadas las posiciones del misil y del objetivo, definí la dirección normalizada:
+        \[
+        \text{dir}=\frac{\text{pos\_objetivo}-\text{pos\_misil}}{\|\text{pos\_objetivo}-\text{pos\_misil}\|}.
+        \]
+        Actualizá la velocidad del misil para orientarla progresivamente hacia \( \text{dir} \) sin superar una velocidad máxima \( v_{\text{max}} \).
+      </p>
+      <p><strong>Resolución:</strong></p>
+      <ol>
+        <li>Calcular \( \text{dir} \) a partir de las posiciones.</li>
+        <li>Ajustar la velocidad para orientarse hacia \( \text{dir} \) y limitarla a \( v_{\text{max}} \).</li>
+        <li>Actualizar la posición usando el método <em>actualizar(dt)</em>.</li>
+      </ol>
+    </div>
+    
+    <div class="example">
+      <h3>Ejercicio 5.4: Movimiento en un Juego de Plataformas</h3>
+      <p><strong>Enunciado:</strong></p>
+      <p>
+        Creá una clase <em>Personaje</em> con atributos para la posición, velocidad y aceleración en ambos ejes: \( pos_x, vel_x, acel_x \) y \( pos_y, vel_y, acel_y \). El personaje está sometido a:
+      </p>
+      <ul>
+        <li>Gravedad: \( acel_y = -g \).</li>
+        <li>Salto: Al presionar “saltar”, se asigna un valor positivo a \( vel_y \).</li>
+        <li>Movimiento horizontal: Las teclas izquierda/derecha modifican \( acel_x \).</li>
+      </ul>
+      <p>
+        En cada frame, se actualiza:
+        \[
+        \begin{aligned}
+        vel_x &\leftarrow vel_x + acel_x\, dt,\quad pos_x \leftarrow pos_x + vel_x\, dt,\\[1ex]
+        vel_y &\leftarrow vel_y + acel_y\, dt,\quad pos_y \leftarrow pos_y + vel_y\, dt.
+        \end{aligned}
+        \]
+      </p>
+      <p><strong>Resolución:</strong></p>
+      <ol>
+        <li>Definir la clase <em>Personaje</em> con atributos iniciales (posición, velocidad y aceleración).</li>
+        <li>Implementar el método <em>actualizar(dt)</em> utilizando las ecuaciones del movimiento uniformemente acelerado.</li>
+        <li>Simular el salto y el movimiento horizontal verificando que la animación sea suave.</li>
+      </ol>
+    </div>
+  </section>
+  
+  <hr>
+  
+  <!-- 5.6 Integrando Derivadas con Optimización -->
+  <section id="integracion">
+    <h2>5.6. Integrando Derivadas con Optimización</h2>
+    <p>
+      Además de calcular la tasa de cambio, las derivadas permiten encontrar máximos y mínimos. Por ejemplo, en un juego podés optimizar el alcance de un proyectil definiendo una función de distancia \( d(\theta) \) y hallando el ángulo \( \theta \) óptimo (donde la derivada se anula).
+    </p>
+    <p>
+      <em>Proyecto Sugerido:</em> Implementá la función \( d(\theta) \) y usá derivadas para determinar el ángulo óptimo de disparo.
+    </p>
+  </section>
+  
+  <hr>
+  
+  <!-- 5.7 Suavizado de Transiciones con Derivadas Continuas -->
+  <section id="suavizado">
+    <h2>5.7. Suavizado de Transiciones con Derivadas Continuas</h2>
+    <p>
+      Para evitar transiciones bruscas en animaciones, es fundamental que la posición, velocidad y aceleración sean funciones continuas (idealmente <em>C²</em>, es decir, la función y sus dos primeras derivadas son continuas). Esto produce interpolaciones suaves entre keyframes.
+    </p>
+    <p>
+      <em>Proyecto Sugerido:</em> Compará una interpolación lineal básica con una interpolación <em>C²</em> y observa cómo mejora la fluidez de la animación.
+    </p>
+  </section>
+  
+  <hr>
+  
+  <!-- 5.8 Lecturas Complementarias -->
+  <section id="lecturas">
+    <h2>5.8. Lecturas Complementarias</h2>
+    <p>
+      Para profundizar en técnicas de derivación y su aplicación en simulaciones físicas, te recomendamos:
+    </p>
+    <ul>
+      <li><strong>Cálculo Diferencial Avanzado:</strong> Derivadas implícitas, regla de L’Hôpital, entre otros.</li>
+      <li><strong>Modelado Físico en Videojuegos:</strong> Investiga librerías como Box2D, Bullet o PhysX.</li>
+      <li><strong>Mecánicas de Juego:</strong> Estudia cómo la derivada influye en la velocidad y aceleración de personajes y vehículos.</li>
+    </ul>
+  </section>
+  
+  <hr>
+  
+  <!-- 5.9 Conclusiones del Módulo 5 -->
+  <section id="conclusiones">
+    <h2>5.9. Conclusiones del Módulo 5</h2>
+    <p>
+      La derivada es esencial para medir la tasa de cambio instantánea de una función. En el contexto de los videojuegos, esto se traduce en:
+    </p>
+    <ul>
+      <li>Calcular la velocidad y aceleración para simular movimientos realistas.</li>
+      <li>Optimizar mecánicas de juego hallando máximos y mínimos (por ejemplo, el ángulo óptimo de disparo).</li>
+      <li>Suavizar transiciones en animaciones, garantizando cambios continuos en posición, velocidad y aceleración.</li>
+    </ul>
+    <p>
+      Con los ejercicios y proyectos propuestos, experimentarás cómo transformar la teoría en simulaciones dinámicas y realistas en un motor de juego.
+    </p>
+    <div class="activity">
+      <p><strong>Recomendación de Autoevaluación:</strong> Repetí los cálculos sin consultar las soluciones, modificá parámetros (aceleración, \( \Delta t \), tasas de cambio) y experimentá con simulaciones en Unity, Godot o en hojas de cálculo.</p>
+    </div>
+  </section>
+  
+  <hr>
+  
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 UTN BA - Carrera de Desarrollo y Producción de Videojuegos</p>
+  </footer>
+  
+</body>
+</html>

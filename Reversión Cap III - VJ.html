@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <!-- Meta para responsividad -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Módulo 3: Funciones Matemáticas y su Aplicación en Videojuegos</title>
+  
+  <!-- Inclusión de MathJax para fórmulas matemáticas -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  
+  <!-- Google Fonts: "Montserrat" para títulos y "Roboto" para el cuerpo -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Estilos CSS para un ambiente moderno y gamer -->
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Roboto', sans-serif;
+      line-height: 1.5;
+      background: #121212;
+      color: #e0e0e0;
+      padding: 20px;
+    }
+    
+    a {
+      color: #00e5ff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    a:hover {
+      color: #00b8d4;
+    }
+    
+    h1, h2, h3, h4 {
+      font-family: 'Montserrat', sans-serif;
+      color: #00e5ff;
+      margin-bottom: 15px;
+    }
+    
+    p {
+      margin-bottom: 15px;
+    }
+    
+    ul, ol {
+      margin-left: 25px;
+      margin-bottom: 20px;
+    }
+    
+    hr {
+      border: none;
+      border-top: 2px solid #00e5ff;
+      margin: 30px 0;
+    }
+    
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 20px 0;
+      background-color: #1e1e1e;
+    }
+    
+    table, th, td {
+      border: 1px solid #00e5ff;
+    }
+    
+    th, td {
+      padding: 12px;
+      text-align: left;
+    }
+    
+    .diagram, .code-block {
+      background-color: #263238;
+      border: 1px solid #00e5ff;
+      padding: 12px;
+      font-family: 'Roboto Mono', monospace;
+      margin: 15px 0;
+      text-align: center;
+    }
+    
+    .activity, .example {
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+    }
+    
+    .activity {
+      background-color: #00e5ff20;
+      border-left: 5px solid #00e5ff;
+    }
+    
+    .example {
+      background-color: #00e5ff10;
+      border-left: 5px solid #00e5ff;
+    }
+    
+    /* Encabezado con imagen de fondo moderna */
+    header {
+      background: url('https://source.unsplash.com/featured/?gamer,technology') no-repeat center center/cover;
+      padding: 50px 20px;
+      text-align: center;
+      color: #ffffff;
+      margin-bottom: 30px;
+      border-radius: 5px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+    
+    header h1 {
+      font-size: 2.8em;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    }
+    
+    header p {
+      font-size: 1.3em;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+    }
+    
+    /* Barra de navegación moderna */
+    nav {
+      background-color: #1f1f1f;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    nav a {
+      margin: 0 15px;
+      font-weight: 500;
+      color: #00e5ff;
+    }
+    
+    nav a:hover {
+      color: #00b8d4;
+    }
+    
+    /* Espaciado general para secciones */
+    section {
+      margin-bottom: 40px;
+    }
+    
+    /* Footer */
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #00e5ff;
+    }
+  </style>
+</head>
+<body>
+  <!-- Encabezado -->
+  <header>
+    <h1>Módulo 3: Funciones Matemáticas y su Aplicación en Videojuegos</h1>
+    <p>¡Explorá cómo las funciones modelan la lógica de tus juegos!</p>
+  </header>
+  
+  <!-- Barra de navegación -->
+  <nav>
+    <a href="#definicion">3.1. Función</a>
+    <a href="#lineales">3.2. Funciones Lineales, Cuadráticas y Polinómicas</a>
+    <a href="#expo-log">3.3. Función Exponencial y Logarítmica</a>
+    <a href="#trigo">3.4. Funciones Trigonométricas</a>
+    <a href="#operaciones">3.5. Operaciones y Transformaciones</a>
+    <a href="#aplicaciones">3.6. Aplicaciones Prácticas</a>
+    <a href="#integradores">3.7. Ejercicios Integradores</a>
+    <a href="#conclusiones">3.8. Conclusiones y Recursos</a>
+  </nav>
+  
+  <!-- Índice del Módulo -->
+  <section>
+    <h2>Índice del Módulo</h2>
+    <ol>
+      <li><a href="#definicion">3.1. Definición de Función: Dominio, Codominio y Condiciones</a></li>
+      <li><a href="#lineales">3.2. Funciones Lineales, Cuadráticas y Polinómicas</a></li>
+      <li><a href="#expo-log">3.3. Función Exponencial y Logarítmica</a></li>
+      <li><a href="#trigo">3.4. Funciones Trigonométricas</a></li>
+      <li><a href="#operaciones">3.5. Operaciones y Transformaciones en Funciones</a></li>
+      <li><a href="#aplicaciones">3.6. Aplicaciones Prácticas en Videojuegos</a></li>
+      <li><a href="#integradores">3.7. Ejercicios Integradores</a></li>
+      <li><a href="#conclusiones">3.8. Conclusiones y Recursos</a></li>
+    </ol>
+  </section>
+  
+  <hr>
+  
+  <!-- 3.1 Definición de Función -->
+  <section id="definicion">
+    <h2>3.1. Definición de Función: Dominio, Codominio y Condiciones de Existencia y Unicidad</h2>
+    <h3>3.1.1. Definición Formal</h3>
+    <p>
+      Una <strong>función</strong> es una relación especial entre dos conjuntos que cumple:
+    </p>
+    <ol>
+      <li><strong>Condición de Existencia:</strong> Para cada elemento \( x \) del conjunto \( A \) (dominio) existe al menos un elemento \( y \) en \( B \) (codominio) tal que \( (x,y) \) pertenece a la relación.</li>
+      <li><strong>Condición de Unicidad:</strong> Para cada \( x \in A \), existe *únicamente* un \( y \in B \) tal que \( (x,y) \) pertenece a la relación.</li>
+    </ol>
+    <p>
+      Si ambas condiciones se cumplen, se dice que la relación es una <strong>función</strong> y se escribe:
+      \[
+      f: A \to B, \quad f(x)=y.
+      \]
+    </p>
+    <p>
+      <em>Ejemplo Aplicado:</em> En un videojuego, si cada arma tiene un único “poder” asignado, la relación es una función.
+    </p>
+    
+    <h3>3.1.2. Notación y Ejemplos</h3>
+    <p>
+      Se utiliza \( f(x) \) para denotar el valor de la función en \( x \), y también se escribe:
+      \[
+      x \mapsto f(x),
+      \]
+      enfatizando la transformación.
+    </p>
+    <ul>
+      <li>Ejemplo: \( f(x)=x^2 \) tiene dominio \( \mathbb{R} \) y rango \( [0,\infty) \).</li>
+      <li>Ejemplo: \( g(x)=\sqrt{x} \) tiene dominio \( [0,\infty) \) y rango \( [0,\infty) \).</li>
+      <li>Ejemplo: \( h(x)=\frac{1}{x} \) tiene dominio \( \mathbb{R}\setminus\{0\} \) y rango \( \mathbb{R}\setminus\{0\} \).</li>
+    </ul>
+    
+    <h3>3.1.3. Representación Gráfica y Diagramas</h3>
+    <p>
+      En el plano cartesiano, el eje \( x \) representa el dominio y el eje \( y \) los valores de \( f(x) \). Para ilustrar esta idea, se muestran dos diagramas:
+    </p>
+    <!-- Diagrama de mapeo: Dominio y Codominio -->
+    <div class="diagram" style="margin: auto; width: 320px;">
+      <svg width="300" height="150">
+        <!-- Dominio -->
+        <rect x="10" y="10" width="100" height="130" fill="#263238" stroke="#00e5ff" stroke-width="2"/>
+        <text x="20" y="30" fill="#00e5ff" font-size="14">Dominio</text>
+        <text x="20" y="55" fill="#00e5ff" font-size="12">x₁</text>
+        <text x="20" y="75" fill="#00e5ff" font-size="12">x₂</text>
+        <text x="20" y="95" fill="#00e5ff" font-size="12">x₃</text>
+        <!-- Codominio -->
+        <rect x="190" y="10" width="100" height="130" fill="#263238" stroke="#00e5ff" stroke-width="2"/>
+        <text x="200" y="30" fill="#00e5ff" font-size="14">Codominio</text>
+        <text x="200" y="55" fill="#00e5ff" font-size="12">f(x₁)</text>
+        <text x="200" y="75" fill="#00e5ff" font-size="12">f(x₂)</text>
+        <text x="200" y="95" fill="#00e5ff" font-size="12">f(x₃)</text>
+        <!-- Flechas de mapeo -->
+        <line x1="110" y1="55" x2="190" y2="55" stroke="#ffea00" stroke-width="2" marker-end="url(#arrow)"/>
+        <line x1="110" y1="75" x2="190" y2="75" stroke="#ffea00" stroke-width="2" marker-end="url(#arrow)"/>
+        <line x1="110" y1="95" x2="190" y2="95" stroke="#ffea00" stroke-width="2" marker-end="url(#arrow)"/>
+        <defs>
+          <marker id="arrow" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L9,3 z" fill="#ffea00" />
+          </marker>
+        </defs>
+      </svg>
+      <p style="text-align: center;">Diagrama: \( f: A \to B \)</p>
+    </div>
+    
+    <!-- Ejemplo de gráfica de la función f(x)=x^2 -->
+    <div class="diagram" style="margin: auto; width: 320px;">
+      <svg width="300" height="200">
+        <!-- Ejes -->
+        <line x1="30" y1="170" x2="280" y2="170" stroke="#00e5ff" stroke-width="2"/>
+        <line x1="30" y1="170" x2="30" y2="20" stroke="#00e5ff" stroke-width="2"/>
+        <text x="290" y="175" fill="#00e5ff" font-size="12">x</text>
+        <text x="35" y="30" fill="#00e5ff" font-size="12">y</text>
+        <!-- Gráfica de f(x)=x^2 (aproximación) -->
+        <polyline fill="none" stroke="#ffea00" stroke-width="2"
+          points="
+            30,170 
+            60,150 
+            90,130 
+            120,115 
+            150,105 
+            180,100 
+            210,100 
+            240,105 
+            270,115 
+            280,120" />
+      </svg>
+      <p style="text-align: center;">Gráfica de \( f(x)=x^2 \)</p>
+    </div>
+  </section>
+  
+  <hr>
+  
+  <!-- 3.2 Funciones Lineales, Cuadráticas y Polinómicas -->
+  <section id="lineales">
+    <h2>3.2. Funciones Lineales, Cuadráticas y Polinómicas</h2>
+    <h3>3.2.1. Definiciones Formales</h3>
+    <p>
+      Las funciones permiten modelar relaciones entre variables. Entre las más comunes se encuentran:
+    </p>
+    <ul>
+      <li>
+        <strong>Función lineal:</strong>  
+        \[
+        f(x)=mx+b,
+        \]
+        donde \( m \) es la pendiente (tasa de cambio) y \( b \) la ordenada al origen (intersección con el eje y). Su gráfica es una línea recta.
+      </li>
+      <li>
+        <strong>Función cuadrática:</strong>  
+        \[
+        f(x)=ax^2+bx+c \quad (a\neq0),
+        \]
+        cuya gráfica es una parábola. El vértice se ubica en:
+        \[
+        x=-\frac{b}{2a},
+        \]
+        y puede tener un mínimo (si \( a>0 \)) o un máximo (si \( a<0 \)).
+      </li>
+      <li>
+        <strong>Función polinómica de grado \( n \):</strong>  
+        \[
+        f(x)=a_nx^n+a_{n-1}x^{n-1}+\dots+a_1x+a_0,
+        \]
+        que puede modelar relaciones complejas, como la topografía de un escenario.
+      </li>
+    </ul>
+    
+    <h3>3.2.2. Ejemplos Visuales y Análisis</h3>
+    <p>
+      <strong>Ejemplo de función lineal:</strong> Considerá \( f(x)=2x-3 \).
+    </p>
+    <!-- Diagrama de función lineal -->
+    <div class="diagram" style="margin: auto; width: 320px;">
+      <svg width="300" height="150">
+        <!-- Ejes -->
+        <line x1="30" y1="120" x2="270" y2="120" stroke="#00e5ff" stroke-width="2"/>
+        <line x1="30" y1="120" x2="30" y2="20" stroke="#00e5ff" stroke-width="2"/>
+        <!-- Línea de la función -->
+        <line x1="30" y1="60" x2="270" y2="140" stroke="#ffea00" stroke-width="2"/>
+        <!-- Etiquetas -->
+        <text x="280" y="125" fill="#00e5ff" font-size="12">x</text>
+        <text x="20" y="15" fill="#00e5ff" font-size="12">y</text>
+        <text x="40" y="65" fill="#ffea00" font-size="12">f(x)=2x-3</text>
+      </svg>
+      <p style="text-align: center;">Pendiente: 2; Ordenada al origen: -3</p>
+    </div>
+    
+    <p>
+      <strong>Ejemplo de función cuadrática:</strong> Considerá \( g(x)=x^2-4x+3 \).
+    </p>
+    <!-- Diagrama de función cuadrática -->
+    <div class="diagram" style="margin: auto; width: 320px;">
+      <svg width="300" height="200">
+        <!-- Ejes -->
+        <line x1="30" y1="170" x2="280" y2="170" stroke="#00e5ff" stroke-width="2"/>
+        <line x1="30" y1="170" x2="30" y2="20" stroke="#00e5ff" stroke-width="2"/>
+        <!-- Curva (parábola) -->
+        <polyline fill="none" stroke="#ffea00" stroke-width="2"
+          points="
+            30,170 
+            60,130 
+            90,100 
+            120,85 
+            150,80 
+            180,85 
+            210,100 
+            240,130 
+            270,170" />
+        <!-- Etiquetas -->
+        <text x="290" y="175" fill="#00e5ff" font-size="12">x</text>
+        <text x="35" y="25" fill="#00e5ff" font-size="12">y</text>
+        <text x="100" y="110" fill="#ffea00" font-size="12">g(x)=x²-4x+3</text>
+        <!-- Vértice -->
+        <circle cx="150" cy="80" r="4" fill="#00e5ff" />
+        <text x="155" y="75" fill="#00e5ff" font-size="12">V(2,-1)</text>
+      </svg>
+      <p style="text-align: center;">Vértice: (2, -1); Raíces: x=1 y x=3; Se abre hacia arriba</p>
+    </div>
+  </section>
+  
+  <hr>
+  
+  <!-- 3.3 Función Exponencial y Logarítmica -->
+  <section id="expo-log">
+    <h2>3.3. Función Exponencial y Logarítmica</h2>
+    <h3>3.3.1. Definición Formal</h3>
+    <p>
+      Una función exponencial se define como:
+      \[
+      f(x)=a\cdot b^x,
+      \]
+      donde \( a\neq0 \), \( b>0 \) y \( b\neq1 \). Si \( b>1 \), la función crece; si \( 0<b<1 \), decrece.
+    </p>
+    <p>
+      La función logarítmica, inversa de la exponencial, se expresa como:
+      \[
+      x=\log_b(y).
+      \]
+      Su dominio es \( (0,\infty) \) y su rango \( (-\infty,\infty) \).
+    </p>
+    
+    <h3>3.3.2. Ejemplos Visuales y Análisis</h3>
+    <p>
+      <strong>Ejemplo de función exponencial:</strong> Considerá \( f(x)=2\cdot 1.5^x \).
+    </p>
+    <!-- Diagrama de función exponencial -->
+    <div class="diagram" style="margin: auto; width: 320px;">
+      <svg width="300" height="200">
+        <!-- Ejes -->
+        <line x1="30" y1="170" x2="280" y2="170" stroke="#00e5ff" stroke-width="2"/>
+        <line x1="30" y1="170" x2="30" y2="20" stroke="#00e5ff" stroke-width="2"/>
+        <!-- Curva exponencial (aproximada) -->
+        <polyline fill="none" stroke="#ffea00" stroke-width="2"
+          points="
+            30,170 
+            60,160 
+            90,145 
+            120,130 
+            150,115 
+            180,100 
+            210,90 
+            240,80 
+            270,70 
+            280,68" />
+        <!-- Etiquetas -->
+        <text x="290" y="175" fill="#00e5ff" font-size="12">x</text>
+        <text x="35" y="25" fill="#00e5ff" font-size="12">y</text>
+        <text x="60" y="140" fill="#ffea00" font-size="12">f(x)=2·1.5ˣ</text>
+      </svg>
+      <p style="text-align: center;">Función exponencial: Crece rápidamente</p>
+    </div>
+    
+    <p>
+      <strong>Ejemplo de función logarítmica:</strong> La inversa de la exponencial anterior se expresa como \( x=\log_{1.5}\left(\frac{y}{2}\right) \).
+    </p>
+    <!-- Diagrama de función logarítmica (sencillo) -->
+    <div class="diagram" style="margin: auto; width: 320px;">
+      <svg width="300" height="200">
+        <!-- Ejes -->
+        <line x1="30" y1="170" x2="280" y2="170" stroke="#00e5ff" stroke-width="2"/>
+        <line x1="30" y1="170" x2="30" y2="20" stroke="#00e5ff" stroke-width="2"/>
+        <!-- Curva logarítmica (aproximada) -->
+        <polyline fill="none" stroke="#ffea00" stroke-width="2"
+          points="
+            30,60 
+            60,80 
+            90,100 
+            120,120 
+            150,135 
+            180,145 
+            210,155 
+            240,160 
+            270,165 
+            280,166" />
+        <!-- Etiquetas -->
+        <text x="290" y="175" fill="#00e5ff" font-size="12">x</text>
+        <text x="35" y="25" fill="#00e5ff" font-size="12">y</text>
+        <text x="50" y="95" fill="#ffea00" font-size="12">x=log₍₁.₅₎(y/2)</text>
+      </svg>
+      <p style="text-align: center;">Función logarítmica: Crecimiento lento y linealizado</p>
+    </div>
+  </section>
+  
+  <hr>
+  
+  <!-- 3.4 Funciones Trigonométricas -->
+  <section id="trigo">
+    <h2>3.4. Funciones Trigonométricas (Seno, Coseno, Tangente)</h2>
+    <h3>3.4.1. Definición Formal</h3>
+    <p>
+      Las funciones trigonométricas se definen a partir del triángulo rectángulo y del círculo unitario:
+    </p>
+    <ul>
+      <li><strong>Seno:</strong> \( \sin(\theta) \) es la razón entre el cateto opuesto y la hipotenusa.</li>
+      <li><strong>Coseno:</strong> \( \cos(\theta) \) es la razón entre el cateto adyacente y la hipotenusa.</li>
+      <li><strong>Tangente:</strong> \( \tan(\theta)=\frac{\sin(\theta)}{\cos(\theta)} \).</li>
+    </ul>
+    
+    <h3>3.4.2. Periodicidad y Gráficas</h3>
+    <ul>
+      <li>\( \sin(x) \) y \( \cos(x) \) tienen período \( 2\pi \) y oscilan entre -1 y 1.</li>
+      <li>\( \tan(x) \) tiene período \( \pi \).</li>
+    </ul>
+    
+    <h3>3.4.3. Ejemplos Visuales y Análisis</h3>
+    <!-- Diagrama del círculo unitario -->
+    <div class="diagram" style="margin: auto; width: 320px;">
+      <svg width="300" height="300">
+        <!-- Círculo unitario -->
+        <circle cx="150" cy="150" r="100" fill="none" stroke="#00e5ff" stroke-width="2" />
+        <!-- Ejes -->
+        <line x1="150" y1="50" x2="150" y2="250" stroke="#00e5ff" stroke-width="2"/>
+        <line x1="50" y1="150" x2="250" y2="150" stroke="#00e5ff" stroke-width="2"/>
+        <!-- Punto para un ángulo de 45° -->
+        <circle cx="220" cy="80" r="4" fill="#ffea00"/>
+        <text x="225" y="75" fill="#ffea00" font-size="12">P</text>
+        <!-- Etiqueta de ángulo -->
+        <path d="M150,150 L210,150 L150,90 Z" fill="none" stroke="#ffea00" stroke-width="1" />
+        <text x="155" y="120" fill="#ffea00" font-size="12">45°</text>
+      </svg>
+      <p style="text-align: center;">Círculo unitario: \( \sin(\theta) \) y \( \cos(\theta) \)</p>
+    </div>
+    
+    <h3>3.4.4. Actividad Propuesta (con Solución)</h3>
+    <div class="activity">
+      <p><strong>Actividad 3.3:</strong> Una plataforma en 2D se mueve verticalmente entre \( y=10 \) y \( y=20 \) con un período de 6 segundos. Respondé:</p>
+      <ul>
+        <li>a) Determiná la amplitud y la posición media.</li>
+        <li>b) Escribí la función \( y(t) \) usando \( \sin \) o \( \cos \).</li>
+        <li>c) Calculá la posición a los 3 segundos.</li>
+      </ul>
+      <p><strong>Solución:</strong></p>
+      <ol>
+        <li>Amplitud: \( A = \frac{20-10}{2} = 5 \).</li>
+        <li>Posición media: \( P_0 = \frac{20+10}{2} = 15 \).</li>
+        <li>Función sugerida:
+          \[
+          y(t)=5\cdot\sin\left(2\pi\frac{t}{6}\right)+15.
+          \]
+        </li>
+        <li>Para \( t=3 \):  
+          \[
+          y(3)=5\cdot\sin(\pi)+15=15.
+          \]
+        </li>
+      </ol>
+    </div>
+  </section>
+  
+  <hr>
+  
+  <!-- 3.5 Operaciones y Transformaciones en Funciones -->
+  <section id="operaciones">
+    <h2>3.5. Operaciones y Transformaciones en Funciones</h2>
+    <h3>3.5.1. Operaciones Básicas</h3>
+    <p>
+      Dados \( f(x) \) y \( g(x) \), las operaciones puntuales se definen como:
+    </p>
+    <ul>
+      <li>
+        Suma:
+        \[
+        (f+g)(x)=f(x)+g(x).
+        \]
+      </li>
+      <li>
+        Resta:
+        \[
+        (f-g)(x)=f(x)-g(x).
+        \]
+      </li>
+      <li>
+        Producto:
+        \[
+        (f\cdot g)(x)=f(x)\cdot g(x).
+        \]
+      </li>
+      <li>
+        Cociente:
+        \[
+        \left(\frac{f}{g}\right)(x)=\frac{f(x)}{g(x)}\quad (g(x)\neq 0).
+        \]
+      </li>
+    </ul>
+    
+    <h3>3.5.2. Composición de Funciones</h3>
+    <p>
+      La composición se define como:
+      \[
+      (f\circ g)(x)=f(g(x)).
+      \]
+      Es útil para modelar procesos en cadena.
+    </p>
+    <p>
+      <strong>Ejemplo:</strong> Si \( g(t)=2t+1 \) y \( f(v)=3v-4 \), entonces:
+      \[
+      (f\circ g)(t)=f(2t+1)=3(2t+1)-4=6t-1.
+      \]
+    </p>
+    
+    <h3>3.5.3. Funciones Inversas</h3>
+    <p>
+      Una función \( f \) tiene inversa \( f^{-1} \) si:
+      \[
+      f(f^{-1}(x))=x \quad \text{y} \quad f^{-1}(f(x))=x.
+      \]
+      Para obtener la inversa, se intercambian \( x \) e \( y \) en \( y=f(x) \) y se despeja \( y \).
+    </p>
+    <p>
+      <strong>Ejemplo:</strong> Sea \( f(x)=2x+3 \).  
+      <ol>
+        <li>Escribí \( y=2x+3 \).</li>
+        <li>Intercambiá \( x \) e \( y \): \( x=2y+3 \).</li>
+        <li>Despejá \( y \):
+          \[
+          2y=x-3 \quad \Rightarrow \quad y=\frac{x-3}{2}.
+          \]
+        </li>
+      </ol>
+      Así, \( f^{-1}(x)=\frac{x-3}{2} \).
+    </p>
+  </section>
+  
+  <hr>
+  
+  <!-- 3.6 Aplicaciones Prácticas en Videojuegos -->
+  <section id="aplicaciones">
+    <h2>3.6. Aplicaciones Prácticas en Videojuegos</h2>
+    <p>
+      Las funciones matemáticas son la columna vertebral para modelar dinámicas en videojuegos. Algunos ejemplos prácticos:
+    </p>
+    <ul>
+      <li>
+        <strong>Modelación del Movimiento:</strong> Funciones \( x(t) \) e \( y(t) \) describen la posición de un personaje o proyectil a lo largo del tiempo.
+      </li>
+      <li>
+        <strong>Interpolación y Animación:</strong> La interpolación lineal (Lerp) se define como:
+        \[
+        \text{Lerp}(P_0,P_1,t)=P_0+(P_1-P_0)t,\quad 0\le t\le 1.
+        \]
+      </li>
+      <li>
+        <strong>Oscilaciones:</strong> Las funciones trigonométricas modelan movimientos cíclicos, como el balanceo de plataformas o ciclos día/noche.
+      </li>
+      <li>
+        <strong>Rotaciones:</strong> La conversión de coordenadas polares a cartesianas:
+        \[
+        x=r\cos(\theta),\quad y=r\sin(\theta),
+        \]
+        es esencial para simular rotaciones.
+      </li>
+    </ul>
+  </section>
+  
+  <hr>
+  
+  <!-- 3.7 Ejercicios Integradores -->
+  <section id="integradores">
+    <h2>3.7. Ejercicios Integradores del Módulo</h2>
+    <p>
+      Resolvé los siguientes ejercicios, que combinan distintos tipos de funciones en situaciones reales de videojuegos. Compara tus resultados con las soluciones paso a paso.
+    </p>
+    
+    <h3>Ejercicio Integrador 3.1: Trayectoria y Ciclos</h3>
+    <p><strong>Enunciado:</strong></p>
+    <p>
+      Un proyectil se dispara con una velocidad inicial de 40 m/s a un ángulo de 45° respecto a la horizontal.
+    </p>
+    <ol>
+      <li>a) Descomponé la velocidad en \( v_x \) y \( v_{y0} \).</li>
+      <li>b) Escribí las funciones \( x(t) \) e \( y(t) \) asumiendo \( g=9.8\,\text{m/s}^2 \) y que se lanza desde el origen.</li>
+      <li>c) Determiná el tiempo total de vuelo.</li>
+      <li>d) Hallá la altura máxima.</li>
+      <li>e) Calculá el alcance horizontal.</li>
+    </ol>
+    <p><strong>Solución:</strong></p>
+    <ol>
+      <li>Componentes:  
+        \( v_x\approx40\cos45^\circ\approx28.28\,\text{m/s} \) y \( v_{y0}\approx28.28\,\text{m/s} \).
+      </li>
+      <li>Funciones:
+        \[
+        x(t)=28.28\,t,\quad y(t)=28.28\,t-4.9t^2.
+        \]
+      </li>
+      <li>Tiempo total: \( t\approx5.77\,\text{s} \) (descartando \( t=0 \)).</li>
+      <li>Altura máxima:  
+        Se alcanza en \( t_{\text{max}}=\frac{28.28}{9.8}\approx2.88\,\text{s} \), y \( y(2.88)\approx40.76\,\text{m} \).
+      </li>
+      <li>Alcance horizontal:  
+        \( x(5.77)\approx163.33\,\text{m} \).
+      </li>
+    </ol>
+    
+    <h3>Ejercicio Integrador 3.2: Modelos de Crecimiento y Oscilaciones</h3>
+    <p><strong>Enunciado:</strong></p>
+    <p>
+      En un juego de simulación de granja, tenés dos sistemas:
+    </p>
+    <ul>
+      <li>Sistema de riego:  
+        \[
+        H(t)=1.5\cos\left(2\pi\frac{t}{4}\right)+2,\quad t \text{ en horas}.
+        \]
+      </li>
+      <li>Crecimiento de las plantas:  
+        \[
+        C(t)=10\cdot e^{0.3t},\quad C(t) \text{ en cm, } t \text{ en días}.
+        \]
+      </li>
+    </ul>
+    <ol>
+      <li>Para \( H(t) \):
+        <ul>
+          <li>a) Altura máxima: \( 2+1.5=3.5 \); mínima: \( 2-1.5=0.5 \).</li>
+          <li>b) Período: \( T=4 \) horas.</li>
+        </ul>
+      </li>
+      <li>Para \( C(t) \):
+        <ul>
+          <li>a) Altura inicial: \( C(0)=10 \, \text{cm} \).</li>
+          <li>b) Para alcanzar 50 cm:  
+            \[
+            10\cdot e^{0.3t}=50 \quad \Rightarrow \quad e^{0.3t}=5,
+            \]
+            de donde \( t=\frac{\ln(5)}{0.3}\approx5.36 \) días.
+          </li>
+        </ul>
+      </li>
+    </ol>
+  </section>
+  
+  <hr>
+  
+  <!-- 3.8 Conclusiones y Recursos Complementarios -->
+  <section id="conclusiones">
+    <h2>3.8. Conclusiones y Recursos Complementarios</h2>
+    <p>
+      En este módulo exploraste los fundamentos de las funciones matemáticas y sus aplicaciones en el desarrollo de videojuegos. Destacamos:
+    </p>
+    <ul>
+      <li><strong>Definición de función, dominio, codominio y condiciones de existencia y unicidad.</strong></li>
+      <li><strong>Funciones lineales, cuadráticas y polinómicas:</strong> Modelan desde movimientos uniformes hasta trayectorias y terrenos complejos.</li>
+      <li><strong>Funciones exponenciales y logarítmicas:</strong> Describen procesos de crecimiento o decrecimiento, como la progresión de niveles.</li>
+      <li><strong>Funciones trigonométricas:</strong> Modelan movimientos cíclicos, rotaciones y animaciones.</li>
+      <li><strong>Operaciones y transformaciones:</strong> La suma, composición e inversión de funciones permiten combinar procesos para modelar sistemas complejos.</li>
+    </ul>
+    <p>
+      Estos conocimientos te serán útiles para diseñar y optimizar sistemas en tus proyectos de videojuegos. Como próximos pasos, te recomendamos profundizar en temas avanzados como ecuaciones diferenciales y análisis numérico.
+    </p>
+    <div class="activity">
+      <p><strong>Recomendación de Autoevaluación:</strong> Repetí los cálculos de los ejercicios sin consultar la solución, modificá parámetros y experimentá con simulaciones en Unity, Godot o en hojas de cálculo.</p>
+    </div>
+  </section>
+  
+  <hr>
+  
+  <!-- 3.7 Resolución Paso a Paso -->
+  <section id="resolucion">
+    <h2>Resolución Paso a Paso de Ejercicios</h2>
+    <p>
+      A continuación se presenta la resolución detallada de cada ejercicio para que puedas revisar el proceso y compararlo con tus respuestas:
+    </p>
+    
+    <div class="example">
+      <h3>Ejercicio 1: Funciones con Fracciones</h3>
+      <p><strong>Planteamiento:</strong> Calcular \( \frac{2}{5} + \frac{3}{4} \).</p>
+      <ol>
+        <li>Encontrar el mínimo común denominador: \(5 \times 4 = 20\).</li>
+        <li>Convertir: \( \frac{2}{5} = \frac{8}{20} \) y \( \frac{3}{4} = \frac{15}{20} \).</li>
+        <li>Sumar: \( \frac{8}{20} + \frac{15}{20} = \frac{23}{20} \).</li>
+        <li>Expresar: \( \frac{23}{20} = 1\frac{3}{20} \) o 1.15.</li>
+      </ol>
+      <p><strong>Resultado:</strong> \( \frac{23}{20} \) o 1.15.</p>
+    </div>
+    
+    <div class="example">
+      <h3>Ejercicio 2: División de Fracciones</h3>
+      <p><strong>Planteamiento:</strong> Calcular \( \frac{7}{8} \div \frac{2}{5} \).</p>
+      <ol>
+        <li>Multiplicar por el inverso: \( \frac{7}{8} \times \frac{5}{2} = \frac{35}{16} \).</li>
+      </ol>
+      <p><strong>Resultado:</strong> \( \frac{35}{16} \) (o 2\( \frac{3}{16}\) en forma mixta).</p>
+    </div>
+    
+    <div class="example">
+      <h3>Ejercicio 3: Experiencia para el Nivel 10</h3>
+      <p><strong>Planteamiento:</strong> Usar la fórmula:
+        \[
+        \text{Experiencia} = 100 \times e^{0.2 \times \text{nivel}}.
+        \]
+      </p>
+      <ol>
+        <li>Reemplazar "nivel" por 10: \(0.2 \times 10 = 2\).</li>
+        <li>Calcular \(e^2 \approx 7.39\) (con \(e \approx 2.71828\)).</li>
+        <li>Multiplicar: \(100 \times 7.39 \approx 739\).</li>
+      </ol>
+      <p><strong>Resultado:</strong> Aproximadamente 739 puntos de experiencia.</p>
+    </div>
+    
+    <div class="example">
+      <h3>Ejercicio 4: Tiempo para Alcanzar 5000 Habitantes</h3>
+      <p><strong>Planteamiento:</strong> Resolver \( 1000 \times (1.02)^t = 5000 \).</p>
+      <ol>
+        <li>Dividir: \( (1.02)^t = 5 \).</li>
+        <li>Aplicar logaritmos: \( t = \frac{\log 5}{\log 1.02} \).</li>
+        <li>Calcular: \( t \approx 81.28 \) meses.</li>
+      </ol>
+      <p><strong>Resultado:</strong> Aproximadamente 81 meses.</p>
+    </div>
+    
+    <div class="example">
+      <h3>Ejercicio 5: Probabilidad de No Obtener un Objeto Legendario</h3>
+      <p><strong>Planteamiento:</strong> Con una probabilidad de 0.1% (0.001) de obtener un objeto legendario, calcular la probabilidad de no obtenerlo en 100 aperturas.</p>
+      <ol>
+        <li>Probabilidad de no obtener en una apertura: \(1 - 0.001 = 0.999\).</li>
+        <li>Para 100 aperturas, elevar a la potencia 100: \(0.999^{100} \approx 0.905\).</li>
+      </ol>
+      <p><strong>Resultado:</strong> Aproximadamente 90.5% de probabilidad de no obtener el objeto.</p>
+    </div>
+    
+  </section>
+  
+  <hr>
+  
+  <!-- 3.8 Conclusiones y Recursos Complementarios -->
+  <section id="conclusiones">
+    <h2>3.8. Conclusiones y Recursos Complementarios</h2>
+    <p>
+      En este módulo exploraste los fundamentos de las funciones matemáticas y sus aplicaciones en el desarrollo de videojuegos. Destacamos:
+    </p>
+    <ul>
+      <li><strong>Definición de función, dominio, codominio y condiciones de existencia y unicidad.</strong></li>
+      <li><strong>Funciones lineales, cuadráticas y polinómicas:</strong> Modelan desde movimientos uniformes hasta trayectorias y terrenos complejos.</li>
+      <li><strong>Funciones exponenciales y logarítmicas:</strong> Describen procesos de crecimiento o decrecimiento, como la progresión de niveles.</li>
+      <li><strong>Funciones trigonométricas:</strong> Modelan movimientos cíclicos, rotaciones y animaciones.</li>
+      <li><strong>Operaciones y transformaciones:</strong> La suma, composición e inversión de funciones permiten combinar procesos para modelar sistemas complejos.</li>
+    </ul>
+    <p>
+      Estos conocimientos te serán útiles para diseñar y optimizar sistemas en tus proyectos de videojuegos. Como próximos pasos, te recomendamos profundizar en temas avanzados como ecuaciones diferenciales y análisis numérico.
+    </p>
+    <div class="activity">
+      <p><strong>Recomendación de Autoevaluación:</strong> Repetí los cálculos de los ejercicios sin consultar la solución, modificá parámetros y experimentá con simulaciones en Unity, Godot o en hojas de cálculo.</p>
+    </div>
+  </section>
+  
+  <hr>
+  
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 UTN BA - Carrera de Desarrollo y Producción de Videojuegos</p>
+  </footer>
+  
+</body>
+</html>

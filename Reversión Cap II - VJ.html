@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <!-- Meta para responsividad -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Módulo 2: Operaciones con Fracciones, Porcentajes y Probabilidades Básicas</title>
+  
+  <!-- Inclusión de MathJax para fórmulas matemáticas -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  
+  <!-- Google Fonts: "Montserrat" para títulos y "Roboto" para el cuerpo -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Estilos CSS para un ambiente moderno y gamer -->
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Roboto', sans-serif;
+      line-height: 1.5; /* Interlineado 1.5 para mayor legibilidad */
+      background: #121212; /* Fondo oscuro */
+      color: #e0e0e0;
+      padding: 20px;
+    }
+    
+    a {
+      color: #00e5ff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    a:hover {
+      color: #00b8d4;
+    }
+    
+    h1, h2, h3, h4 {
+      font-family: 'Montserrat', sans-serif;
+      color: #00e5ff;
+      margin-bottom: 15px;
+    }
+    
+    p {
+      margin-bottom: 15px;
+    }
+    
+    ul, ol {
+      margin-left: 25px;
+      margin-bottom: 20px;
+    }
+    
+    hr {
+      border: none;
+      border-top: 2px solid #00e5ff;
+      margin: 30px 0;
+    }
+    
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 20px 0;
+      background-color: #1e1e1e;
+    }
+    
+    table, th, td {
+      border: 1px solid #00e5ff;
+    }
+    
+    th, td {
+      padding: 12px;
+      text-align: left;
+    }
+    
+    .diagram, .code-block {
+      background-color: #263238;
+      border: 1px solid #00e5ff;
+      padding: 12px;
+      font-family: 'Roboto Mono', monospace;
+      margin: 15px 0;
+    }
+    
+    .activity, .example {
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+    }
+    
+    .activity {
+      background-color: #00e5ff20;
+      border-left: 5px solid #00e5ff;
+    }
+    
+    .example {
+      background-color: #00e5ff10;
+      border-left: 5px solid #00e5ff;
+    }
+    
+    /* Encabezado con imagen de fondo moderna */
+    header {
+      background: url('https://source.unsplash.com/featured/?gamer,technology') no-repeat center center/cover;
+      padding: 50px 20px;
+      text-align: center;
+      color: #ffffff;
+      margin-bottom: 30px;
+      border-radius: 5px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+    
+    header h1 {
+      font-size: 2.8em;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    }
+    
+    header p {
+      font-size: 1.3em;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+    }
+    
+    /* Barra de navegación moderna */
+    nav {
+      background-color: #1f1f1f;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    nav a {
+      margin: 0 15px;
+      font-weight: 500;
+      color: #00e5ff;
+    }
+    
+    nav a:hover {
+      color: #00b8d4;
+    }
+    
+    /* Espaciado general para secciones */
+    section {
+      margin-bottom: 40px;
+    }
+    
+    /* Footer */
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #00e5ff;
+    }
+  </style>
+</head>
+<body>
+  <!-- Encabezado con imagen de fondo -->
+  <header>
+    <h1>Módulo 2: Operaciones con Fracciones, Porcentajes y Probabilidades Básicas</h1>
+    <p>¡Descubrí cómo estas operaciones impulsan la lógica de los videojuegos!</p>
+  </header>
+  
+  <!-- Barra de navegación -->
+  <nav>
+    <a href="#intro">Introducción</a>
+    <a href="#conversiones">Conversiones</a>
+    <a href="#operaciones">Operaciones con Fracciones</a>
+    <a href="#regla-tres">Regla de Tres</a>
+    <a href="#probabilidad">Probabilidad</a>
+    <a href="#integradores">Ejercicios Integradores</a>
+    <a href="#conclusiones">Conclusiones</a>
+  </nav>
+  
+  <!-- Índice del Módulo -->
+  <section>
+    <h2>Índice del Módulo</h2>
+    <ol>
+      <li><a href="#intro">2.1. Introducción</a></li>
+      <li><a href="#conversiones">2.2. Conversión entre Fracciones, Decimales y Porcentajes</a></li>
+      <li><a href="#operaciones">2.3. Operaciones con Fracciones</a></li>
+      <li><a href="#regla-tres">2.4. Regla de Tres Simple y Compuesta</a></li>
+      <li><a href="#probabilidad">2.5. Introducción a la Probabilidad</a></li>
+      <li><a href="#integradores">2.6. Ejercicios Integradores con Enfoque en Videojuegos</a></li>
+      <li><a href="#conclusiones">2.7. Conclusiones del Módulo</a></li>
+    </ol>
+  </section>
+  
+  <hr>
+  
+  <!-- Sección de Introducción -->
+  <section id="intro">
+    <h2>2.1. Introducción</h2>
+    <p>
+      En el desarrollo de videojuegos, es muy común trabajar con porciones de recursos, probabilidades de que ocurra un evento (como la aparición de un enemigo o la obtención de un ítem raro) y estadísticas expresadas en fracciones, decimales o porcentajes. Este módulo se enfoca en:
+    </p>
+    <ul>
+      <li>Comprender y dominar las conversiones entre fracciones, decimales y porcentajes.</li>
+      <li>Practicar operaciones con fracciones: suma, resta, multiplicación y división.</li>
+      <li>Aprender la regla de tres, simple y compuesta, para ajustar escalas de recursos o dificultad.</li>
+      <li>Iniciarte en la probabilidad básica, fundamental para diseñar sistemas de recompensas y eventos aleatorios.</li>
+    </ul>
+    <p>
+      A lo largo del módulo, encontrarás actividades y ejemplos con resoluciones paso a paso para que puedas verificar tus respuestas y avanzar de forma autónoma.
+    </p>
+  </section>
+  
+  <hr>
+  
+  <!-- Sección de Conversión entre Fracciones, Decimales y Porcentajes -->
+  <section id="conversiones">
+    <h2>2.2. Conversión entre Fracciones, Decimales y Porcentajes</h2>
+    
+    <h3>2.2.1. Definiciones Formales</h3>
+    <p><strong>Fracción (\( \frac{a}{b} \)):</strong></p>
+    <ul>
+      <li><strong>Definición:</strong> Para \(a, b \in \mathbb{Z}\) (números enteros) y \(b \neq 0\). Representa la división de \(a\) entre \(b\).</li>
+      <li><strong>Interpretación:</strong> Indica cuántas partes de un total se toman.</li>
+    </ul>
+    
+    <p><strong>Número Decimal:</strong></p>
+    <ul>
+      <li><strong>Definición:</strong> Un número en base 10 con parte entera y parte decimal; cada dígito a la derecha del punto representa potencias negativas de 10.</li>
+      <li><strong>Ejemplo:</strong>  
+        \[
+        0.345 = 3 \times 10^{-1} + 4 \times 10^{-2} + 5 \times 10^{-3}.
+        \]
+      </li>
+    </ul>
+    
+    <p><strong>Porcentaje:</strong></p>
+    <ul>
+      <li><strong>Definición:</strong> Representa una fracción con denominador 100. Por ejemplo, \(x\%\) equivale a \( \frac{x}{100} \).</li>
+      <li><strong>Ejemplo:</strong>  
+        \[
+        45\% = \frac{45}{100} = 0.45.
+        \]
+      </li>
+    </ul>
+    
+    <h3>2.2.2. Conversiones Fundamentales</h3>
+    <p><strong>De fracción a decimal:</strong> Se divide el numerador por el denominador. Ej.: \( \frac{4}{3} \approx 1.333… \)</p>
+    
+    <p><strong>De decimal a fracción:</strong></p>
+    <ul>
+      <li><em>Decimal finito:</em> Multiplicá por la potencia de 10 correspondiente y simplificá. Ej.: \( 0.6 = \frac{6}{10} = \frac{3}{5} \).</li>
+      <li><em>Decimal periódico:</em> Aislá la parte repetida. Ej.:
+        \[
+        x = 0.\overline{3} \Rightarrow 10x = 3.\overline{3} \Rightarrow 9x = 3 \Rightarrow x = \frac{1}{3}.
+        \]
+      </li>
+    </ul>
+    
+    <p><strong>De decimal a porcentaje:</strong> Multiplicá el decimal por 100 y agregá el símbolo “%”. Ej.: \(0.45 \rightarrow 45\%\).</p>
+    
+    <p><strong>De porcentaje a decimal:</strong> Dividí entre 100. Ej.: \(80\% = 0.8\).</p>
+    
+    <p><strong>De fracción a porcentaje:</strong> Convertí la fracción a decimal y multiplicá por 100. Ej.: \( \frac{1}{5} = 0.2 = 20\%\).</p>
+    
+    <p><strong>De porcentaje a fracción:</strong> Convertí a decimal y luego expresá como fracción. Ej.: \(75\% = 0.75 = \frac{75}{100} = \frac{3}{4}\).</p>
+    
+    <h3>2.2.3. Ejemplos Desarrollados</h3>
+    <p><strong>Ejemplo 1:</strong> Convertir \( \frac{3}{8} \) a decimal y porcentaje.</p>
+    <ul>
+      <li>Fracción a decimal: \( \frac{3}{8} = 0.375 \).</li>
+      <li>Decimal a porcentaje: \( 0.375 \times 100\% = 37.5\% \).</li>
+      <li><strong>Resultado:</strong> \( \frac{3}{8} = 0.375 = 37.5\% \).</li>
+    </ul>
+    
+    <p><strong>Ejemplo 2:</strong> Convertir \(0.12\) a fracción y porcentaje.</p>
+    <ul>
+      <li>Decimal a fracción: \( 0.12 = \frac{12}{100} = \frac{3}{25} \).</li>
+      <li>Decimal a porcentaje: \( 0.12 \times 100\% = 12\% \).</li>
+      <li><strong>Resultado:</strong> \(0.12 = \frac{3}{25} = 12\% \).</li>
+    </ul>
+    
+    <h3>2.2.4. Actividades Propuestas (con Soluciones)</h3>
+    <div class="activity">
+      <p><strong>Actividad 2.1:</strong> Convertí cada uno de los siguientes valores a fracción, decimal y porcentaje:</p>
+      <ul>
+        <li>\(0.8\)</li>
+        <li>\(\frac{7}{10}\)</li>
+        <li>\(35\%\)</li>
+      </ul>
+      <p><strong>Resolución Sugerida:</strong></p>
+      <ol>
+        <li>
+          Para \(0.8\):  
+          <em>A fracción:</em> \(0.8 = \frac{8}{10} = \frac{4}{5}\).  
+          <em>A porcentaje:</em> \(0.8 \times 100\% = 80\%\).
+        </li>
+        <li>
+          Para \(\frac{7}{10}\):  
+          <em>A decimal:</em> \(7 \div 10 = 0.7\).  
+          <em>A porcentaje:</em> \(0.7 \times 100\% = 70\%\).
+        </li>
+        <li>
+          Para \(35\%\):  
+          <em>A decimal:</em> \(35\% = 0.35\).  
+          <em>A fracción:</em> \(0.35 = \frac{35}{100} = \frac{7}{20}\).
+        </li>
+      </ol>
+    </div>
+  </section>
+  
+  <hr>
+  
+  <!-- Sección de Operaciones con Fracciones -->
+  <section id="operaciones">
+    <h2>2.3. Operaciones con Fracciones</h2>
+    <h3>2.3.1. Definición Formal</h3>
+    <p>
+      Sean dos fracciones \( \frac{a}{b} \) y \( \frac{c}{d} \) (con \(b \neq 0\) y \(d \neq 0\)). Las operaciones básicas son:
+    </p>
+    <ul>
+      <li><strong>Suma:</strong> 
+        \[
+        \frac{a}{b} + \frac{c}{d} = \frac{a \cdot d + b \cdot c}{b \cdot d}.
+        \]
+      </li>
+      <li><strong>Resta:</strong>
+        \[
+        \frac{a}{b} - \frac{c}{d} = \frac{a \cdot d - b \cdot c}{b \cdot d}.
+        \]
+      </li>
+      <li><strong>Multiplicación:</strong>
+        \[
+        \frac{a}{b} \times \frac{c}{d} = \frac{a \cdot c}{b \cdot d}.
+        \]
+      </li>
+      <li><strong>División:</strong> (con \(c \neq 0\))
+        \[
+        \frac{a}{b} \div \frac{c}{d} = \frac{a}{b} \times \frac{d}{c} = \frac{a \cdot d}{b \cdot c}.
+        \]
+      </li>
+    </ul>
+    
+    <h3>2.3.2. Ejemplos Profundizados</h3>
+    <p><strong>Ejemplo 1: Suma de Fracciones con Denominadores Diferentes</strong></p>
+    <p>
+      Problema: Calcular \( \frac{2}{5} + \frac{3}{4} \).
+    </p>
+    <ol>
+      <li>
+        Encontrá el mínimo común denominador (MCD).  
+        \( \frac{2}{5} = \frac{2 \times 4}{5 \times 4} = \frac{8}{20} \) y \( \frac{3}{4} = \frac{3 \times 5}{4 \times 5} = \frac{15}{20} \).
+      </li>
+      <li>
+        Sumá los numeradores: \( \frac{8}{20} + \frac{15}{20} = \frac{23}{20} \).
+      </li>
+      <li>
+        Interpretá la fracción: \( \frac{23}{20} = 1\frac{3}{20} \) o aproximadamente 1.15.
+      </li>
+    </ol>
+    
+    <p><strong>Ejemplo 2: División de Fracciones</strong></p>
+    <p>
+      Problema: Hallar \( \frac{7}{8} \div \frac{2}{5} \).
+    </p>
+    <ol>
+      <li>
+        Multiplicá la primera fracción por la inversa de la segunda:  
+        \[
+        \frac{7}{8} \times \frac{5}{2} = \frac{35}{16}.
+        \]
+      </li>
+      <li>
+        El resultado puede expresarse como \( \frac{35}{16} \) o en forma mixta.
+      </li>
+    </ol>
+  </section>
+  
+  <hr>
+  
+  <!-- Sección de Regla de Tres Simple y Compuesta -->
+  <section id="regla-tres">
+    <h2>2.4. Regla de Tres Simple y Compuesta</h2>
+    <h3>2.4.1. Definiciones Formales</h3>
+    <p>
+      La regla de tres es una herramienta para trabajar con relaciones proporcionales:
+    </p>
+    <ul>
+      <li>
+        <strong>Proporcionalidad Directa:</strong> Si dos magnitudes \(x\) e \(y\) están relacionadas de forma que al aumentar una, la otra también aumenta, se dice que son directamente proporcionales. Se expresa como:
+        \[
+        \frac{x}{y} = k \quad \text{o} \quad x = k \cdot y.
+        \]
+      </li>
+      <li>
+        <strong>Proporcionalidad Inversa:</strong> Si al aumentar una magnitud, la otra disminuye, se dice que son inversamente proporcionales. Se expresa como:
+        \[
+        x \times y = \text{constante}.
+        \]
+      </li>
+      <li>
+        <strong>Regla de Tres Simple:</strong> Dada la proporción:
+        \[
+        \frac{a}{b} = \frac{x}{c},
+        \]
+        se despeja \(x\) como:
+        \[
+        x = \frac{a \times c}{b}.
+        \]
+      </li>
+      <li>
+        <strong>Regla de Tres Compuesta:</strong> Se utiliza cuando intervienen más de dos magnitudes y pueden combinarse relaciones directas e inversas.
+      </li>
+    </ul>
+    
+    <h3>2.4.2. Ejemplos y Explicaciones</h3>
+    <p><strong>Ejemplo 1: Conversión de Monedas</strong></p>
+    <p>
+      Problema: Si 10 monedas de oro equivalen a 50 de plata, ¿a cuántas monedas de plata equivalen 7 monedas de oro?
+    </p>
+    <ol>
+      <li>
+        Planteá la proporción:
+        \[
+        \frac{10 \text{ oro}}{50 \text{ plata}} = \frac{7 \text{ oro}}{x \text{ plata}}.
+        \]
+      </li>
+      <li>
+        Despejá \(x\):
+        \[
+        x = \frac{7 \times 50}{10} = 35.
+        \]
+      </li>
+      <li>
+        <strong>Resultado:</strong> 7 monedas de oro equivalen a 35 de plata.
+      </li>
+    </ol>
+    
+    <p><strong>Ejemplo 2: Ajuste de Dificultad</strong></p>
+    <p>
+      Problema: Si en 10 minutos aparecen 5 enemigos, ¿cuántos aparecerán en 30 minutos, asumiendo proporcionalidad directa?
+    </p>
+    <ol>
+      <li>
+        Planteá la proporción:
+        \[
+        \frac{10 \text{ min}}{5 \text{ enemigos}} = \frac{30 \text{ min}}{x \text{ enemigos}}.
+        \]
+      </li>
+      <li>
+        Despejá \(x\):
+        \[
+        x = \frac{30 \times 5}{10} = 15.
+        \]
+      </li>
+      <li>
+        <strong>Resultado:</strong> 15 enemigos en 30 minutos.
+      </li>
+    </ol>
+    
+    <h3>2.4.3. Actividades Propuestas (con Soluciones)</h3>
+    <div class="activity">
+      <p><strong>Actividad 2.3:</strong></p>
+      <p>
+        a) Si 4 obreros tardan 6 días en construir una muralla, ¿cuántos días tardarán 8 obreros? (Proporcionalidad inversa, asumiendo la misma eficiencia).<br>
+        b) Si para elaborar 2 pociones de maná se necesitan 300 ml de agua, ¿cuántos ml se requieren para 5 pociones? (Proporcionalidad directa).
+      </p>
+      <p><strong>Resolución Sugerida:</strong></p>
+      <ol>
+        <li>
+          <em>Obreros - Muralla (inversa):</em>  
+          \[
+          4 \times 6 = 8 \times x \quad \Rightarrow \quad x = \frac{4 \times 6}{8} = 3 \text{ días}.
+          \]
+        </li>
+        <li>
+          <em>Pociones - Agua (directa):</em>  
+          \[
+          \frac{2 \text{ pociones}}{300 \text{ ml}} = \frac{5 \text{ pociones}}{x \text{ ml}} \quad \Rightarrow \quad x = \frac{5 \times 300}{2} = 750 \text{ ml}.
+          \]
+        </li>
+      </ol>
+    </div>
+  </section>
+  
+  <hr>
+  
+  <!-- Sección de Introducción a la Probabilidad -->
+  <section id="probabilidad">
+    <h2>2.5. Introducción a la Probabilidad</h2>
+    <h3>2.5.1. Definiciones Formales</h3>
+    <ul>
+      <li><strong>Experimento Aleatorio:</strong> Un proceso cuyo resultado es incierto (por ejemplo, tirar un dado o extraer una carta).</li>
+      <li><strong>Espacio Muestral (\(\Omega\)):</strong> Conjunto de todos los resultados posibles.</li>
+      <li><strong>Evento:</strong> Un subconjunto de \(\Omega\) (puede ser simple o compuesto).</li>
+      <li><strong>Probabilidad Clásica:</strong> Para resultados equiprobables:
+        \[
+        P(A) = \frac{\text{Número de casos favorables a } A}{\text{Número total de casos}}.
+        \]
+      </li>
+    </ul>
+    
+    <h3>2.5.2. Ejemplos Profundos en Videojuegos</h3>
+    <p>
+      <strong>Loot Box:</strong> El espacio muestral puede ser \(\{ \text{común}, \text{especial}, \text{épico}, \text{legendario} \}\) con probabilidades asignadas (ej. 60%, 25%, 10% y 5% respectivamente).
+    </p>
+    <p>
+      <strong>Decisiones de IA:</strong> Un enemigo puede tener 60% de chance de atacar, 25% de chance de defenderse y 15% de chance de huir.
+    </p>
+    
+    <h3>2.5.3. Actividades Propuestas (con Soluciones)</h3>
+    <div class="activity">
+      <p><strong>Actividad 2.4:</strong></p>
+      <p>
+        a) Un dado de 6 caras es justo. ¿Cuál es la probabilidad de sacar un número par?<br>
+        b) La probabilidad de obtener un ítem raro en un juego es del 3%. Si derrotás a 100 enemigos, ¿cuántos ítems raros esperarías conseguir?
+      </p>
+      <p><strong>Resolución Sugerida:</strong></p>
+      <ol>
+        <li>
+          Para el dado: Los números pares son \(\{2, 4, 6\}\).  
+          \[
+          P(\text{par}) = \frac{3}{6} = 0.5.
+          \]
+        </li>
+        <li>
+          Ítems raros: \(3\% = 0.03\).  
+          Valor esperado: \(100 \times 0.03 = 3\) ítems raros en promedio.
+        </li>
+      </ol>
+    </div>
+  </section>
+  
+  <hr>
+  
+  <!-- Sección de Ejercicios Integradores -->
+  <section id="integradores">
+    <h2>2.6. Ejercicios Integradores con Enfoque en Videojuegos</h2>
+    <p>
+      A continuación se proponen ejercicios que combinan varios conceptos del módulo, orientados a situaciones propias del desarrollo de videojuegos. Resolvelos de forma autónoma y luego compará tus resultados con la solución detallada.
+    </p>
+    
+    <h3>Ejercicio Integrador 1</h3>
+    <p><strong>Enunciado:</strong></p>
+    <p>
+      Un juego de estrategia tiene los siguientes elementos:
+    </p>
+    <ul>
+      <li>Cada soldado requiere \( \frac{2}{3} \) de tonel de agua y \( \frac{1}{2} \) de saco de grano para ser entrenado.</li>
+      <li>El jugador dispone de 6 toneles de agua y 5 sacos de grano.</li>
+      <li>Existe un bono aleatorio que otorga un 20% de descuento en agua (es decir, se gasta 20% menos por soldado) con una probabilidad del 30%.</li>
+    </ul>
+    <p><strong>Preguntas:</strong></p>
+    <ol>
+      <li>¿Cuántos soldados se pueden entrenar sin el bono, considerando la limitación de agua y grano?</li>
+      <li>¿Cuántos soldados se pueden entrenar con el bono (20% menos agua)?</li>
+      <li>¿Cuál es el número esperado de soldados que se podrán entrenar, considerando que el bono se activa con 30% de probabilidad?</li>
+    </ol>
+    <div class="example">
+      <p><strong>Solución:</strong></p>
+      <p>
+        <em>Sin bono:</em>
+      </p>
+      <ul>
+        <li>Agua por soldado: \( \frac{2}{3} \) tonel.</li>
+        <li>Grano por soldado: \( \frac{1}{2} \) saco.</li>
+        <li>Con 6 toneles, soldados según agua: \( 6 \div \frac{2}{3} = 9 \) soldados.</li>
+        <li>Con 5 sacos, soldados según grano: \( 5 \div \frac{1}{2} = 10 \) soldados.</li>
+        <li>El recurso limitante es el agua, por lo tanto se pueden entrenar 9 soldados.</li>
+      </ul>
+      <p>
+        <em>Con bono (20% menos agua):</em>
+      </p>
+      <ul>
+        <li>Agua base por soldado: \( \frac{2}{3} \) tonel. El 20% de \( \frac{2}{3} \) es \( \frac{2}{3} \times 0.2 = \frac{2}{15} \).</li>
+        <li>Agua final por soldado: \( \frac{2}{3} - \frac{2}{15} = \frac{10}{15} - \frac{2}{15} = \frac{8}{15} \) tonel.</li>
+        <li>Soldados según agua: \( 6 \div \frac{8}{15} = 11.25 \) (aprox. 11 soldados, pero el grano limita a 10 soldados).</li>
+        <li>Con grano, siguen siendo 10 soldados.</li>
+        <li>Por lo tanto, con bono se pueden entrenar 10 soldados.</li>
+      </ul>
+      <p>
+        <em>Número esperado:</em> Con bono se activa con 30% de probabilidad y sin bono con 70%:
+        \[
+        E(\text{Soldados}) = (0.3 \times 10) + (0.7 \times 9) = 3 + 6.3 = 9.3.
+        \]
+        En promedio, se entrenarán aproximadamente 9.3 soldados.
+      </p>
+    </div>
+    
+    <h3>Ejercicio Integrador 2</h3>
+    <p><strong>Enunciado:</strong></p>
+    <p>
+      Una “loot box” contiene 4 tipos de premios: común (60%), especial (25%), épico (10%) y legendario (5%). Cada jugador puede abrir tantas cajas como desee, a un costo de 3 monedas de oro por caja. Estimá:
+    </p>
+    <ol>
+      <li>La conversión a fracciones y decimales de cada tipo de premio.</li>
+      <li>El costo total de abrir 15 cajas.</li>
+      <li>El número esperado de premios legendarios al abrir 15 cajas.</li>
+    </ol>
+    <div class="example">
+      <p><strong>Solución:</strong></p>
+      <ul>
+        <li>
+          Probabilidades:
+          <ul>
+            <li>Común: 60% = 0.60 = \( \frac{3}{5} \).</li>
+            <li>Especial: 25% = 0.25 = \( \frac{1}{4} \).</li>
+            <li>Épico: 10% = 0.10 = \( \frac{1}{10} \).</li>
+            <li>Legendario: 5% = 0.05 = \( \frac{1}{20} \).</li>
+          </ul>
+        </li>
+        <li>
+          Costo total:  
+          \(15 \text{ cajas} \times 3 \text{ monedas de oro/caja} = 45 \text{ monedas de oro}.\)
+        </li>
+        <li>
+          Número esperado de premios legendarios:  
+          \(15 \times 0.05 = 0.75\) premios legendarios, en promedio.
+        </li>
+      </ul>
+    </div>
+  </section>
+  
+  <hr>
+  
+  <!-- Sección de Conclusiones del Módulo -->
+  <section id="conclusiones">
+    <h2>2.7. Conclusiones del Módulo</h2>
+    <p>
+      En este módulo aprendiste a:
+    </p>
+    <ul>
+      <li>Convertir entre fracciones, decimales y porcentajes, entendiendo sus definiciones y aplicaciones.</li>
+      <li>Realizar operaciones con fracciones (suma, resta, multiplicación y división) y aplicarlas a situaciones comunes en videojuegos.</li>
+      <li>Utilizar la regla de tres (simple y compuesta) para ajustar escalas de recursos o dificultad.</li>
+      <li>Iniciarte en la probabilidad básica, fundamental para diseñar sistemas de recompensas y eventos aleatorios.</li>
+    </ul>
+    <p>
+      Estos conceptos se relacionan directamente con la lógica de diseño y desarrollo de videojuegos. A medida que avances, te resultarán útiles para modelar sistemas complejos, diseñar economías virtuales y equilibrar la dificultad de un título.
+    </p>
+    <p>
+      <strong>Siguiente paso:</strong> Profundizá en probabilidades compuestas, distribución de eventos e introducción a la estadística descriptiva para ampliar tu capacidad de análisis.
+    </p>
+    <div class="activity">
+      <p><strong>Recomendación de Autoevaluación:</strong> Repití los cálculos de los ejercicios sin consultar la solución, compará tus resultados y experimentá modificando escenarios para ver cómo varían los resultados. ¡Incluso podés probarlo en una hoja de cálculo o con Python!</p>
+    </div>
+  </section>
+  
+  <hr>
+  
+  <!-- Sección de Resolución Paso a Paso -->
+  <section id="resolucion">
+    <h2>Resolución Paso a Paso de Ejercicios</h2>
+    <p>
+      A continuación, se presenta la resolución detallada de cada ejercicio para que puedas revisar el proceso y compararlo con tus respuestas:
+    </p>
+    
+    <div class="example">
+      <h3>Ejercicio 1: Operaciones con Fracciones</h3>
+      <p><strong>Planteamiento:</strong> Calcular \( \frac{2}{5} + \frac{3}{4} \).</p>
+      <p><strong>Pasos:</strong></p>
+      <ol>
+        <li>Encontrar el mínimo común denominador: \(5 \times 4 = 20\).</li>
+        <li>Convertir las fracciones: \( \frac{2}{5} = \frac{8}{20} \) y \( \frac{3}{4} = \frac{15}{20} \).</li>
+        <li>Sumar los numeradores: \( \frac{8}{20} + \frac{15}{20} = \frac{23}{20} \).</li>
+        <li>Expresar el resultado: \( \frac{23}{20} = 1\frac{3}{20} \) o aproximadamente 1.15.</li>
+      </ol>
+      <p><strong>Resultado:</strong> \( \frac{23}{20} \) o 1.15.</p>
+    </div>
+    
+    <div class="example">
+      <h3>Ejercicio 2: División de Fracciones</h3>
+      <p><strong>Planteamiento:</strong> Calcular \( \frac{7}{8} \div \frac{2}{5} \).</p>
+      <p><strong>Pasos:</strong></p>
+      <ol>
+        <li>Multiplicar por el inverso: \( \frac{7}{8} \times \frac{5}{2} = \frac{35}{16} \).</li>
+      </ol>
+      <p><strong>Resultado:</strong> \( \frac{35}{16} \) (o en forma mixta, 2\( \frac{3}{16}\)).</p>
+    </div>
+    
+    <div class="example">
+      <h3>Ejercicio 3: Experiencia para el Nivel 10</h3>
+      <p><strong>Planteamiento:</strong> Utilizar la fórmula:
+        \[
+        \text{Experiencia} = 100 \times e^{0.2 \times \text{nivel}}.
+        \]
+      </p>
+      <p><strong>Pasos:</strong></p>
+      <ol>
+        <li>Reemplazar "nivel" por 10: \(0.2 \times 10 = 2\).</li>
+        <li>Calcular \(e^2 \approx 7.39\) (con \(e \approx 2.71828\)).</li>
+        <li>Multiplicar: \(100 \times 7.39 \approx 739\).</li>
+      </ol>
+      <p><strong>Resultado:</strong> Aproximadamente 739 puntos de experiencia.</p>
+    </div>
+    
+    <div class="example">
+      <h3>Ejercicio 4: Tiempo para Alcanzar 5000 Habitantes</h3>
+      <p><strong>Planteamiento:</strong> Dada la fórmula \( P(t) = 1000 \times (1.02)^t \), determinar \( t \) tal que \( P(t) = 5000 \).</p>
+      <p><strong>Pasos:</strong></p>
+      <ol>
+        <li>Igualar la fórmula a 5000: \( 1000 \times (1.02)^t = 5000 \).</li>
+        <li>Dividir ambos lados por 1000: \( (1.02)^t = 5 \).</li>
+        <li>Aplicar logaritmos: \( t = \frac{\log 5}{\log 1.02} \).</li>
+        <li>Calcular: \( t \approx 81.28 \) meses.</li>
+      </ol>
+      <p><strong>Resultado:</strong> Aproximadamente 81 meses.</p>
+    </div>
+    
+    <div class="example">
+      <h3>Ejercicio 5: Probabilidad de No Obtener un Objeto Legendario</h3>
+      <p><strong>Planteamiento:</strong> Con una probabilidad de 0.1% (0.001) de obtener un objeto legendario, determinar la probabilidad de no obtenerlo en 100 aperturas.</p>
+      <p><strong>Pasos:</strong></p>
+      <ol>
+        <li>Calcular la probabilidad de no obtener el objeto en una apertura: \(1 - 0.001 = 0.999\).</li>
+        <li>Para 100 aperturas, elevar a la potencia 100: \(0.999^{100} \approx 0.905\).</li>
+      </ol>
+      <p><strong>Resultado:</strong> Aproximadamente 90.5% de probabilidad de no obtener el objeto.</p>
+    </div>
+    
+  </section>
+  
+  <hr>
+  
+  <!-- Sección de Conclusiones del Módulo -->
+  <section id="conclusiones">
+    <h2>2.7. Conclusiones del Módulo</h2>
+    <p>
+      En este módulo aprendiste a:
+    </p>
+    <ul>
+      <li>Convertir entre fracciones, decimales y porcentajes, entendiendo sus definiciones y aplicaciones prácticas.</li>
+      <li>Realizar operaciones con fracciones (suma, resta, multiplicación y división) y aplicarlas en situaciones propias del desarrollo de videojuegos.</li>
+      <li>Utilizar la regla de tres, simple y compuesta, para ajustar escalas de recursos o dificultad.</li>
+      <li>Iniciarte en la probabilidad básica, fundamental para diseñar sistemas de recompensas y eventos aleatorios en juegos.</li>
+    </ul>
+    <p>
+      Estos conceptos se relacionan directamente con la lógica de diseño y desarrollo de videojuegos, y a medida que avances, te resultarán cada vez más útiles para modelar sistemas complejos y diseñar economías virtuales.
+    </p>
+    <p>
+      <strong>Siguiente paso:</strong> Profundizá en probabilidades compuestas y estadística descriptiva para ampliar tu capacidad de análisis.
+    </p>
+    <div class="activity">
+      <p><strong>Recomendación de Autoevaluación:</strong> Repití los cálculos de los ejercicios sin consultar la solución, compará tus resultados y experimentá modificando escenarios para ver cómo varían los resultados. ¡Incluso podés probarlo en hojas de cálculo o con Python!</p>
+    </div>
+  </section>
+  
+  <hr>
+  
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 UTN BA - Carrera de Desarrollo y Producción de Videojuegos</p>
+  </footer>
+  
+</body>
+</html>

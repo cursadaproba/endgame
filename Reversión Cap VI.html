@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <!-- Meta para responsividad -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Módulo 6: Integrales y Aplicaciones en Videojuegos</title>
+  
+  <!-- Inclusión de MathJax para fórmulas matemáticas -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  
+  <!-- Google Fonts: "Montserrat" para títulos y "Roboto" para el cuerpo -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Estilos CSS para un ambiente moderno y gamer -->
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Roboto', sans-serif;
+      line-height: 1.5;
+      background: #121212;
+      color: #e0e0e0;
+      padding: 20px;
+    }
+    
+    a {
+      color: #00e5ff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    a:hover {
+      color: #00b8d4;
+    }
+    
+    h1, h2, h3, h4 {
+      font-family: 'Montserrat', sans-serif;
+      color: #00e5ff;
+      margin-bottom: 15px;
+    }
+    
+    p {
+      margin-bottom: 15px;
+    }
+    
+    ul, ol {
+      margin-left: 25px;
+      margin-bottom: 20px;
+    }
+    
+    hr {
+      border: none;
+      border-top: 2px solid #00e5ff;
+      margin: 30px 0;
+    }
+    
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 20px 0;
+      background-color: #1e1e1e;
+    }
+    
+    table, th, td {
+      border: 1px solid #00e5ff;
+    }
+    
+    th, td {
+      padding: 12px;
+      text-align: left;
+    }
+    
+    .diagram, .code-block {
+      background-color: #263238;
+      border: 1px solid #00e5ff;
+      padding: 12px;
+      font-family: 'Roboto Mono', monospace;
+      margin: 15px auto;
+      text-align: center;
+      display: block;
+      max-width: 320px;
+    }
+    
+    .activity, .example {
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+    }
+    
+    .activity {
+      background-color: #00e5ff20;
+      border-left: 5px solid #00e5ff;
+    }
+    
+    .example {
+      background-color: #00e5ff10;
+      border-left: 5px solid #00e5ff;
+    }
+    
+    /* Encabezado con imagen de fondo moderna */
+    header {
+      background: url('https://source.unsplash.com/featured/?gamer,technology') no-repeat center center/cover;
+      padding: 50px 20px;
+      text-align: center;
+      color: #ffffff;
+      margin-bottom: 30px;
+      border-radius: 5px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+    
+    header h1 {
+      font-size: 2.8em;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    }
+    
+    header p {
+      font-size: 1.3em;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+    }
+    
+    /* Barra de navegación moderna */
+    nav {
+      background-color: #1f1f1f;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    nav a {
+      margin: 0 15px;
+      font-weight: 500;
+      color: #00e5ff;
+    }
+    
+    nav a:hover {
+      color: #00b8d4;
+    }
+    
+    /* Espaciado general para secciones */
+    section {
+      margin-bottom: 40px;
+    }
+    
+    /* Footer */
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #00e5ff;
+    }
+  </style>
+</head>
+<body>
+  <!-- Encabezado -->
+  <header>
+    <h1>Módulo 6: Integrales y Aplicaciones en Videojuegos</h1>
+    <p>¡Aprendé a acumular y simular recursos y movimientos complejos mediante integrales!</p>
+  </header>
+  
+  <!-- Barra de navegación -->
+  <nav>
+    <a href="#integrales">6.1. Integrales</a>
+    <a href="#areas">6.2. Áreas Bajo una Curva</a>
+    <a href="#acumulacion">6.3. Acumulación y Simulaciones Físicas</a>
+    <a href="#numerica">6.4. Integración Numérica</a>
+    <a href="#ejercicios">6.5. Ejercicios Aplicados</a>
+    <a href="#conclusiones">6.6. Conclusiones</a>
+  </nav>
+  
+  <!-- Índice del Módulo -->
+  <section>
+    <h2>Índice del Módulo</h2>
+    <ol>
+      <li><a href="#integrales">6.1. Integral Definida e Indefinida</a></li>
+      <li><a href="#areas">6.2. Cálculo de Áreas Bajo una Curva</a></li>
+      <li><a href="#acumulacion">6.3. Aplicaciones en Acumulación de Recursos y Simulaciones</a></li>
+      <li><a href="#numerica">6.4. Integración Numérica en Videojuegos</a></li>
+      <li><a href="#ejercicios">6.5. Ejercicios Aplicados a Videojuegos</a></li>
+      <li><a href="#conclusiones">6.6. Conclusiones y Próximos Pasos</a></li>
+    </ol>
+  </section>
+  
+  <hr>
+  
+  <!-- 6.1 Integral Definida e Indefinida -->
+  <section id="integrales">
+    <h2>6.1. Integral Definida e Indefinida</h2>
+    
+    <h3>6.1.1. Integral Indefinida</h3>
+    <p>
+      La <strong>integral indefinida</strong> de una función \( f(x) \) es la familia de todas sus antiderivadas, es decir, se busca \( F(x) \) tal que:
+      \[
+      F'(x)=f(x).
+      \]
+    </p>
+    <p>
+      Se anota:
+      \[
+      \int f(x)\,dx=F(x)+C,
+      \]
+      donde \( C \) es la constante de integración.
+    </p>
+    <div class="example">
+      <h3>Ejemplo 6.1.1</h3>
+      <p><strong>Problema:</strong> Calcular la integral indefinida de \( 2x \).</p>
+      <ol>
+        <li>La antiderivada de \( 2x \) es \( x^2 \) (pues \( \frac{d}{dx}(x^2)=2x \)).</li>
+        <li>Agregamos la constante:  
+          \[
+          \int 2x\,dx=x^2+C.
+          \]
+        </li>
+      </ol>
+      <p><strong>Resultado:</strong> \( x^2+C \).</p>
+    </div>
+    
+    <h3>6.1.2. Integral Definida</h3>
+    <p>
+      La <strong>integral definida</strong> 
+      \[
+      \int_a^b f(x)\,dx,
+      \]
+      representa el área neta bajo la curva de \( f(x) \) entre \( a \) y \( b \). Según el <strong>Teorema Fundamental del Cálculo</strong>, si \( F(x) \) es antiderivada de \( f(x) \):
+      \[
+      \int_a^b f(x)\,dx=F(b)-F(a).
+      \]
+    </p>
+    <div class="example">
+      <h3>Ejemplo 6.1.2</h3>
+      <p><strong>Problema:</strong> Calcular 
+      \[
+      \int_0^2 x^2\,dx.
+      \]
+      </p>
+      <ol>
+        <li>La antiderivada de \( x^2 \) es \( \frac{x^3}{3} \).</li>
+        <li>Evaluamos: \( \frac{2^3}{3}-\frac{0^3}{3}=\frac{8}{3} \).</li>
+      </ol>
+      <p><strong>Resultado:</strong> \( \frac{8}{3} \).</p>
+    </div>
+    
+    <h3>6.1.3. Ejemplos en Videojuegos</h3>
+    <ul>
+      <li><em>Distancia recorrida:</em> Si \( v(t) \) es la velocidad, la integral \( \int_a^b v(t)\,dt \) da la distancia recorrida.</li>
+      <li><em>Área de terreno:</em> Integrar la función que modela el contorno del terreno para estimar el área.</li>
+      <li><em>Acumulación de recursos:</em> Si \( r(t) \) es la tasa de recolección, la integral acumula el total recolectado.</li>
+    </ul>
+  </section>
+  
+  <hr>
+  
+  <!-- 6.2 Cálculo de Áreas Bajo una Curva -->
+  <section id="areas">
+    <h2>6.2. Cálculo de Áreas Bajo una Curva</h2>
+    <h3>6.2.1. Concepto</h3>
+    <p>
+      Cuando \( f(x) \ge 0 \) en \( [a,b] \), la integral definida
+      \[
+      \int_a^b f(x)\,dx
+      \]
+      representa el área bajo la curva entre \( a \) y \( b \).
+    </p>
+    <h3>6.2.2. Procedimiento</h3>
+    <ol>
+      <li>Encontrar una antiderivada \( F(x) \) de \( f(x) \).</li>
+      <li>Calcular \( F(b)-F(a) \) para obtener el área neta.</li>
+    </ol>
+    <h3>6.2.3. Casos Especiales</h3>
+    <ul>
+      <li><strong>Función negativa:</strong> Si \( f(x)<0 \), el área se toma con signo negativo. Para el área total, se integra \( |f(x)| \).</li>
+      <li><strong>Área entre dos curvas:</strong> Se calcula:
+      \[
+      \int_a^b [f(x)-g(x)]\,dx.
+      \]
+      </li>
+    </ul>
+    <h3>6.2.4. Ejemplos</h3>
+    <div class="example">
+      <h3>Ejemplo 6.2.1</h3>
+      <p><strong>Problema:</strong> Calcular 
+      \[
+      \int_0^1 x\,dx.
+      \]
+      </p>
+      <ol>
+        <li>La antiderivada de \( x \) es \( \frac{x^2}{2} \).</li>
+        <li>Evaluamos: \( \frac{1^2}{2}-\frac{0^2}{2}=\frac{1}{2} \).</li>
+      </ol>
+      <p><strong>Resultado:</strong> \( \frac{1}{2} \).</p>
+    </div>
+    <div class="example">
+      <h3>Ejemplo 6.2.2</h3>
+      <p><strong>Problema:</strong> Calcular el área entre \( f(x)=x^2 \) y el eje \( x \) en \([-1,1]\).</p>
+      <ol>
+        <li>Por simetría:
+        \[
+        \int_{-1}^1 x^2\,dx=2\int_0^1 x^2\,dx.
+        \]
+        </li>
+        <li>La antiderivada de \( x^2 \) es \( \frac{x^3}{3} \), así:
+        \[
+        2\left[\frac{1^3}{3}-\frac{0^3}{3}\right]=\frac{2}{3}.
+        \]
+        </li>
+      </ol>
+      <p><strong>Resultado:</strong> \( \frac{2}{3} \).</p>
+    </div>
+    
+    <h3>6.2.5. Ejemplos en Videojuegos</h3>
+    <p>
+      Las integrales se aplican para calcular áreas en:
+    </p>
+    <ul>
+      <li><em>Terrenos irregulares</em> para estimar el área de zonas de juego.</li>
+      <li><em>Zonas de efecto</em> (por ejemplo, el área de un hechizo).</li>
+      <li><em>Iluminación</em> global para calcular la energía luminosa recibida.</li>
+    </ul>
+    
+    <!-- Gráfica ilustrativa: Área bajo f(x)=x² entre 0 y 1 -->
+    <div class="diagram" style="margin: auto; width: 320px;">
+      <svg width="300" height="200">
+        <!-- Ejes -->
+        <line x1="30" y1="170" x2="270" y2="170" stroke="#00e5ff" stroke-width="2"/>
+        <line x1="30" y1="170" x2="30" y2="20" stroke="#00e5ff" stroke-width="2"/>
+        <!-- Curva f(x)=x^2 -->
+        <polyline fill="none" stroke="#ffea00" stroke-width="2"
+          points="
+            30,170 
+            60,150 
+            90,130 
+            120,115 
+            150,105 
+            180,100 
+            210,100 
+            240,105 
+            270,120" />
+        <!-- Área sombreada -->
+        <polygon fill="#ffea0040" stroke="none"
+          points="
+            30,170 
+            60,150 
+            90,130 
+            120,115 
+            150,105 
+            180,100 
+            210,100 
+            240,105 
+            270,120 
+            270,170" />
+      </svg>
+      <p style="text-align: center;">Área bajo \( f(x)=x^2 \) en [0,1]</p>
+    </div>
+  </section>
+  
+  <hr>
+  
+  <!-- 6.3 Aplicaciones en Acumulación y Simulaciones -->
+  <section id="acumulacion">
+    <h2>6.3. Aplicaciones en Acumulación de Recursos y Simulaciones Físicas</h2>
+    <p>
+      Las integrales permiten acumular cantidades a lo largo del tiempo. Por ejemplo, si \( r(t) \) es la tasa de recolección de un recurso, el total acumulado en \( [a,b] \) es:
+      \[
+      \int_a^b r(t)\,dt.
+      \]
+    </p>
+    <p>
+      <em>Ejemplo:</em> Con \( r(t)=10 \) durante 5 unidades de tiempo:
+      \[
+      \int_0^5 10\,dt=10\times5=50.
+      \]
+    </p>
+    <p>
+      En videojuegos, se utiliza para calcular recursos acumulados o la energía total recibida por un objeto durante cierto tiempo.
+    </p>
+  </section>
+  
+  <hr>
+  
+  <!-- 6.4 Integración Numérica -->
+  <section id="numerica">
+    <h2>6.4. Integración Numérica en Videojuegos</h2>
+    <p>
+      Cuando no se dispone de una antiderivada simple, se usa la <strong>integración numérica</strong> para aproximar:
+      \[
+      \int_a^b f(x)\,dx.
+      \]
+      Se divide el intervalo \( [a,b] \) en \( n \) subintervalos de ancho \( h=\frac{b-a}{n} \) y se aproxima el área usando métodos como la regla del rectángulo, trapecio o Simpson.
+    </p>
+    <h3>6.4.1. Métodos Comunes</h3>
+    <ul>
+      <li><strong>Regla del Rectángulo:</strong> Aproxima el área con rectángulos.</li>
+      <li><strong>Regla del Trapecio:</strong> Usa trapecios para obtener una mejor aproximación.</li>
+      <li><strong>Regla de Simpson:</strong> Usa parábolas para una aproximación más precisa.</li>
+    </ul>
+    <h3>6.4.2. Ejemplos en Videojuegos</h3>
+    <p>
+      Estas técnicas se aplican en simulaciones de:
+    </p>
+    <ul>
+      <li><em>Trayectorias con resistencia del aire.</em></li>
+      <li><em>Simulación de fluidos.</em></li>
+      <li><em>Iluminación global</em> (ray tracing o radiosidad).</li>
+    </ul>
+  </section>
+  
+  <hr>
+  
+  <!-- 6.5 Ejercicios Aplicados a Videojuegos -->
+  <section id="ejercicios">
+    <h2>6.5. Ejercicios Aplicados a Videojuegos</h2>
+    <p>
+      Acá tenés ejercicios prácticos para aplicar el cálculo integral en diversos escenarios del desarrollo de videojuegos.
+    </p>
+    
+    <div class="example">
+      <h3>Ejercicio 6.1: Cálculo de la Distancia Recorrida</h3>
+      <p><strong>Enunciado:</strong></p>
+      <p>
+        Definí una función <em>velocidad(t)</em> y usá la regla del trapecio para aproximar:
+        \[
+        \text{Distancia} \approx \int_a^b \text{velocidad}(t)\,dt.
+        \]
+        Implementá la función <em>calcular_distancia(velocidad, a, b, n)</em> donde \( n \) es el número de subintervalos.
+      </p>
+      <p><strong>Objetivo:</strong> Comprender cómo la integración numérica se usa para calcular la distancia recorrida con velocidad variable.</p>
+      <p><strong>Ejemplo de solución:</strong> Si \( a=0 \), \( b=10 \) y \( n=5 \) (por lo que \( h=2 \)), se aproxima el área sumando las áreas de cada trapecio.
+      </p>
+    </div>
+    
+    <div class="example">
+      <h3>Ejercicio 6.2: Modelo de Consumo de Recursos en un RTS</h3>
+      <p><strong>Enunciado:</strong></p>
+      <p>
+        Definí una función <em>tasa_consumo(t)</em> y usa un método numérico para calcular:
+        \[
+        \text{Consumo total} = \int_a^b \text{tasa_consumo}(t)\,dt.
+        \]
+        Implementá <em>calcular_consumo_total(tasa_consumo, a, b, n)</em> con, por ejemplo, la regla del trapecio.
+      </p>
+      <p><strong>Objetivo:</strong> Simular el consumo total de un recurso a lo largo del tiempo para ajustar la economía del juego.</p>
+    </div>
+    
+    <div class="example">
+      <h3>Ejercicio 6.3: Trayectoria de un Objeto con Fuerzas Variables</h3>
+      <p><strong>Enunciado:</strong></p>
+      <p>
+        Definí una función <em>fuerza_neta(t, posición, velocidad)</em> que devuelva la fuerza resultante. Utilizá un método numérico (por ejemplo, Euler) para actualizar la velocidad y la posición:
+        \[
+        v_{i+1}=v_i+a_i\Delta t,\quad s_{i+1}=s_i+v_i\Delta t.
+        \]
+        Simulá la trayectoria durante un intervalo de tiempo y graficá el resultado.
+      </p>
+      <p><strong>Objetivo:</strong> Observar cómo se integra la aceleración variable para actualizar el movimiento.</p>
+    </div>
+    
+    <div class="example">
+      <h3>Ejercicio 6.4: Curvas de Bézier y Generación de Terrenos</h3>
+      <p><strong>Enunciado:</strong></p>
+      <p>
+        Utilizá la fórmula de una curva de Bézier cúbica:
+        \[
+        B(t)=(1-t)^3P_0+3t(1-t)^2P_1+3t^2(1-t)P_2+t^3P_3,\quad 0\le t\le 1.
+        \]
+        <br>
+        <em>Objetivo:</em> Generá puntos a lo largo de la curva para definir un terreno o trayectoria y, de manera aproximada, calcular la longitud de la curva.
+      </p>
+    </div>
+  </section>
+  
+  <hr>
+  
+  <!-- 6.6 Conclusiones y Próximos Pasos -->
+  <section id="conclusiones">
+    <h2>6.6. Conclusiones y Próximos Pasos</h2>
+    <p>
+      En este módulo aprendiste:
+    </p>
+    <ul>
+      <li>
+        La <strong>integral indefinida</strong>, que representa la familia de antiderivadas de una función, y la <strong>integral definida</strong>, que permite calcular áreas netas bajo una curva.
+      </li>
+      <li>
+        Cómo interpretar la integral para acumular cantidades: desde la distancia recorrida hasta la acumulación de recursos.
+      </li>
+      <li>
+        La <strong>integración numérica</strong>, esencial cuando no se dispone de antiderivadas simples o se requiere un cálculo computacional rápido.
+      </li>
+    </ul>
+    <p>
+      Estos conceptos son fundamentales para simular procesos en videojuegos, desde el movimiento de personajes y proyectiles hasta la generación de terrenos y la simulación de efectos de iluminación.
+    </p>
+    <p>
+      <strong>Próximos pasos:</strong> Profundizá en ecuaciones diferenciales y cálculo integral avanzado para abordar simulaciones físicas complejas y optimizar tus motores de juego.
+    </p>
+    <div class="activity">
+      <p><strong>Recomendación de Autoevaluación:</strong> Repití los cálculos de cada ejercicio sin consultar las soluciones, modificá parámetros (como los límites de integración o el número de subintervalos) y experimentá con simulaciones en Unity, Godot o en hojas de cálculo.</p>
+    </div>
+  </section>
+  
+  <hr>
+  
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 UTN BA - Carrera de Desarrollo y Producción de Videojuegos</p>
+  </footer>
+  
+</body>
+</html>

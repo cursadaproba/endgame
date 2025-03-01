@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <!-- Meta para responsividad -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Capítulo I: Fundamentos de Álgebra y Operaciones Matemáticas</title>
+  
+  <!-- Inclusión de MathJax para fórmulas matemáticas -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  
+  <!-- Google Fonts: "Montserrat" para títulos y "Roboto" para el cuerpo -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Estilos CSS para un ambiente moderno y gamer -->
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Roboto', sans-serif;
+      line-height: 1.5; /* Interlineado 1.5 para mayor legibilidad */
+      background: #121212; /* Fondo oscuro */
+      color: #e0e0e0;
+      padding: 20px;
+    }
+    
+    a {
+      color: #00e5ff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    a:hover {
+      color: #00b8d4;
+    }
+    
+    h1, h2, h3, h4 {
+      font-family: 'Montserrat', sans-serif;
+      color: #00e5ff;
+      margin-bottom: 15px;
+    }
+    
+    p {
+      margin-bottom: 15px;
+    }
+    
+    ul, ol {
+      margin-left: 25px;
+      margin-bottom: 20px;
+    }
+    
+    hr {
+      border: none;
+      border-top: 2px solid #00e5ff;
+      margin: 30px 0;
+    }
+    
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 20px 0;
+      background-color: #1e1e1e;
+    }
+    
+    table, th, td {
+      border: 1px solid #00e5ff;
+    }
+    
+    th, td {
+      padding: 12px;
+      text-align: left;
+    }
+    
+    .diagram, .code-block {
+      background-color: #263238;
+      border: 1px solid #00e5ff;
+      padding: 12px;
+      font-family: 'Roboto Mono', monospace;
+      margin: 15px 0;
+    }
+    
+    .activity, .example {
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+    }
+    
+    .activity {
+      background-color: #00e5ff20;
+      border-left: 5px solid #00e5ff;
+    }
+    
+    .example {
+      background-color: #00e5ff10;
+      border-left: 5px solid #00e5ff;
+    }
+    
+    /* Encabezado con imagen de fondo moderna */
+    header {
+      background: url('https://source.unsplash.com/featured/?gamer,technology') no-repeat center center/cover;
+      padding: 50px 20px;
+      text-align: center;
+      color: #ffffff;
+      margin-bottom: 30px;
+      border-radius: 5px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+    
+    header h1 {
+      font-size: 2.8em;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    }
+    
+    header p {
+      font-size: 1.3em;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+    }
+    
+    /* Barra de navegación moderna */
+    nav {
+      background-color: #1f1f1f;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    nav a {
+      margin: 0 15px;
+      font-weight: 500;
+      color: #00e5ff;
+    }
+    
+    nav a:hover {
+      color: #00b8d4;
+    }
+    
+    /* Espaciado general para secciones */
+    section {
+      margin-bottom: 40px;
+    }
+    
+    /* Footer */
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #00e5ff;
+    }
+  </style>
+</head>
+<body>
+  <!-- Encabezado con imagen de fondo -->
+  <header>
+    <h1>Fundamentos de Álgebra y Operaciones Matemáticas</h1>
+    <p>¡Bienvenido al mundo de la matemática para el desarrollo y producción de videojuegos!</p>
+  </header>
+  
+  <!-- Barra de navegación -->
+  <nav>
+    <a href="#intro">Introducción</a>
+    <a href="#numeros-reales">Números Reales</a>
+    <a href="#jerarquia">Jerarquía</a>
+    <a href="#propiedades">Propiedades</a>
+    <a href="#potencias">Potencias</a>
+    <a href="#logaritmos">Logaritmos</a>
+    <a href="#error">Error</a>
+    <a href="#ejercicios">Ejercicios</a>
+    <a href="#conclusiones">Conclusiones</a>
+    <a href="#resolucion">Resolución</a>
+  </nav>
+  
+  <!-- Índice del capítulo -->
+  <section>
+    <h2>Índice del Capítulo</h2>
+    <ol>
+      <li><a href="#intro">Introducción General</a></li>
+      <li><a href="#numeros-reales">Números Reales</a></li>
+      <li><a href="#jerarquia">Jerarquía de Operaciones (PEMDAS/BODMAS)</a></li>
+      <li><a href="#propiedades">Propiedades de las Operaciones</a></li>
+      <li><a href="#potencias">Potencias y Raíces</a></li>
+      <li><a href="#logaritmos">Logaritmos</a></li>
+      <li><a href="#error">Error y Estimación</a></li>
+      <li><a href="#ejercicios">Ejercicios Aplicados</a></li>
+      <li><a href="#conclusiones">Conclusiones y Reflexión</a></li>
+      <li><a href="#resolucion">Resolución Paso a Paso</a></li>
+    </ol>
+  </section>
+  
+  <hr>
+  
+  <!-- Sección de Introducción General -->
+  <section id="intro">
+    <h2>1.1. Introducción General</h2>
+    <p>
+      En la era digital, las matemáticas son el motor detrás de la tecnología, los algoritmos y, por supuesto, los videojuegos. Cada vez que juegas, desde simular físicas hasta balancear sistemas de combate, se aplican conceptos algebraicos fundamentales.
+    </p>
+    <p>
+      Este capítulo está diseñado para vos, futuro desarrollador de videojuegos, para que comprendas cómo las matemáticas pueden ayudarte a crear experiencias de juego innovadoras y dinámicas. Aprenderás a:
+    </p>
+    <ul>
+      <li><strong>Modelar físicas realistas:</strong> Simular movimientos y colisiones en entornos 2D y 3D.</li>
+      <li><strong>Balancear sistemas de combate:</strong> Ajustar fórmulas para calcular daño, defensa y multiplicadores.</li>
+      <li><strong>Optimizar mecánicas de juego:</strong> Administrar recursos y progresiones para lograr un juego equilibrado.</li>
+      <li><strong>Construir sistemas complejos:</strong> Desarrollar algoritmos para inteligencia artificial, compresión de datos y más.</li>
+    </ul>
+    <div class="activity">
+      <p><strong>Actividad de Reflexión:</strong> Pensá en un videojuego que te apasione y reflexioná sobre qué fórmulas matemáticas creés que están detrás de sus mecánicas (por ejemplo, en el cálculo del daño o la progresión de niveles). Anotá tus ideas y compartilas en el foro.</p>
+    </div>
+  </section>
+  
+  <hr>
+  
+  <!-- Sección de Números Reales -->
+  <section id="numeros-reales">
+    <h2>1.2. Números Reales</h2>
+    <p>
+      Los <strong>números reales (\(\mathbb{R}\))</strong> constituyen la base de nuestro sistema numérico y se utilizan para representar posiciones, movimientos y variables continuas, como la salud o la experiencia en los videojuegos.
+    </p>
+    <table>
+      <tr>
+        <th>Categoría</th>
+        <th>Símbolo</th>
+        <th>Ejemplos</th>
+        <th>Descripción</th>
+      </tr>
+      <tr>
+        <td>Naturales</td>
+        <td>\(\mathbb{N}\)</td>
+        <td>1, 2, 3, ...</td>
+        <td>Para contar elementos, como vidas o niveles.</td>
+      </tr>
+      <tr>
+        <td>Enteros</td>
+        <td>\(\mathbb{Z}\)</td>
+        <td>\(-3, -2, -1, 0, 1, 2, 3, ...\)</td>
+        <td>Incluyen números negativos, útiles para representar desplazamientos y puntuaciones.</td>
+      </tr>
+      <tr>
+        <td>Racionales</td>
+        <td>\(\mathbb{Q}\)</td>
+        <td>\(\frac{1}{2}\), \(\frac{3}{4}\)</td>
+        <td>Números expresables como fracción, esenciales para cálculos precisos.</td>
+      </tr>
+      <tr>
+        <td>Irracionales</td>
+        <td>\(\mathbb{I}\)</td>
+        <td>\(\pi\), \(e\), \(\sqrt{2}\)</td>
+        <td>Números con decimales infinitos no periódicos, fundamentales en simulaciones físicas.</td>
+      </tr>
+    </table>
+    
+    <!-- Sección de Recta Numérica y Propiedades -->
+    <h3>1.2.1. Recta Numérica y Propiedades</h3>
+    <p>
+      La recta numérica es una herramienta visual que ilustra la distribución de los números reales y nos ayuda a comprender:
+    </p>
+    <ul>
+      <li><strong>Completitud:</strong> Todos los números reales están representados sin “huecos”.</li>
+      <li><strong>Densidad:</strong> Entre dos números hay infinitos valores intermedios, ideal para modelar transiciones suaves.</li>
+      <li><strong>Orden:</strong> Permite comparar magnitudes, fundamental para definir escalas en el juego.</li>
+    </ul>
+    <p>
+      <strong>Visual:</strong> A continuación se muestra una representación simple de la recta numérica:
+    </p>
+    <div style="text-align: center; margin: 20px 0;">
+      <svg width="600" height="100">
+        <!-- Línea horizontal -->
+        <line x1="50" y1="50" x2="550" y2="50" stroke="#00e5ff" stroke-width="2" />
+        
+        <!-- Ticks y etiquetas -->
+        <!-- Tick para 0 -->
+        <line x1="50" y1="45" x2="50" y2="55" stroke="#00e5ff" stroke-width="2" />
+        <text x="40" y="75" fill="#00e5ff" font-size="14">0</text>
+        
+        <!-- Tick para 1 -->
+        <line x1="150" y1="45" x2="150" y2="55" stroke="#00e5ff" stroke-width="2" />
+        <text x="140" y="75" fill="#00e5ff" font-size="14">1</text>
+        
+        <!-- Tick para 2 -->
+        <line x1="250" y1="45" x2="250" y2="55" stroke="#00e5ff" stroke-width="2" />
+        <text x="240" y="75" fill="#00e5ff" font-size="14">2</text>
+        
+        <!-- Tick para 3 -->
+        <line x1="350" y1="45" x2="350" y2="55" stroke="#00e5ff" stroke-width="2" />
+        <text x="340" y="75" fill="#00e5ff" font-size="14">3</text>
+        
+        <!-- Tick para 4 -->
+        <line x1="450" y1="45" x2="450" y2="55" stroke="#00e5ff" stroke-width="2" />
+        <text x="440" y="75" fill="#00e5ff" font-size="14">4</text>
+        
+        <!-- Tick para 5 -->
+        <line x1="550" y1="45" x2="550" y2="55" stroke="#00e5ff" stroke-width="2" />
+        <text x="540" y="75" fill="#00e5ff" font-size="14">5</text>
+      </svg>
+    </div>
+    <h3>1.2.2. Aplicaciones en Videojuegos</h3>
+    <ul>
+      <li><strong>Coordenadas y Posiciones:</strong> Ejemplo: \((3.5, -2.1)\) para ubicar personajes en entornos 2D y 3D.</li>
+      <li><strong>Física y Movimiento:</strong> Simular trayectorias y velocidades en el juego.</li>
+      <li><strong>Recursos y Estadísticas:</strong> Modelar variables continuas, como salud, energía o experiencia.</li>
+    </ul>
+  </section>
+  
+  <hr>
+  
+  <!-- Sección de Jerarquía de Operaciones -->
+  <section id="jerarquia">
+    <h2>1.3. Jerarquía de Operaciones (PEMDAS/BODMAS)</h2>
+    <p>
+      La jerarquía de operaciones garantiza que las fórmulas se resuelvan en el orden correcto, similar a cómo un motor de juego procesa secuencias para lograr resultados precisos.
+    </p>
+    <ol>
+      <li><strong>P</strong>aréntesis: Resolver primero las operaciones dentro de paréntesis.</li>
+      <li><strong>E</strong>xponentes y Raíces: Evaluar potencias y raíces a continuación.</li>
+      <li><strong>M</strong>ultiplicación y <strong>D</strong>ivisión: Se realizan de izquierda a derecha.</li>
+      <li><strong>A</strong>dición y <strong>S</strong>ustracción: Se ejecutan de izquierda a derecha.</li>
+    </ol>
+    <h3>1.3.1. Ejemplos Visuales</h3>
+    <p><strong>Diagrama de Flujo para Resolver Operaciones:</strong></p>
+    <div class="diagram">
+      <pre>
+Inicio
+  └──> Resolver Paréntesis
+         └──> Calcular Exponentes y Raíces
+                └──> Multiplicación y División
+                       └──> Adición y Sustracción
+                              └──> Resultado Final
+      </pre>
+    </div>
+    <h3>1.3.2. Ejemplos Numéricos</h3>
+    <p>
+      <strong>Ejemplo 1:</strong><br>
+      \(10 - 2 \times 3 \quad \Longrightarrow \quad 2 \times 3 = 6;\quad 10 - 6 = 4.\)<br>
+      <strong>Resultado:</strong> 4
+    </p>
+    <p>
+      <strong>Ejemplo 2:</strong><br>
+      \((5+1) \times 2^2 - 4 \quad \Longrightarrow \quad (5+1)=6;\quad 2^2=4;\quad 6 \times 4 = 24;\quad 24-4=20.\)<br>
+      <strong>Resultado:</strong> 20
+    </p>
+    <h3>1.3.3. Aplicaciones en Videojuegos</h3>
+    <ul>
+      <li><strong>Cálculos de Daño:</strong> Aplicar el orden correcto para combinar estadísticas de ataque y defensa.</li>
+      <li><strong>Fórmulas de Puntuación:</strong> Sumar bonificaciones y aplicar multiplicadores en secuencia para obtener la puntuación final.</li>
+    </ul>
+    <div class="activity">
+      <p><strong>Actividad de Reflexión:</strong> Pensá en cómo el orden de operaciones influye en el cálculo del daño o la puntuación en el juego que más te gusta. Anotá tus observaciones y compartilas con tus compañeros.</p>
+    </div>
+  </section>
+  
+  <hr>
+  
+  <!-- Sección de Propiedades de las Operaciones -->
+  <section id="propiedades">
+    <h2>1.4. Propiedades de las Operaciones</h2>
+    <p>
+      Las propiedades aritméticas nos permiten reorganizar y simplificar expresiones, lo cual es esencial para optimizar cálculos en tiempo real en el desarrollo de videojuegos.
+    </p>
+    <h3>1.4.1. Principales Propiedades</h3>
+    <ul>
+      <li><strong>Conmutativa:</strong> \(a + b = b + a\) y \(a \times b = b \times a\) (no se aplica a la resta ni a la división).</li>
+      <li><strong>Asociativa:</strong> \((a + b) + c = a + (b + c)\) y \((a \times b) \times c = a \times (b \times c)\).</li>
+      <li><strong>Distributiva:</strong> \(a \times (b + c) = a \times b + a \times c\).</li>
+    </ul>
+    <h3>1.4.2. Aplicaciones en Videojuegos</h3>
+    <ul>
+      <li><em>Cálculo de Puntajes:</em> Reorganizar operaciones para optimizar el rendimiento en cálculos en tiempo real.</li>
+      <li><em>Optimización en Motores de Física:</em> Reducir la cantidad de operaciones para mejorar el desempeño.</li>
+    </ul>
+    <table>
+      <tr>
+        <th>Propiedad</th>
+        <th>Expresión Matemática</th>
+        <th>Comentario</th>
+      </tr>
+      <tr>
+        <td>Conmutativa</td>
+        <td>\(a+b = b+a\); \(a \times b = b \times a\)</td>
+        <td>No se aplica a la resta ni a la división.</td>
+      </tr>
+      <tr>
+        <td>Asociativa</td>
+        <td>\((a+b)+c = a+(b+c)\); \((a \times b) \times c = a \times (b \times c)\)</td>
+        <td>Agrupa operaciones sin alterar el resultado.</td>
+      </tr>
+      <tr>
+        <td>Distributiva</td>
+        <td>\(a \times (b+c) = a \times b + a \times c\)</td>
+        <td>Clave para expandir y factorizar expresiones.</td>
+      </tr>
+    </table>
+  </section>
+  
+  <hr>
+  
+  <!-- Sección de Potencias y Raíces -->
+  <section id="potencias">
+    <h2>1.5. Potencias y Raíces</h2>
+    <p>
+      Las potencias y raíces son esenciales para modelar comportamientos exponenciales, como el crecimiento de la experiencia o la reducción de efectos en el juego.
+    </p>
+    <h3>1.5.1. Definición y Propiedades</h3>
+    <ul>
+      <li><strong>Potenciación:</strong> Para un número \(a\) y un exponente entero positivo \(n\):
+        \[
+        a^n = \underbrace{a \times a \times \cdots \times a}_{n \text{ veces}}.
+        \]
+      </li>
+      <li><strong>Radicación:</strong> La raíz \(n\)-ésima de \(a\), denotada \(\sqrt[n]{a}\), es el número \(b\) tal que:
+        \[
+        b^n = a.
+        \]
+        Para \(n=2\), se escribe \(\sqrt{a}\).
+      </li>
+    </ul>
+    <p>
+      <strong>Visual:</strong> Observá una infografía que muestre cómo la radicación “deshace” la potenciación, similar a un reinicio en ciertos sistemas de juego.
+    </p>
+    <h3>1.5.2. Principales Propiedades</h3>
+    <ul>
+      <li>Producto de potencias (misma base): \(a^n \times a^m = a^{n+m}\).</li>
+      <li>Cociente de potencias: \(\frac{a^n}{a^m} = a^{n-m}\) (para \(a \neq 0\)).</li>
+      <li>Potencia de una potencia: \((a^n)^m = a^{n \cdot m}\).</li>
+      <li>Potencia de un producto: \((ab)^n = a^n \times b^n\).</li>
+      <li>Exponente cero: \(a^0 = 1\) (para \(a \neq 0\)).</li>
+      <li>Exponente negativo: \(a^{-n} = \frac{1}{a^n}\) (para \(a \neq 0\)).</li>
+    </ul>
+    <h3>1.5.3. Aplicaciones en Videojuegos</h3>
+    <ul>
+      <li><em>Crecimiento Exponencial:</em> Por ejemplo, la experiencia necesaria para subir de nivel puede crecer según:
+        \[
+        XP \propto 1.2^n,
+        \]
+        donde \(n\) es el nivel.</li>
+      <li><em>Decaimiento Exponencial:</em> Simular la reducción gradual de un efecto, como la duración de un "buff".</li>
+      <li><em>Trayectorias y Físicas:</em> Calcular distancias y tiempos en trayectorias parabólicas para lograr simulaciones precisas.</li>
+    </ul>
+  </section>
+  
+  <hr>
+  
+  <!-- Sección de Logaritmos -->
+  <section id="logaritmos">
+    <h2>1.6. Logaritmos</h2>
+    <p>
+      El logaritmo es la operación inversa a la potenciación y es esencial para resolver ecuaciones exponenciales. En videojuegos se utiliza para ajustar la progresión de niveles y balancear sistemas de crecimiento.
+    </p>
+    <h3>1.6.1. Definición y Propiedades</h3>
+    <p>
+      Si \(b^x = a\) (con \(a > 0\) y \(b > 0\)), entonces:
+      \[
+      \log_b a = x.
+      \]
+    </p>
+    <ul>
+      <li><strong>Producto:</strong> \(\log_b (xy) = \log_b x + \log_b y\).</li>
+      <li><strong>Cociente:</strong> \(\log_b \left(\frac{x}{y}\right) = \log_b x - \log_b y\).</li>
+      <li><strong>Potencia:</strong> \(\log_b (x^r) = r \, \log_b x\).</li>
+      <li><strong>Cambio de Base:</strong> \(\log_a x = \frac{\log_b x}{\log_b a}\) (para \(a, b > 0\) y \(a, b \neq 1\)).</li>
+      <li><strong>Logaritmo de la Base:</strong> \(\log_b b = 1\).</li>
+      <li><strong>Logaritmo de 1:</strong> \(\log_b 1 = 0\).</li>
+    </ul>
+    <h3>1.6.2. Aplicaciones en Videojuegos</h3>
+    <ul>
+      <li><em>Progresión de Niveles:</em> Utilizar logaritmos para ajustar la experiencia necesaria para subir de nivel y suavizar la curva de progresión.</li>
+      <li><em>Compresión de Datos:</em> Aplicar logaritmos en algoritmos de compresión para optimizar recursos gráficos y de audio.</li>
+      <li><em>Balance de Escalas:</em> Facilitar la visualización y manejo de datos en escalas muy diversas.</li>
+    </ul>
+    <p>
+      <strong>Visual:</strong> Compará una gráfica de crecimiento lineal con una logarítmica para apreciar cómo se comportan estas funciones.
+    </p>
+  </section>
+  
+  <hr>
+  
+  <!-- Sección de Error y Estimación -->
+  <section id="error">
+    <h2>1.7. Error y Estimación</h2>
+    <p>
+      En el desarrollo de videojuegos, la precisión es vital. Pequeños errores pueden acumularse y afectar el rendimiento o la experiencia de juego, por lo que es fundamental identificar y gestionar las fuentes de error.
+    </p>
+    <h3>1.7.1. Tipos de Error</h3>
+    <ul>
+      <li><strong>Error Absoluto (\(E_a\)):</strong>
+        \[
+        E_a = \left| \tilde{x} - x \right|
+        \]
+        Mide la diferencia exacta entre el valor aproximado y el valor real.
+      </li>
+      <li><strong>Error Relativo (\(E_r\)):</strong>
+        \[
+        E_r = \frac{\left| \tilde{x} - x \right|}{\left| x \right|}
+        \]
+        Expresa el error en relación al valor real.
+      </li>
+    </ul>
+    <h3>1.7.2. Fuentes Comunes de Error</h3>
+    <ul>
+      <li><strong>Representación en Punto Flotante:</strong> Los sistemas computacionales pueden introducir errores de redondeo.</li>
+      <li><strong>Operaciones Sucesivas:</strong> La acumulación de errores en cálculos encadenados afecta la precisión final.</li>
+      <li><strong>Estabilidad de Algoritmos:</strong> Algunos métodos numéricos son sensibles a errores y requieren tolerancias específicas.</li>
+    </ul>
+    <h3>1.7.3. Estrategias de Manejo</h3>
+    <ul>
+      <li><strong>Redondeo y Truncado:</strong> Establecer un número fijo de decimales para minimizar la propagación de errores.</li>
+      <li><strong>Elección de Tipos de Datos:</strong> Utilizar doble precisión en cálculos críticos.</li>
+      <li><strong>Control en la Lógica del Juego:</strong> Definir umbrales para detectar colisiones o cambios sutiles.</li>
+      <li><strong>Métodos de Aproximación:</strong> Emplear series y polinomios para aproximar funciones complejas y cuantificar el error.</li>
+    </ul>
+    <h3>1.7.4. Ejemplos en Videojuegos</h3>
+    <ul>
+      <li><em>Colisiones:</em> Pequeñas imprecisiones pueden permitir que un objeto atraviese una barrera; se establecen márgenes de error para evitarlo.</li>
+      <li><em>Cálculos de Daño:</em> La acumulación de errores en cálculos repetitivos puede afectar el balance del juego.</li>
+      <li><em>Interpolaciones Gráficas:</em> Métodos robustos minimizan errores en animaciones y movimientos.</li>
+      <li><em>Sistemas Económicos:</em> La elección correcta de tipos de datos es esencial para manejar cifras grandes con precisión.</li>
+    </ul>
+  </section>
+  
+  <hr>
+  
+  <!-- Sección de Ejercicios Aplicados -->
+  <section id="ejercicios">
+    <h2>1.8. Ejercicios Aplicados al Desarrollo de Videojuegos</h2>
+    <p>
+      Estos ejercicios están diseñados para que pongas en práctica lo aprendido y experimentes cómo aplicar estos conceptos en escenarios reales de desarrollo de videojuegos.
+    </p>
+    <h3>Ejercicio 1: Daño con Potenciadores</h3>
+    <p>
+      <strong>Escenario:</strong> Un personaje tiene un ataque base de 80 puntos. Se aplica un potenciador que duplica el ataque y, luego, se utiliza una habilidad que eleva el valor al cubo (\(x^3\)).
+    </p>
+    <p>
+      <strong>Pregunta:</strong> ¿Cuál es el daño total?
+    </p>
+    
+    <h3>Ejercicio 2: Crecimiento Exponencial de Recursos</h3>
+    <p>
+      <strong>Escenario:</strong> Un jugador inicia con 500 unidades de oro y cada hora la cantidad aumenta en un 50% (factor 1.5).
+    </p>
+    <p>
+      <strong>Pregunta:</strong> ¿Cuánto oro habrá tras 8 horas?
+    </p>
+    
+    <h3>Ejercicio 3: Experiencia para un Nivel</h3>
+    <p>
+      <strong>Escenario:</strong> La experiencia se calcula con la fórmula:
+      \[
+      \text{Experiencia} = 100 \times e^{0.2 \times \text{nivel}}.
+      \]
+    </p>
+    <p>
+      <strong>Pregunta:</strong> ¿Cuánta experiencia se requiere para alcanzar el nivel 10?
+    </p>
+    
+    <h3>Ejercicio 4: Tiempo para Alcanzar 5000 Habitantes</h3>
+    <p>
+      <strong>Escenario:</strong> Una población inicial de 1000 habitantes crece un 2% mensual, y se desea alcanzar 5000 habitantes usando:
+      \[
+      P(t) = 1000 \times (1.02)^t.
+      \]
+    </p>
+    <p>
+      <strong>Pregunta:</strong> ¿Cuántos meses son necesarios?
+    </p>
+    
+    <h3>Ejercicio 5: Probabilidad de No Obtener un Objeto Legendario</h3>
+    <p>
+      <strong>Escenario:</strong> La probabilidad de obtener un objeto legendario en una “loot box” es 0.1% (0.001). Se realizan 100 aperturas.
+    </p>
+    <p>
+      <strong>Pregunta:</strong> ¿Cuál es la probabilidad de <strong>no</strong> obtener el objeto en 100 aperturas?
+    </p>
+  </section>
+  
+  <hr>
+  
+  <!-- Sección de Conclusiones y Reflexión -->
+  <section id="conclusiones">
+    <h2>1.9. Conclusiones, Actividades de Reflexión y Práctica</h2>
+    <p>
+      En este capítulo se han explorado los fundamentos del álgebra y su aplicación en el desarrollo de videojuegos. Cada concepto, desde la representación de números reales hasta el uso de logaritmos para la progresión de niveles, es una herramienta clave para diseñar sistemas precisos y dinámicos.
+    </p>
+    <p>
+      <strong>Actividades de Reflexión y Práctica:</strong>
+    </p>
+    <ul>
+      <li><strong>Reflexión Personal:</strong> Relacioná cada concepto con su aplicación en las mecánicas de tus videojuegos favoritos y anotá tus ideas.</li>
+      <li><strong>Autoevaluación:</strong> Resolvé los ejercicios propuestos y compará tus respuestas con la sección de resolución para identificar tus áreas de mejora.</li>
+      <li><strong>Exploración Práctica:</strong> Experimentá utilizando hojas de cálculo o Python para simular algunos de estos problemas y observar el impacto de las variaciones numéricas.</li>
+    </ul>
+    <p>
+      Estas actividades están diseñadas para que avances a tu propio ritmo, profundizando en cada concepto sin la presión de entregas formales.
+    </p>
+  </section>
+  
+  <hr>
+  
+  <!-- Sección de Resolución Paso a Paso -->
+  <section id="resolucion">
+    <h2>Resolución Paso a Paso de Ejercicios</h2>
+    <p>
+      A continuación, se presenta la resolución detallada de cada ejercicio para que puedas revisar el proceso y compararlo con tus respuestas:
+    </p>
+    
+    <div class="example">
+      <h3>Ejercicio 1: Daño con Potenciadores</h3>
+      <p><strong>Planteamiento:</strong> Se parte de un ataque base de 80. Primero se duplica el valor y luego se eleva al cubo.</p>
+      <p><strong>Pasos:</strong></p>
+      <ol>
+        <li><em>Duplicar el ataque:</em> \(80 \times 2 = 160\).</li>
+        <li><em>Elevar al cubo:</em> \(160^3 = 160 \times 160 \times 160 = 4\,096\,000\).</li>
+      </ol>
+      <p><strong>Resultado:</strong> 4,096,000 puntos de daño.</p>
+    </div>
+    
+    <div class="example">
+      <h3>Ejercicio 2: Crecimiento Exponencial de Recursos</h3>
+      <p><strong>Planteamiento:</strong> Se parte de 500 unidades de oro, con un incremento del 50% cada hora.</p>
+      <p><strong>Pasos:</strong></p>
+      <ol>
+        <li>Identificar el factor de crecimiento: 1.5.</li>
+        <li>Aplicar la fórmula: \( \text{Oro total} = 500 \times 1.5^8 \).</li>
+        <li>Calcular \(1.5^8 \approx 25.63\).</li>
+        <li>Multiplicar: \(500 \times 25.63 \approx 12\,815\).</li>
+      </ol>
+      <p><strong>Resultado:</strong> Aproximadamente 12,815 unidades de oro.</p>
+    </div>
+    
+    <div class="example">
+      <h3>Ejercicio 3: Experiencia para el Nivel 10</h3>
+      <p><strong>Planteamiento:</strong> Se utiliza la fórmula:
+        \[
+        \text{Experiencia} = 100 \times e^{0.2 \times \text{nivel}}.
+        \]
+      </p>
+      <p><strong>Pasos:</strong></p>
+      <ol>
+        <li>Reemplazar "nivel" por 10: \(0.2 \times 10 = 2\).</li>
+        <li>Calcular \(e^2 \approx 7.39\) (usando \(e \approx 2.71828\)).</li>
+        <li>Multiplicar: \(100 \times 7.39 \approx 739\).</li>
+      </ol>
+      <p><strong>Resultado:</strong> Aproximadamente 739 puntos de experiencia.</p>
+    </div>
+    
+    <div class="example">
+      <h3>Ejercicio 4: Tiempo para Alcanzar 5000 Habitantes</h3>
+      <p><strong>Planteamiento:</strong> Con la fórmula \( P(t) = 1000 \times (1.02)^t \) se desea que \( P(t) = 5000 \).</p>
+      <p><strong>Pasos:</strong></p>
+      <ol>
+        <li>Igualar la fórmula a 5000: \( 1000 \times (1.02)^t = 5000 \).</li>
+        <li>Dividir ambos lados por 1000: \( (1.02)^t = 5 \).</li>
+        <li>Aplicar logaritmos: \( t = \frac{\log 5}{\log 1.02} \).</li>
+        <li>Calcular: \( t \approx 81.28 \) meses.</li>
+      </ol>
+      <p><strong>Resultado:</strong> Aproximadamente 81 meses.</p>
+    </div>
+    
+    <div class="example">
+      <h3>Ejercicio 5: Probabilidad de No Obtener un Objeto Legendario</h3>
+      <p><strong>Planteamiento:</strong> Con una probabilidad de 0.1% (0.001) de obtener un objeto legendario, calcular la probabilidad de no obtenerlo en 100 aperturas.</p>
+      <p><strong>Pasos:</strong></p>
+      <ol>
+        <li>Calcular la probabilidad de no obtener el objeto en una apertura: \(1 - 0.001 = 0.999\).</li>
+        <li>Para 100 aperturas, elevar a la potencia 100: \(0.999^{100} \approx 0.905\).</li>
+      </ol>
+      <p><strong>Resultado:</strong> Aproximadamente 90.5% de probabilidad de no obtener el objeto.</p>
+    </div>
+    
+  <hr>
+  
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 UTN BA - Carrera de Desarrollo y Producción de Videojuegos</p>
+  </footer>
+  
+</body>
+</html>

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <!-- Meta para responsividad -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Módulo 4: Introducción a Límites y Continuidad</title>
+  
+  <!-- Inclusión de MathJax para fórmulas matemáticas -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async 
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  
+  <!-- Google Fonts: "Montserrat" para títulos y "Roboto" para el cuerpo -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Estilos CSS para un ambiente moderno y gamer -->
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Roboto', sans-serif;
+      line-height: 1.5;
+      background: #121212;
+      color: #e0e0e0;
+      padding: 20px;
+    }
+    
+    a {
+      color: #00e5ff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    a:hover {
+      color: #00b8d4;
+    }
+    
+    h1, h2, h3, h4 {
+      font-family: 'Montserrat', sans-serif;
+      color: #00e5ff;
+      margin-bottom: 15px;
+    }
+    
+    p {
+      margin-bottom: 15px;
+    }
+    
+    ul, ol {
+      margin-left: 25px;
+      margin-bottom: 20px;
+    }
+    
+    hr {
+      border: none;
+      border-top: 2px solid #00e5ff;
+      margin: 30px 0;
+    }
+    
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 20px 0;
+      background-color: #1e1e1e;
+    }
+    
+    table, th, td {
+      border: 1px solid #00e5ff;
+    }
+    
+    th, td {
+      padding: 12px;
+      text-align: left;
+    }
+    
+    .diagram, .code-block {
+      background-color: #263238;
+      border: 1px solid #00e5ff;
+      padding: 12px;
+      font-family: 'Roboto Mono', monospace;
+      margin: 15px auto;
+      text-align: center;
+      display: block;
+      max-width: 320px;
+    }
+    
+    .activity, .example {
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+    }
+    
+    .activity {
+      background-color: #00e5ff20;
+      border-left: 5px solid #00e5ff;
+    }
+    
+    .example {
+      background-color: #00e5ff10;
+      border-left: 5px solid #00e5ff;
+    }
+    
+    /* Encabezado con imagen de fondo moderna */
+    header {
+      background: url('https://source.unsplash.com/featured/?gamer,technology') no-repeat center center/cover;
+      padding: 50px 20px;
+      text-align: center;
+      color: #ffffff;
+      margin-bottom: 30px;
+      border-radius: 5px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+    
+    header h1 {
+      font-size: 2.8em;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    }
+    
+    header p {
+      font-size: 1.3em;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+    }
+    
+    /* Barra de navegación moderna */
+    nav {
+      background-color: #1f1f1f;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    nav a {
+      margin: 0 15px;
+      font-weight: 500;
+      color: #00e5ff;
+    }
+    
+    nav a:hover {
+      color: #00b8d4;
+    }
+    
+    /* Espaciado general para secciones */
+    section {
+      margin-bottom: 40px;
+    }
+    
+    /* Footer */
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #00e5ff;
+    }
+  </style>
+</head>
+<body>
+  <!-- Encabezado -->
+  <header>
+    <h1>Módulo 4: Introducción a Límites y Continuidad</h1>
+    <p>¡Descubrí cómo se comportan las funciones al acercarse a un punto y la importancia de la continuidad!</p>
+  </header>
+  
+  <!-- Barra de navegación -->
+  <nav>
+    <a href="#limites">4.1. Límites</a>
+    <a href="#calculo-limites">4.2. Cálculo de Límites</a>
+    <a href="#continuidad">4.3. Continuidad y Discontinuidades</a>
+    <a href="#estabilidad">4.4. Estabilidad Numérica</a>
+    <a href="#ejercicios">4.5. Ejercicios Aplicados</a>
+    <a href="#conclusiones">4.6. Conclusiones</a>
+  </nav>
+  
+  <!-- Índice del Módulo -->
+  <section>
+    <h2>Índice del Módulo</h2>
+    <ol>
+      <li><a href="#limites">4.1. Definición de Límite</a></li>
+      <li><a href="#calculo-limites">4.2. Cálculo de Límites de Funciones Algebraicas y Trigonométricas</a></li>
+      <li><a href="#continuidad">4.3. Continuidad y Discontinuidades</a></li>
+      <li><a href="#estabilidad">4.4. Estabilidad Numérica y Continuidad</a></li>
+      <li><a href="#ejercicios">4.5. Ejercicios Aplicados a Videojuegos</a></li>
+      <li><a href="#conclusiones">4.6. Conclusiones y Próximos Pasos</a></li>
+    </ol>
+  </section>
+  
+  <hr>
+  
+  <!-- 4.1 Definición de Límite -->
+  <section id="limites">
+    <h2>4.1. Definición Intuitiva y Formal de Límite</h2>
+    <h3>4.1.1. Concepto Intuitivo</h3>
+    <p>
+      El límite de una función describe cómo se comporta \( f(x) \) conforme la variable \( x \) se acerca a un valor \( a \), sin importar si la función está definida en \( a \). Es decir, nos interesa saber “hacia dónde se dirige” \( f(x) \) al acercarse a \( a \).
+    </p>
+    <p>
+      Por ejemplo, para analizar la temperatura de un motor justo antes de un pico, se estudian los valores cercanos a ese instante.
+    </p>
+    
+    <h3>4.1.2. Notación</h3>
+    <p>
+      Se escribe:
+      \[
+      \lim_{x\to a} f(x)=L,
+      \]
+      que se lee “el límite de \( f(x) \) cuando \( x \) tiende a \( a \) es \( L \)”.
+    </p>
+    
+    <h3>4.1.3. Definición Formal (Épsilon-Delta)</h3>
+    <p>
+      Formalmente, decimos que \( \lim_{x\to a} f(x)=L \) si para todo \( \varepsilon>0 \) existe un \( \delta>0 \) tal que, para todo \( x \) con \( 0<|x-a|<\delta \), se cumple:
+      \[
+      |f(x)-L|<\varepsilon.
+      \]
+      Esto garantiza que \( f(x) \) se puede hacer tan cerca de \( L \) como deseemos, siempre que \( x \) esté lo suficientemente cerca de \( a \).
+    </p>
+    
+    <h3>4.1.4. Ejemplo Intuitivo</h3>
+    <p>
+      Considerá:
+      \[
+      f(x)=\frac{x-1}{x^2-1}.
+      \]
+      Aunque \( f(1) \) no está definido, al evaluar \( f(x) \) para \( x \) cercano a 1, los valores se acercan a 2. Por ello, se escribe:
+      \[
+      \lim_{x\to 1}\frac{x-1}{x^2-1}=2.
+      \]
+    </p>
+    
+    <!-- Gráfica sencilla de límite -->
+    <div class="diagram" style="margin: auto; width: 320px;">
+      <svg width="300" height="200">
+        <!-- Ejes -->
+        <line x1="30" y1="170" x2="270" y2="170" stroke="#00e5ff" stroke-width="2"/>
+        <line x1="30" y1="170" x2="30" y2="20" stroke="#00e5ff" stroke-width="2"/>
+        <!-- Aproximación de la gráfica de f(x) cerca de x=1 -->
+        <polyline fill="none" stroke="#ffea00" stroke-width="2"
+          points="
+            50,130 
+            90,115 
+            120,110 
+            150,108 
+            180,110 
+            210,115 
+            250,130" />
+        <text x="160" y="105" fill="#ffea00" font-size="12">Límite = 2</text>
+      </svg>
+      <p style="text-align: center;">Gráfica de \( f(x)=\frac{x-1}{x^2-1} \) cerca de \( x=1 \)</p>
+    </div>
+  </section>
+  
+  <hr>
+  
+  <!-- 4.2 Cálculo de Límites -->
+  <section id="calculo-limites">
+    <h2>4.2. Cálculo de Límites de Funciones Algebraicas y Trigonométricas</h2>
+    <h3>4.2.1. Técnicas Principales</h3>
+    <p>
+      Cuando sustituir \( x=a \) en \( f(x) \) genera una indeterminación, se utilizan técnicas como:
+    </p>
+    <ul>
+      <li><strong>Sustitución Directa:</strong> Si \( f \) es continua en \( a \), entonces \( \lim_{x\to a} f(x)=f(a) \).</li>
+      <li><strong>Factorización y Simplificación:</strong> Por ejemplo:
+        \[
+        \lim_{x\to 1}\frac{x-1}{x^2-1}=\lim_{x\to 1}\frac{1}{x+1}=\frac{1}{2}.
+        \]
+      </li>
+      <li><strong>Racionalización:</strong> Multiplicar por el conjugado para eliminar radicales.</li>
+      <li><strong>Límites Trigonométricos:</strong> Ejemplo clásico:
+        \[
+        \lim_{x\to 0}\frac{\sin x}{x}=1.
+        \]
+      </li>
+      <li><strong>Regla de L’Hôpital:</strong> Si se tiene \( \frac{0}{0} \) o \( \frac{\infty}{\infty} \):
+        \[
+        \lim_{x\to a}\frac{f(x)}{g(x)}=\lim_{x\to a}\frac{f'(x)}{g'(x)}.
+        \]
+      </li>
+    </ul>
+    
+    <h3>4.2.2. Ejemplos de Cálculo de Límites</h3>
+    <p>
+      <strong>Ejemplo 1:</strong> \( \lim_{x\to 3}(2x-1)=5. \)
+    </p>
+    <p>
+      <strong>Ejemplo 2 (Factorización):</strong>
+      \[
+      \lim_{x\to -2}\frac{x+2}{(x+2)(x+3)}=\frac{1}{x+3}\Big|_{x=-2}=1.
+      \]
+    </p>
+    <p>
+      <strong>Ejemplo 3 (Trigonométrico):</strong>
+      \[
+      \lim_{x\to 0}\frac{\sin(3x)}{x}=3.
+      \]
+    </p>
+  </section>
+  
+  <hr>
+  
+  <!-- 4.3 Continuidad y Discontinuidades -->
+  <section id="continuidad">
+    <h2>4.3. Continuidad y Discontinuidades en Funciones</h2>
+    <h3>4.3.1. Definición Intuitiva</h3>
+    <p>
+      Una función es <strong>continua</strong> en un punto \( x=a \) si podés trazar su gráfica en ese tramo sin levantar el lápiz, es decir, sin saltos ni agujeros.
+    </p>
+    
+    <h3>4.3.2. Definición Formal</h3>
+    <p>
+      Formalmente, \( f(x) \) es continua en \( x=a \) si:
+    </p>
+    <ol>
+      <li>\( f(a) \) está definida.</li>
+      <li>\( \lim_{x\to a} f(x) \) existe.</li>
+      <li>\( \lim_{x\to a} f(x)=f(a) \).</li>
+    </ol>
+    
+    <h3>4.3.3. Tipos de Discontinuidades</h3>
+    <ul>
+      <li>
+        <strong>Discontinuidad Removible:</strong> El límite existe, pero \( f(a) \) no coincide con él o no está definido.  
+        Ejemplo: \( \frac{x-1}{x^2-1} \) en \( x=1 \).
+      </li>
+      <li>
+        <strong>Discontinuidad de Salto:</strong> Los límites laterales existen pero son diferentes.
+      </li>
+      <li>
+        <strong>Discontinuidad Asintótica:</strong> La función tiende a \( \pm\infty \) conforme \( x \) se acerca a un valor, como en \( \frac{1}{x} \) en \( x=0 \).
+      </li>
+    </ul>
+    
+    <h3>4.3.4. Ejemplo Visual: Continuidad y Discontinuidad</h3>
+    <!-- Gráfica de función continua -->
+    <div class="diagram" style="margin: auto; width: 320px;">
+      <svg width="300" height="200">
+        <!-- Ejes -->
+        <line x1="30" y1="170" x2="270" y2="170" stroke="#00e5ff" stroke-width="2"/>
+        <line x1="30" y1="170" x2="30" y2="20" stroke="#00e5ff" stroke-width="2"/>
+        <!-- Gráfica continua: f(x)=x (línea recta) -->
+        <line x1="30" y1="170" x2="270" y2="30" stroke="#ffea00" stroke-width="2"/>
+      </svg>
+      <p style="text-align: center;">Función continua: \( f(x)=x \)</p>
+    </div>
+    <!-- Gráfica con discontinuidad removible -->
+    <div class="diagram" style="margin: auto; width: 320px;">
+      <svg width="300" height="200">
+        <!-- Ejes -->
+        <line x1="30" y1="170" x2="270" y2="170" stroke="#00e5ff" stroke-width="2"/>
+        <line x1="30" y1="170" x2="30" y2="20" stroke="#00e5ff" stroke-width="2"/>
+        <!-- Gráfica: f(x) = (x^2-1)/(x-1) con un agujero en x=1 -->
+        <polyline fill="none" stroke="#ffea00" stroke-width="2"
+          points="
+            30,170 
+            60,140 
+            90,120 
+            120,110 
+            150,105 
+            180,110 
+            210,120 
+            240,140 
+            270,170" />
+        <!-- Agregar un círculo hueco en x=150 (x=1 en la escala transformada) -->
+        <circle cx="150" cy="105" r="4" fill="none" stroke="#ffea00" stroke-width="2"/>
+      </svg>
+      <p style="text-align: center;">Función con discontinuidad removible</p>
+    </div>
+  </section>
+  
+  <hr>
+  
+  <!-- 4.4 Estabilidad Numérica y Continuidad -->
+  <section id="estabilidad">
+    <h2>4.4. Estabilidad Numérica y su Relación con la Continuidad</h2>
+    <p>
+      La <strong>estabilidad numérica</strong> se refiere a la capacidad de un algoritmo para manejar errores de redondeo y pasos discretos sin generar resultados impredecibles. En videojuegos, donde se simulan procesos en intervalos finitos (\( \Delta t \)) y se usan números en coma flotante, es crucial que las funciones sean continuas para evitar oscilaciones abruptas.
+    </p>
+    <ul>
+      <li>
+        <strong>Inestabilidad:</strong> Discontinuidades o un \( \Delta t \) muy grande pueden amplificar pequeños errores.
+      </li>
+      <li>
+        <strong>Control del Error:</strong> Usar funciones continuas y pasos pequeños en la integración mejora la estabilidad.
+      </li>
+    </ul>
+  </section>
+  
+  <hr>
+  
+  <!-- 4.5 Ejercicios Aplicados a Videojuegos -->
+  <section id="ejercicios">
+    <h2>4.5. Ejercicios Aplicados a Videojuegos</h2>
+    <p>
+      Acá tenés ejercicios prácticos que integran los conceptos de límites, continuidad y estabilidad numérica en escenarios de videojuegos.
+    </p>
+    
+    <h3>Ejercicio 4.1: Análisis de Estabilidad en Cálculos Físicos</h3>
+    <div class="example">
+      <p><strong>Enunciado:</strong></p>
+      <p>
+        Considerá la simulación numérica de la posición:
+        \[
+        s(t)=s_0+v_0t+\frac{1}{2}at^2,
+        \]
+        donde, en \( t=T \), la aceleración cambia abruptamente. Analizá cómo varía la velocidad y la posición en función del tamaño del paso de integración \( \Delta t \).
+      </p>
+      <p><strong>Objetivo:</strong> Comprender que discontinuidades y pasos grandes pueden provocar saltos bruscos e inestabilidad.</p>
+    </div>
+    
+    <h3>Ejercicio 4.2: Uso de Límites en la Detección de Colisiones</h3>
+    <div class="example">
+      <p><strong>Enunciado:</strong></p>
+      <p>
+        En un juego de plataformas, el personaje se mueve según \( y_p(t) \) y la plataforma se encuentra a altura constante \( y_{pl} \). Definí la función:
+        \[
+        d(t)=y_p(t)-y_{pl}.
+        \]
+        Calculá:
+        \[
+        \lim_{t\to t_c} d(t),
+        \]
+        en el instante \( t=t_c \) en el que se espera la colisión. ¿Qué significa que este límite sea 0?
+      </p>
+      <p><strong>Pista:</strong> Si \( |d(t)|<\varepsilon \) para una pequeña \( \varepsilon \), se considera colisión.</p>
+    </div>
+    
+    <h3>Ejercicio 4.3: Comportamiento de una IA en Función de la Distancia</h3>
+    <div class="example">
+      <p><strong>Enunciado:</strong></p>
+      <p>
+        Un enemigo tiene modos distintos según la distancia \( d \) al jugador, definidos por:
+        \[
+        f(d)=\begin{cases} 
+        1, & 0\le d<5 \quad (\text{atacar}), \\
+        2, & 5\le d<20 \quad (\text{patrullar}), \\
+        0, & d\ge 20 \quad (\text{inactivo}).
+        \end{cases}
+        \]
+        Analizá la continuidad de \( f(d) \) e identificá sus puntos de discontinuidad. ¿Cómo afectarían estos saltos al comportamiento del enemigo?
+      </p>
+      <p><strong>Pista:</strong> Fíjate en los saltos en \( d=5 \) y \( d=20 \).</p>
+    </div>
+  </section>
+  
+  <hr>
+  
+  <!-- 4.6 Conclusiones y Próximos Pasos -->
+  <section id="conclusiones">
+    <h2>4.6. Conclusiones y Próximos Pasos</h2>
+    <p>
+      En este módulo aprendiste:
+    </p>
+    <ul>
+      <li>
+        <strong>Límites:</strong> Describen el comportamiento de una función cuando \( x \) se acerca a un punto, aun cuando \( f(x) \) no esté definida en ese punto.
+      </li>
+      <li>
+        <strong>Cálculo de Límites:</strong> Técnicas como sustitución, factorización, racionalización, y la regla de L’Hôpital.
+      </li>
+      <li>
+        <strong>Continuidad:</strong> Una función continua se grafica sin saltos, garantizando transiciones suaves en animaciones y movimientos.
+      </li>
+      <li>
+        <strong>Estabilidad Numérica:</strong> Una adecuada elección de \( \Delta t \) y el uso de funciones continuas minimizan errores en simulaciones.
+      </li>
+    </ul>
+    <p>
+      Estos conceptos son esenciales para simular procesos realistas, detectar colisiones con precisión y lograr un comportamiento fluido en la IA y las animaciones. Como próximo paso, profundizá en el cálculo diferencial para entender la velocidad y la aceleración en detalle.
+    </p>
+    <div class="activity">
+      <p><strong>Recomendación de Autoevaluación:</strong> Repetí los cálculos de cada ejercicio sin consultar las soluciones, modificá parámetros (como \( \Delta t \), tolerancias, tasas de cambio) y experimentá con simulaciones en Unity, Godot o en hojas de cálculo.</p>
+    </div>
+  </section>
+  
+  <hr>
+  
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 UTN BA - Carrera de Desarrollo y Producción de Videojuegos</p>
+  </footer>
+  
+</body>
+</html>

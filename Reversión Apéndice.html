@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Apéndice: Diccionario Matemático</title>
+  <!-- Inclusión de MathJax -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <!-- Google Fonts: Montserrat para títulos y Roboto para el cuerpo -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Roboto', sans-serif;
+      line-height: 1.5;
+      background: #121212;
+      color: #e0e0e0;
+      padding: 20px;
+      text-align: justify;
+    }
+    a {
+      color: #00e5ff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: #00b8d4;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Montserrat', sans-serif;
+      color: #00e5ff;
+      margin-bottom: 15px;
+      text-align: left;
+    }
+    p {
+      margin-bottom: 15px;
+    }
+    ul, ol {
+      margin-left: 25px;
+      margin-bottom: 20px;
+    }
+    hr {
+      border: none;
+      border-top: 2px solid #00e5ff;
+      margin: 30px 0;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 20px 0;
+      background-color: #1e1e1e;
+    }
+    table, th, td {
+      border: 1px solid #00e5ff;
+    }
+    th, td {
+      padding: 12px;
+      text-align: center;
+    }
+    .diagram, .code-block {
+      background-color: #263238;
+      border: 1px solid #00e5ff;
+      padding: 12px;
+      font-family: 'Roboto Mono', monospace;
+      margin: 15px auto;
+      text-align: center;
+      display: block;
+      max-width: 320px;
+    }
+    .activity, .example {
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+    }
+    .activity {
+      background-color: #00e5ff20;
+      border-left: 5px solid #00e5ff;
+    }
+    .example {
+      background-color: #00e5ff10;
+      border-left: 5px solid #00e5ff;
+    }
+    /* Tabla comparativa */
+    .comparativa {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    .comparativa th, .comparativa td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+    .comparativa th {
+      background-color: #e0e0e0;
+    }
+    /* Encabezado */
+    header {
+      background: url('https://source.unsplash.com/featured/?gamer,video-games') no-repeat center center/cover;
+      padding: 50px 20px;
+      text-align: center;
+      color: #ffffff;
+      margin-bottom: 30px;
+      border-radius: 5px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+    header h1 {
+      font-size: 2.8em;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    }
+    header p {
+      font-size: 1.3em;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+    }
+    /* Barra de navegación */
+    nav {
+      background-color: #1f1f1f;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    nav a {
+      margin: 0 15px;
+      font-weight: 500;
+      color: #00e5ff;
+    }
+    nav a:hover {
+      color: #00b8d4;
+    }
+    /* Secciones */
+    section {
+      margin-bottom: 40px;
+    }
+    /* Footer */
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #00e5ff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <header>
+    <h1>Apéndice: Diccionario Matemático</h1>
+    <p>Tu recurso de consulta rápida para fórmulas y conceptos fundamentales.</p>
+  </header>
+  
+  <!-- Barra de navegación -->
+  <nav>
+    <a href="#numeros">1. Números y Operaciones Básicas</a>
+    <a href="#algebra">2. Álgebra y Propiedades Aritméticas</a>
+    <a href="#fracciones">3. Fracciones, Decimales y Porcentajes</a>
+    <a href="#funciones">4. Funciones y Cálculo</a>
+    <a href="#limites">5. Límites y Continuidad</a>
+    <a href="#derivadas">6. Derivadas</a>
+    <a href="#integrales">7. Integrales</a>
+    <a href="#probabilidad">8. Probabilidad y Estadística Básica</a>
+    <a href="#combinatoria">9. Combinatoria y Conteo</a>
+    <a href="#herramientas">10. Herramientas Computacionales</a>
+    <a href="#simbolos">11. Notación y Simbología</a>
+  </nav>
+  
+  <!-- Índice -->
+  <section>
+    <h2>Índice</h2>
+    <ol>
+      <li><a href="#numeros">Números y Operaciones Básicas</a></li>
+      <li><a href="#algebra">Álgebra y Propiedades Aritméticas</a></li>
+      <li><a href="#fracciones">Fracciones, Decimales y Porcentajes</a></li>
+      <li><a href="#funciones">Funciones y Cálculo</a></li>
+      <li><a href="#limites">Límites y Continuidad</a></li>
+      <li><a href="#derivadas">Derivadas</a></li>
+      <li><a href="#integrales">Integrales</a></li>
+      <li><a href="#probabilidad">Probabilidad y Estadística Básica</a></li>
+      <li><a href="#combinatoria">Combinatoria y Conteo</a></li>
+      <li><a href="#herramientas">Herramientas Computacionales</a></li>
+      <li><a href="#simbolos">Notación y Simbología</a></li>
+    </ol>
+  </section>
+  
+  <hr>
+  
+  <!-- Secciones del Manual -->
+  <h2 id="numeros">1. Números y Operaciones Básicas</h2>
+  <div class="definition">
+    <h3>Números Reales</h3>
+    <p>
+      El conjunto de números reales, \( \mathbb{R} \), incluye a los números racionales (aquellos que pueden expresarse como \( \frac{a}{b} \), con \( b \neq 0 \)) y a los irracionales (como \( \pi \) y \( e \)). Se representan en la recta numérica.
+    </p>
+  </div>
+  <div class="definition">
+    <h3>Operaciones Aritméticas</h3>
+    <p>
+      Las operaciones básicas son:
+    </p>
+    <ul>
+      <li>Suma: \( a + b \)</li>
+      <li>Resta: \( a - b \)</li>
+      <li>Multiplicación: \( ab \) o \( a \times b \)</li>
+      <li>División: \( \frac{a}{b} \) (con \( b \neq 0 \))</li>
+      <li>Potenciación: \( a^b \)</li>
+      <li>Radicación: \( \sqrt{a} \) o \( a^{\frac{1}{b}} \)</li>
+    </ul>
+  </div>
+  
+  <hr>
+  
+  <h2 id="algebra">2. Álgebra y Propiedades Aritméticas</h2>
+  <div class="definition">
+    <h3>Propiedades de las Operaciones</h3>
+    <ul>
+      <li>Conmutativa: \( a+b = b+a \); \( ab = ba \).</li>
+      <li>Asociativa: \( (a+b)+c = a+(b+c) \); \( (ab)c = a(bc) \).</li>
+      <li>Distributiva: \( a(b+c) = ab+ac \).</li>
+    </ul>
+  </div>
+  
+  <hr>
+  
+  <h2 id="fracciones">3. Fracciones, Decimales y Porcentajes</h2>
+  <div class="definition">
+    <h3>Fracción</h3>
+    <p>
+      Se expresa como \( \frac{a}{b} \) (con \( b \neq 0 \)), representando la división de \( a \) en \( b \) partes iguales.
+    </p>
+  </div>
+  <div class="definition">
+    <h3>Decimal y Porcentaje</h3>
+    <p>
+      - Un <strong>decimal</strong> representa números reales en base 10.<br>
+      - Un <strong>porcentaje</strong> es una fracción con denominador 100, por ejemplo, \( 45\% = \frac{45}{100} = 0.45 \).
+    </p>
+  </div>
+  
+  <hr>
+  
+  <h2 id="funciones">4. Funciones y Cálculo</h2>
+  <div class="definition">
+    <h3>Funciones</h3>
+    <p>
+      Una función \( f: A \to B \) asigna a cada \( x \in A \) un único valor \( f(x) \) en \( B \). Se escribe:
+      \[
+      f: A \to B, \quad \forall x \in A, \, \exists!\, y \in B \text{ tal que } y=f(x).
+      \]
+    </p>
+  </div>
+  
+  <hr>
+  
+  <h2 id="limites">5. Límites y Continuidad</h2>
+  <div class="definition">
+    <h3>Límites</h3>
+    <p>
+      El límite de una función \( f(x) \) cuando \( x \) se acerca a \( a \) se denota:
+      \[
+      \lim_{x \to a} f(x)=L.
+      \]
+      Esto indica que conforme \( x \) se aproxima a \( a \), \( f(x) \) se aproxima a \( L \), incluso si \( f(a) \) no está definido.
+    </p>
+  </div>
+  <div class="definition">
+    <h3>Continuidad</h3>
+    <p>
+      Una función es continua en \( x=a \) si:
+      <ol>
+        <li>\( f(a) \) está definida.</li>
+        <li>\( \lim_{x \to a} f(x) \) existe.</li>
+        <li>\( \lim_{x \to a} f(x)=f(a) \).</li>
+      </ol>
+    </p>
+  </div>
+  
+  <hr>
+  
+  <h2 id="derivadas">6. Derivadas</h2>
+  <div class="definition">
+    <h3>Derivada</h3>
+    <p>
+      La derivada de una función \( f(x) \) en \( x=a \) es la tasa de cambio instantánea y se define como:
+      \[
+      f'(a)=\lim_{h\to 0}\frac{f(a+h)-f(a)}{h}.
+      \]
+      Geométricamente, es la pendiente de la recta tangente a la curva en \( (a, f(a)) \).
+    </p>
+  </div>
+  
+  <hr>
+  
+  <h2 id="integrales">7. Integrales</h2>
+  <div class="definition">
+    <h3>Integral Indefinida</h3>
+    <p>
+      La integral indefinida de \( f(x) \) es el conjunto de sus antiderivadas:
+      \[
+      \int f(x)\,dx=F(x)+C,
+      \]
+      donde \( C \) es la constante de integración.
+    </p>
+  </div>
+  <div class="definition">
+    <h3>Integral Definida</h3>
+    <p>
+      La integral definida
+      \[
+      \int_a^b f(x)\,dx=F(b)-F(a)
+      \]
+      representa el área neta bajo la curva de \( f(x) \) en el intervalo \([a, b]\).
+    </p>
+  </div>
+  
+  <hr>
+  
+  <h2 id="probabilidad">8. Probabilidad y Estadística Básica</h2>
+  <div class="definition">
+    <h3>Probabilidad</h3>
+    <p>
+      La probabilidad de un evento \( A \) se define como:
+      \[
+      P(A)=\frac{\text{Número de casos favorables}}{\text{Número total de casos}}.
+      \]
+      Se utiliza para modelar eventos aleatorios, como tiradas de dados o generación de loot.
+    </p>
+  </div>
+  
+  <hr>
+  
+  <h2 id="combinatoria">9. Combinatoria y Conteo</h2>
+  <div class="definition">
+    <h3>Principio de la Multiplicación</h3>
+    <p>
+      Si un evento \( A \) ocurre de \( m \) formas y para cada forma de \( A \) un evento \( B \) ocurre de \( n \) formas, el total es:
+      \[
+      m \times n.
+      \]
+    </p>
+  </div>
+  <div class="definition">
+    <h3>Principio de la Adición</h3>
+    <p>
+      Si \( A \) y \( B \) son eventos mutuamente excluyentes, el total de formas de que ocurra \( A \) o \( B \) es:
+      \[
+      m+n.
+      \]
+    </p>
+  </div>
+  <div class="definition">
+    <h3>Permutaciones y Combinaciones</h3>
+    <p>
+      <strong>Permutaciones:</strong> Ordenar \( r \) elementos de un conjunto de \( n \) (orden importa).<br>
+      Sin repetición: \( P(n,r)=\frac{n!}{(n-r)!} \).<br>
+      Con repetición: \( n^r \).<br><br>
+      <strong>Combinaciones:</strong> Seleccionar \( r \) elementos de \( n \) (orden no importa).<br>
+      Sin repetición: \( C(n,r)=\frac{n!}{r!(n-r)!} \).<br>
+      Con repetición: \( C(n+r-1, r)=\frac{(n+r-1)!}{r!(n-1)!} \).
+    </p>
+  </div>
+  <div class="definition">
+    <h3>Arreglos</h3>
+    <p>
+      Se refieren a la disposición ordenada de elementos. Sin repetición: \( \frac{n!}{(n-r)!} \); con repetición: \( n^r \).
+    </p>
+  </div>
+  <h3>Tabla Comparativa: Permutaciones, Combinaciones y Arreglos</h3>
+  <table class="comparativa">
+    <thead>
+      <tr>
+        <th>Tipo</th>
+        <th>Fórmula</th>
+        <th>Orden Importa</th>
+        <th>Repetición</th>
+        <th>Ejemplo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Permutaciones</td>
+        <td>\( \frac{n!}{(n-r)!} \)</td>
+        <td>Sí</td>
+        <td>No</td>
+        <td>Ordenar ataques</td>
+      </tr>
+      <tr>
+        <td>Permutaciones (Con Rep.)</td>
+        <td>\( n^r \)</td>
+        <td>Sí</td>
+        <td>Sí</td>
+        <td>Códigos, secuencias</td>
+      </tr>
+      <tr>
+        <td>Combinaciones</td>
+        <td>\( \frac{n!}{r!(n-r)!} \)</td>
+        <td>No</td>
+        <td>No</td>
+        <td>Selección de equipos</td>
+      </tr>
+      <tr>
+        <td>Combinaciones (Con Rep.)</td>
+        <td>\( \frac{(n+r-1)!}{r!(n-1)!} \)</td>
+        <td>No</td>
+        <td>Sí</td>
+        <td>Elaboración de pociones</td>
+      </tr>
+      <tr>
+        <td>Arreglos (Sin Rep.)</td>
+        <td>\( \frac{n!}{(n-r)!} \)</td>
+        <td>Sí</td>
+        <td>No</td>
+        <td>Orden de elementos</td>
+      </tr>
+      <tr>
+        <td>Arreglos (Con Rep.)</td>
+        <td>\( n^r \)</td>
+        <td>Sí</td>
+        <td>Sí</td>
+        <td>Códigos, secuencias</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <hr>
+  
+  <h2 id="factorial">10. Factorial</h2>
+  <div class="definition">
+    <h3>Concepto de Factorial</h3>
+    <p>
+      El factorial de un número \( n \) se define como:
+      \[
+      n! = n\cdot(n-1)\cdots2\cdot1, \quad 0! = 1.
+      \]
+      Es fundamental en combinatoria, pues representa el número de formas de ordenar \( n \) elementos.
+    </p>
+  </div>
+  
+  <hr>
+  
+  <h2 id="problemas">11. Problemas de Conteo en Juegos</h2>
+  <div class="definition">
+    <h3>Tipos y Estrategias</h3>
+    <p>
+      Estos problemas pueden involucrar combinaciones de objetos, rutas en mapas o estados de un puzzle. Es importante:
+    </p>
+    <ul>
+      <li>Distinguir si el orden importa (permutaciones/arreglos) o no (combinaciones).</li>
+      <li>Aplicar el principio de multiplicación o adición según corresponda.</li>
+      <li>Dividir el problema en partes y utilizar diagramas de árbol para visualizar las opciones.</li>
+    </ul>
+  </div>
+  
+  <hr>
+  
+  <h2 id="herramientas">12. Herramientas Computacionales en el Desarrollo de Videojuegos</h2>
+  <div class="definition">
+    <h3>Hojas de Cálculo (Excel / Google Sheets)</h3>
+    <p>
+      Son esenciales para organizar datos, realizar cálculos automáticos y generar gráficos que ayudan a balancear y analizar la economía y mecánicas del juego.
+    </p>
+  </div>
+  <div class="definition">
+    <h3>Python</h3>
+    <p>
+      Un lenguaje versátil para simulaciones y análisis estadístico. Bibliotecas como NumPy, SciPy y Matplotlib permiten generar y visualizar datos.
+    </p>
+  </div>
+  <div class="definition">
+    <h3>Motores de Videojuegos (Unity / Unreal Engine)</h3>
+    <p>
+      Plataformas que integran física, gráficos y scripting, permitiendo simular eventos y mecánicas en tiempo real.
+    </p>
+  </div>
+  
+  <hr>
+  
+  <h2 id="simbolos">13. Notación y Simbología Matemática Básica</h2>
+  <div class="definition">
+    <h3>Teoría de Conjuntos</h3>
+    <p>
+      Algunos símbolos fundamentales:
+    </p>
+    <ul>
+      <li>\( a \in A \): \( a \) pertenece al conjunto \( A \).</li>
+      <li>\( A \subset B \): \( A \) es subconjunto de \( B \).</li>
+      <li>\( A \cup B \): Unión de \( A \) y \( B \).</li>
+      <li>\( A \cap B \): Intersección de \( A \) y \( B \).</li>
+      <li>\( \emptyset \): Conjunto vacío.</li>
+    </ul>
+  </div>
+  <div class="definition">
+    <h3>Otras Notaciones Importantes</h3>
+    <ul>
+      <li>\( \mathbb{R} \): Números reales.</li>
+      <li>\( \mathbb{N} \): Números naturales.</li>
+      <li>\( \mathbb{Z} \): Números enteros.</li>
+      <li>\( \lim_{x \to a} f(x) \): Límite de \( f(x) \) en \( a \).</li>
+      <li>\( f'(x) \): Derivada de \( f(x) \).</li>
+      <li>\( \int_a^b f(x)\,dx \): Integral definida de \( f(x) \) en \([a,b]\).</li>
+    </ul>
+  </div>
+  
+  <hr>
+  
+  <h2>Conclusiones del Apéndice</h2>
+  <p>
+    Este capítulo reúne definiciones, fórmulas y notación esencial para el desarrollo de videojuegos, abarcando desde operaciones básicas y álgebra hasta funciones, cálculos, combinatoria y herramientas computacionales. Utilizalo como referencia para repasar y afianzar tus conocimientos.
+  </p>
+  <p>
+    Dominar estos conceptos te permitirá diseñar sistemas de juego complejos, automatizar cálculos y simular procesos esenciales en el desarrollo de videojuegos.
+  </p>
+  
+  <hr>
+  
+  <!-- Sección de Resolución Paso a Paso -->
+  <h2 id="resolucion">Resolución Paso a Paso</h2>
+  <p>
+    A continuación se muestra un ejemplo de cómo consultar y aplicar una fórmula del manual. En este caso, se resuelve paso a paso el cálculo de una integral definida en Excel.
+  </p>
+  <div class="example">
+    <h3>Ejemplo Resolutivo: Cálculo de Área Bajo \( f(x)=x^2 \) en [0,1]</h3>
+    <ol>
+      <li>
+        <strong>Definir la función:</strong> En Excel, se tiene la función \( f(x)=x^2 \).
+      </li>
+      <li>
+        <strong>Calcular la antiderivada:</strong> La antiderivada es \( \frac{x^3}{3} \).
+      </li>
+      <li>
+        <strong>Evaluar en los límites:</strong> Se calcula \( \frac{1^3}{3} - \frac{0^3}{3} = \frac{1}{3} \).
+      </li>
+      <li>
+        <strong>Interpretación:</strong> Este valor representa el área neta bajo la curva en el intervalo [0,1].
+      </li>
+      <li>
+        <strong>Diagrama Visual:</strong>
+        <div class="diagram" style="max-width: 320px;">
+          <svg width="300" height="200">
+            <!-- Ejes -->
+            <line x1="30" y1="170" x2="270" y2="170" stroke="#00e5ff" stroke-width="2"/>
+            <line x1="30" y1="170" x2="30" y2="20" stroke="#00e5ff" stroke-width="2"/>
+            <!-- Curva f(x)=x^2 -->
+            <polyline fill="none" stroke="#ffea00" stroke-width="2"
+              points="
+                30,170 
+                60,150 
+                90,130 
+                120,115 
+                150,105 
+                180,100 
+                210,100 
+                240,105 
+                270,120" />
+            <!-- Sombreado del área -->
+            <polygon fill="#ffea0040" stroke="none"
+              points="
+                30,170 
+                60,150 
+                90,130 
+                120,115 
+                150,105 
+                180,100 
+                210,100 
+                240,105 
+                270,120 
+                270,170" />
+          </svg>
+        </div>
+        <p style="text-align: center;">Diagrama: Área bajo \( f(x)=x^2 \) en [0,1]</p>
+      </li>
+    </ol>
+  </div>
+  
+  <hr>
+  
+  <footer>
+    <p>© 2025 UTN BA - Carrera de Desarrollo y Producción de Videojuegos</p>
+  </footer>
+  
+</body>
+</html>
